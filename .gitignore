@@ -1,0 +1,12 @@
+# Ignorar archivos temporales de LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Ignorar carpetas temporales
+_build/
+output/
