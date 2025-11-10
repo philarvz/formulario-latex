@@ -1,0 +1,480 @@
+﻿% ==================== UNIDAD I ====================
+% Funciones de varias variables
+
+\section{Unidad I: Funciones de varias variables}
+
+\subsection{Funciones de varias variables}
+
+\begin{TemaBox}[Funciones de varias variables: estudio teórico]
+Esta sección presenta un estudio teórico fundamental sobre las funciones de varias variables, abarcando conceptos esenciales como dominio, rango, y la distinción entre funciones explícitas e implícitas. Estos conceptos son la base para el análisis multivariable y aplicaciones en ciencias e ingeniería.
+\end{TemaBox}
+
+\paragraph{Introducción.}
+Las \textbf{funciones de varias variables} son aquellas que dependen de dos o más variables independientes. A diferencia de las funciones de una variable \(y = f(x)\), estas funciones se expresan como \(z = f(x,y)\) para dos variables, o más generalmente como \(w = f(x_1, x_2, \ldots, x_n)\) para \(n\) variables.
+
+Las funciones de varias variables permiten modelar fenómenos donde múltiples factores influyen simultáneamente en un resultado. Por ejemplo:
+\begin{itemize}
+  \item La temperatura \(T(x,y,z)\) en un punto del espacio tridimensional.
+  \item El volumen \(V(r,h) = \pi r^2 h\) de un cilindro en función de su radio y altura.
+  \item La producción \(P(L,K)\) de una empresa en función del trabajo \(L\) y capital \(K\) (función de producción en economía).
+\end{itemize}
+
+\subsubsection{Funciones escalares de varias variables}
+
+\subsubsection{Dominio}
+El \textbf{dominio} de una función de varias variables \(f(x,y)\) es el conjunto de todos los pares ordenados \((x,y)\) para los cuales la función está definida. Formalmente:
+\[
+\text{Dom}(f) = \{(x,y) \in \mathbb{R}^2 : f(x,y) \text{ está definida}\}
+\]
+
+Para funciones de tres o más variables, el dominio se extiende naturalmente a \(\mathbb{R}^3\) o \(\mathbb{R}^n\).
+
+\textbf{¿Cuándo se aplica?}
+\begin{itemize}
+  \item Al identificar restricciones físicas o matemáticas (raíces cuadradas, denominadores, logaritmos).
+  \item Para determinar la región del plano o espacio donde la función tiene sentido.
+\end{itemize}
+
+\textbf{Ejemplos ilustrativos:}
+\begin{enumerate}
+  \item \textbf{Función polinomial:} \(f(x,y) = x^2 + y^2\)
+  
+  El dominio es todo \(\mathbb{R}^2\), ya que no hay restricciones:
+  \[\text{Dom}(f) = \mathbb{R}^2\]
+  
+  \item \textbf{Función con raíz cuadrada:} \(f(x,y) = \sqrt{9 - x^2 - y^2}\)
+  
+  La expresión dentro de la raíz debe ser no negativa:
+  \[9 - x^2 - y^2 \geq 0 \Rightarrow x^2 + y^2 \leq 9\]
+  El dominio es el disco cerrado de radio 3 centrado en el origen:
+  \[\text{Dom}(f) = \{(x,y) : x^2 + y^2 \leq 9\}\]
+  
+  \item \textbf{Función con denominador:} \(f(x,y) = \frac{1}{x - y}\)
+  
+  El denominador no puede ser cero:
+  \[x - y \neq 0 \Rightarrow x \neq y\]
+  El dominio excluye la recta \(y = x\):
+  \[\text{Dom}(f) = \{(x,y) \in \mathbb{R}^2 : x \neq y\}\]
+\end{enumerate}
+
+\subsubsection{Rango}
+El \textbf{rango} (o imagen) de una función \(f(x,y)\) es el conjunto de todos los valores posibles que puede tomar la función. Formalmente:
+\[
+\text{Ran}(f) = \{z \in \mathbb{R} : z = f(x,y) \text{ para algún } (x,y) \in \text{Dom}(f)\}
+\]
+
+\textbf{¿Cuándo se aplica?}
+\begin{itemize}
+  \item Al determinar los valores de salida posibles de una función.
+  \item Para analizar el comportamiento global de la función.
+\end{itemize}
+
+\textbf{Ejemplos ilustrativos:}
+\begin{enumerate}
+  \item \textbf{Paraboloide:} \(f(x,y) = x^2 + y^2\)
+  
+  Dado que \(x^2 \geq 0\) y \(y^2 \geq 0\), tenemos \(f(x,y) \geq 0\), y el mínimo se alcanza en \((0,0)\):
+  \[\text{Ran}(f) = [0, +\infty)\]
+  
+  \item \textbf{Función con raíz:} \(f(x,y) = \sqrt{9 - x^2 - y^2}\)
+  
+  Como \(0 \leq x^2 + y^2 \leq 9\), tenemos:
+  \[0 \leq 9 - x^2 - y^2 \leq 9 \Rightarrow 0 \leq \sqrt{9 - x^2 - y^2} \leq 3\]
+  \[\text{Ran}(f) = [0, 3]\]
+  
+  \item \textbf{Función seno:} \(f(x,y) = \sin(x) + \cos(y)\)
+  
+  Dado que \(-1 \leq \sin(x) \leq 1\) y \(-1 \leq \cos(y) \leq 1\):
+  \[\text{Ran}(f) = [-2, 2]\]
+\end{enumerate}
+
+\subsubsection{Funciones explícitas}
+Una función se dice \textbf{explícita} cuando la variable dependiente está despejada en términos de las variables independientes. La forma general es:
+\[
+z = f(x,y)
+\]
+
+\textbf{¿Cuándo se aplican?}
+\begin{itemize}
+  \item Cuando se necesita evaluar directamente la función para valores específicos.
+  \item Para graficar superficies en el espacio tridimensional.
+  \item En cálculo de derivadas parciales de forma directa.
+\end{itemize}
+
+\textbf{Ejemplos ilustrativos:}
+\begin{enumerate}
+  \item \(z = x^2 + y^2\) — Paraboloide circular
+  \item \(z = \sqrt{x^2 + y^2}\) — Cono
+  \item \(z = \sin(x) \cos(y)\) — Superficie ondulatoria
+  \item \(w = xyz\) — Función de tres variables
+\end{enumerate}
+
+En funciones explícitas, es directo calcular derivadas parciales:
+\[
+\frac{\partial z}{\partial x} = 2x, \quad \frac{\partial z}{\partial y} = 2y \quad \text{para } z = x^2 + y^2
+\]
+
+\subsubsection{Funciones implícitas}
+Una función se dice \textbf{implícita} cuando no está despejada, sino que se define mediante una ecuación de la forma:
+\[
+F(x,y,z) = 0
+\]
+
+donde \(z\) no está aislada explícitamente.
+
+\textbf{¿Cuándo se aplican?}
+\begin{itemize}
+  \item Cuando es difícil o imposible despejar la variable dependiente.
+  \item En ecuaciones de superficies como esferas, elipsoides, hiperboloides.
+  \item Para aplicar el teorema de la función implícita en análisis avanzado.
+\end{itemize}
+
+\textbf{Ejemplos ilustrativos:}
+\begin{enumerate}
+  \item \textbf{Esfera:} \(x^2 + y^2 + z^2 = 9\)
+  
+  Esta ecuación define \(z\) implícitamente. Si se despeja:
+  \[z = \pm\sqrt{9 - x^2 - y^2}\]
+  Se obtienen dos funciones explícitas (hemisferio superior e inferior).
+  
+  \item \textbf{Cilindro:} \(x^2 + y^2 = 4\)
+  
+  Define una superficie cilíndrica donde \(z\) puede tomar cualquier valor.
+  
+  \item \textbf{Ecuación general:} \(x^2 + y^2 - z^2 = 1\)
+  
+  Hiperboloide de una hoja, difícil de expresar explícitamente.
+\end{enumerate}
+
+\textbf{Derivación implícita:}
+Para funciones implícitas \(F(x,y,z) = 0\), podemos calcular derivadas parciales usando:
+\[
+\frac{\partial z}{\partial x} = -\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial z}}, \quad
+\frac{\partial z}{\partial y} = -\frac{\frac{\partial F}{\partial y}}{\frac{\partial F}{\partial z}}
+\]
+
+\textbf{Ejemplo aplicado:}
+Para \(x^2 + y^2 + z^2 = 9\), con \(F(x,y,z) = x^2 + y^2 + z^2 - 9\):
+\[
+\frac{\partial F}{\partial x} = 2x, \quad \frac{\partial F}{\partial z} = 2z
+\]
+\[
+\frac{\partial z}{\partial x} = -\frac{2x}{2z} = -\frac{x}{z}
+\]
+
+\paragraph{Comparación: Explícitas vs. Implícitas.}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Aspecto} & \textbf{Función Explícita} & \textbf{Función Implícita} \\
+\hline
+Forma & \(z = f(x,y)\) & \(F(x,y,z) = 0\) \\
+\hline
+Evaluación & Directa & Requiere despejar o métodos numéricos \\
+\hline
+Derivadas & Directas & Requiere derivación implícita \\
+\hline
+Ejemplos & \(z = x^2 + y^2\) & \(x^2 + y^2 + z^2 = 9\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Aplicaciones prácticas.}
+Las funciones de varias variables tienen aplicaciones en:
+\begin{itemize}
+  \item \textbf{Física:} Campos escalares (temperatura, presión, potencial eléctrico).
+  \item \textbf{Economía:} Funciones de utilidad \(U(x,y)\), funciones de producción Cobb-Douglas \(P(L,K) = AL^\alpha K^\beta\).
+  \item \textbf{Ingeniería:} Análisis de estructuras, distribución de esfuerzos, optimización de diseños.
+  \item \textbf{Estadística:} Regresión multivariable, funciones de densidad conjunta.
+\end{itemize}
+
+% ==================== UNIDAD 2 ====================
+% Planos y superficies
+
+\subsection{Planos y superficies}
+
+\subsubsection{Curvas de nivel: Planos, superficies cuadráticas (elipsoides, cono, paraboloides, hiperboloides) -- Graficación}
+
+\begin{TemaBox}[Descripción]
+Una \textbf{curva de nivel} de una función \(z=f(x,y)\) es el conjunto de puntos \((x,y)\) en el plano \(xy\) tales que
+\(f(x,y)=k\) para una constante fija \(k\). Geométricamente, surge al intersectar la \emph{superficie} \(z=f(x,y)\) con el
+\emph{plano horizontal} \(z=k\) y proyectar el contorno sobre el plano \(xy\).
+\end{TemaBox}
+
+\begin{InfoBox}
+\Meta{Propósito}{Visualizar funciones de dos variables mediante sus curvas de nivel y relacionarlas con cortes horizontales de la superficie.}
+\Meta{Competencias}{Modelación, representación gráfica y comunicación matemática.}
+\end{InfoBox}
+
+\paragraph{Teoría breve.}
+Para \(f(x,y)=x^2+y^2\), las curvas de nivel satisfacen \(x^2+y^2=k\).  
+Cada \(k>0\) produce una circunferencia de radio \(r=\sqrt{k}\) centrada en el origen.  
+El patrón de circunferencias concéntricas refleja que la superficie \(z=x^2+y^2\) es un paraboloide circular.
+
+% ---------- Figura 2D: Curvas de nivel (CORREGIDA) ----------
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+      axis equal image,
+      width=12cm,height=9cm,
+      axis lines=middle, xlabel={$x$}, ylabel={$y$},
+      xmin=-3.2, xmax=3.2, ymin=-3.2, ymax=3.2,
+      grid=both, minor tick num=1, grid style={gray!20},
+      title={Curvas de nivel de \(f(x,y)=x^2+y^2\)}
+  ]
+    % radios: sqrt(2), sqrt(3), 2, sqrt(5), sqrt(6)
+    \def\rrA{1.414}
+    \def\rrB{1.732}
+    \def\rrC{2.000}
+    \def\rrD{2.236}
+    \def\rrE{2.449}
+
+    \addplot[brand,thick,domain=0:360,samples=300] ({\rrA*cos(x)},{\rrA*sin(x)});
+    \addlegendentry{$k=2$}
+
+    \addplot[brand!70!black,thick,domain=0:360,samples=300] ({\rrB*cos(x)},{\rrB*sin(x)});
+    \addlegendentry{$k=3$}
+
+    \addplot[Plum,thick,domain=0:360,samples=300] ({\rrC*cos(x)},{\rrC*sin(x)});
+    \addlegendentry{$k=4$}
+
+    \addplot[Cyan,thick,domain=0:360,samples=300] ({\rrD*cos(x)},{\rrD*sin(x)});
+    \addlegendentry{$k=5$}
+
+    \addplot[Sepia,thick,domain=0:360,samples=300] ({\rrE*cos(x)},{\rrE*sin(x)});
+    \addlegendentry{$k=6$}
+  \end{axis}
+\end{tikzpicture}
+\caption{Curvas de nivel concéntricas para \(k=2,3,4,5,6\).}
+\label{fig:niveles2d}
+\end{figure}
+
+% ---------- Figura 3D: Superficie + cortes (SIMPLIFICADA) ----------
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+      view={35}{20},
+      width=14cm, height=9cm,
+      xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
+      domain=-3:3, y domain=-3:3,
+      samples=30, samples y=30,
+      colormap/viridis,
+      title={Superficie \(z=x^2+y^2\) con planos \(z=\text{const}\)}
+  ]
+    % Superficie principal
+    \addplot3[surf,opacity=0.7] {x^2 + y^2};
+    
+    % Circunferencias de nivel en 3D
+    \addplot3[thick,brand,domain=0:360,samples=100] ({sqrt(2)*cos(x)},{sqrt(2)*sin(x)},{2});
+    \addplot3[thick,brand,domain=0:360,samples=100] ({sqrt(4)*cos(x)},{sqrt(4)*sin(x)},{4});
+    \addplot3[thick,brand,domain=0:360,samples=100] ({sqrt(6)*cos(x)},{sqrt(6)*sin(x)},{6});
+  \end{axis}
+\end{tikzpicture}
+\caption{Paraboloide \(z=x^2+y^2\) y cortes horizontales \(z=\text{const}\).}
+\label{fig:niveles3d}
+\end{figure}
+
+\paragraph{Ejemplos guiados.}
+\begin{itemize}
+  \item \(k=2 \Rightarrow r=\sqrt{2}\approx1.41\)
+  \item \(k=3 \Rightarrow r=\sqrt{3}\approx1.73\)
+  \item \(k=4 \Rightarrow r=2.00\)
+  \item \(k=5 \Rightarrow r=\sqrt{5}\approx2.24\)
+  \item \(k=6 \Rightarrow r=\sqrt{6}\approx2.45\)
+\end{itemize}
+
+\paragraph{Ejercicios.}
+\begin{EjercicioBox}[1) Identificación de curvas]
+Dibuja las curvas de nivel para \(k=2,3,4,5,6\) y anota sus radios.
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[2) Intersección con planos]
+Encuentra las curvas resultantes de los cortes con los planos \(z=k\) y describe su forma.
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[3) Normalización]
+Transforma \(x^2+y^2=k\) en la forma \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\) y deduce que \(a=b=\sqrt{k}\).
+\end{EjercicioBox}
+
+% ==================== UNIDAD 3 ====================
+% Límites y continuidad en funciones de 3 variables
+
+\subsection{Límites y continuidad en funciones de 3 variables}
+
+\begin{TemaBox}[Descripción]
+Un \textbf{límite} describe el comportamiento de una función \(f(x)\) cuando la variable independiente \(x\) se aproxima a un valor específico \(a\). La notación formal es:
+\[
+\lim_{x\to a} f(x) = L
+\]
+Esto significa que los valores de \(f(x)\) se acercan arbitrariamente a \(L\) cuando \(x\) se acerca a \(a\). Los límites son fundamentales para definir la \textbf{continuidad} de una función y establecer las bases del cálculo diferencial e integral.
+\end{TemaBox}
+
+\begin{InfoBox}
+\Meta{Propósito}{Comprender el comportamiento de una función cuando la variable se aproxima a un valor determinado.}
+\Meta{Competencias}{Razonamiento lógico, análisis algebraico y comprensión de la continuidad.}
+\end{InfoBox}
+
+\subsubsection{Definición y conceptos}
+
+\paragraph{Definición formal.}
+Decimos que el límite de \(f(x)\) cuando \(x\) tiende a \(a\) es \(L\) si:
+\[
+\lim_{x\to a} f(x) = L
+\]
+siempre que para cada \(\varepsilon > 0\) exista un \(\delta > 0\) tal que si \(0 < |x-a| < \delta\), entonces \(|f(x)-L| < \varepsilon\).
+
+\paragraph{Indeterminaciones comunes.}
+Algunas formas indeterminadas requieren técnicas algebraicas para resolverse:
+\begin{itemize}
+  \item \(\frac{0}{0}\) — Factorización, racionalización o L'Hôpital
+  \item \(\frac{\infty}{\infty}\) — Simplificación algebraica
+  \item \(0\cdot\infty\), \(\infty - \infty\), \(1^\infty\), \(0^0\), \(\infty^0\) — Transformaciones logarítmicas o algebraicas
+\end{itemize}
+
+\paragraph{Continuidad.}
+Una función \(f(x)\) es \textbf{continua} en \(x=a\) si:
+\[
+\lim_{x\to a} f(x) = f(a)
+\]
+Es decir, el límite existe, la función está definida en \(a\), y ambos valores coinciden.
+
+\subsubsection{Racionalización de límites}
+
+Cuando aparecen raíces cuadradas en expresiones que producen indeterminaciones \(\frac{0}{0}\), podemos usar la técnica de \textbf{multiplicar por el conjugado}.
+
+\paragraph{Ejemplo resuelto.}
+Calcular:
+\[
+\lim_{x\to 0} \frac{\sqrt{9+x}-3}{x}
+\]
+
+\textbf{Solución:}
+\begin{align*}
+\lim_{x\to 0} \frac{\sqrt{9+x}-3}{x} &= \lim_{x\to 0} \frac{\sqrt{9+x}-3}{x} \cdot \frac{\sqrt{9+x}+3}{\sqrt{9+x}+3} \\[0.5em]
+&= \lim_{x\to 0} \frac{(9+x)-9}{x(\sqrt{9+x}+3)} \\[0.5em]
+&= \lim_{x\to 0} \frac{x}{x(\sqrt{9+x}+3)} \\[0.5em]
+&= \lim_{x\to 0} \frac{1}{\sqrt{9+x}+3} \\[0.5em]
+&= \frac{1}{\sqrt{9}+3} = \frac{1}{6}
+\end{align*}
+
+Por lo tanto, \(\boxed{\lim_{x\to 0} \frac{\sqrt{9+x}-3}{x} = \frac{1}{6}}\).
+
+\subsubsection{Ejercicios prácticos}
+
+\begin{EjercicioBox}[Ejercicio 1]
+Calcular:
+\[
+\lim_{x\to -3} \frac{x+3}{x^2-9}
+\]
+
+\textbf{Solución:}
+\begin{align*}
+\lim_{x\to -3} \frac{x+3}{x^2-9} &= \lim_{x\to -3} \frac{x+3}{(x-3)(x+3)} \\[0.5em]
+&= \lim_{x\to -3} \frac{1}{x-3} \\[0.5em]
+&= \frac{1}{-3-3} = \frac{1}{-6} = \boxed{-\frac{1}{6}}
+\end{align*}
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejercicio 2]
+Calcular:
+\[
+\lim_{x\to 1} \frac{x^2-4x+3}{x^2+3x-4}
+\]
+
+\textbf{Solución:}
+\begin{align*}
+\lim_{x\to 1} \frac{x^2-4x+3}{x^2+3x-4} &= \lim_{x\to 1} \frac{(x-1)(x-3)}{(x-1)(x+4)} \\[0.5em]
+&= \lim_{x\to 1} \frac{x-3}{x+4} \\[0.5em]
+&= \frac{1-3}{1+4} = \frac{-2}{5} = \boxed{-\frac{2}{5}}
+\end{align*}
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejercicio 3]
+Calcular:
+\[
+\lim_{x\to 0} \frac{x^3-2x^2}{3x^2}
+\]
+
+\textbf{Solución:}
+\begin{align*}
+\lim_{x\to 0} \frac{x^3-2x^2}{3x^2} &= \lim_{x\to 0} \frac{x^2(x-2)}{3x^2} \\[0.5em]
+&= \lim_{x\to 0} \frac{x-2}{3} \\[0.5em]
+&= \frac{0-2}{3} = \boxed{-\frac{2}{3}}
+\end{align*}
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejercicio 4 (Racionalización)]
+Calcular:
+\[
+\lim_{x\to 0} \frac{\sqrt{4-2x+x^2}-2}{x}
+\]
+
+\textbf{Solución:}
+\begin{align*}
+\lim_{x\to 0} \frac{\sqrt{4-2x+x^2}-2}{x} &= \lim_{x\to 0} \frac{\sqrt{4-2x+x^2}-2}{x} \cdot \frac{\sqrt{4-2x+x^2}+2}{\sqrt{4-2x+x^2}+2} \\[0.5em]
+&= \lim_{x\to 0} \frac{(4-2x+x^2)-4}{x(\sqrt{4-2x+x^2}+2)} \\[0.5em]
+&= \lim_{x\to 0} \frac{-2x+x^2}{x(\sqrt{4-2x+x^2}+2)} \\[0.5em]
+&= \lim_{x\to 0} \frac{x(-2+x)}{x(\sqrt{4-2x+x^2}+2)} \\[0.5em]
+&= \lim_{x\to 0} \frac{-2+x}{\sqrt{4-2x+x^2}+2} \\[0.5em]
+&= \frac{-2+0}{\sqrt{4}+2} = \frac{-2}{4} = \boxed{-\frac{1}{2}}
+\end{align*}
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejercicio 5 (Racionalización)]
+Calcular:
+\[
+\lim_{x\to 1} \frac{\sqrt{x+3}-2}{x-1}
+\]
+
+\textbf{Solución:}
+\begin{align*}
+\lim_{x\to 1} \frac{\sqrt{x+3}-2}{x-1} &= \lim_{x\to 1} \frac{\sqrt{x+3}-2}{x-1} \cdot \frac{\sqrt{x+3}+2}{\sqrt{x+3}+2} \\[0.5em]
+&= \lim_{x\to 1} \frac{(x+3)-4}{(x-1)(\sqrt{x+3}+2)} \\[0.5em]
+&= \lim_{x\to 1} \frac{x-1}{(x-1)(\sqrt{x+3}+2)} \\[0.5em]
+&= \lim_{x\to 1} \frac{1}{\sqrt{x+3}+2} \\[0.5em]
+&= \frac{1}{\sqrt{4}+2} = \frac{1}{4} = \boxed{\frac{1}{4}}
+\end{align*}
+\end{EjercicioBox}
+
+\paragraph{Gráfica ilustrativa.}
+La siguiente figura muestra la función \(f(x)=\frac{x^2-1}{x-1}\) y su comportamiento cerca de \(x=1\), donde existe una discontinuidad removible:
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+      width=12cm, height=8cm,
+      axis lines=middle,
+      xlabel={$x$}, ylabel={$y$},
+      xmin=-0.5, xmax=3,
+      ymin=-0.5, ymax=4,
+      grid=both, grid style={gray!20},
+      title={Función \(f(x)=\frac{x^2-1}{x-1}\) con discontinuidad removible en \(x=1\)}
+  ]
+    % Función simplificada f(x) = x+1, excepto en x=1
+    \addplot[brand, thick, domain=-0.5:0.95, samples=100] {x+1};
+    \addplot[brand, thick, domain=1.05:3, samples=100] {x+1};
+    
+    % Círculo hueco en el punto discontinuo
+    \addplot[only marks, mark=o, mark size=3pt, brand, fill=white, thick] coordinates {(1,2)};
+    
+    % Línea punteada indicando el límite
+    \addplot[dashed, gray, thick] coordinates {(1,0) (1,2)};
+    \addplot[dashed, gray, thick] coordinates {(0,2) (1,2)};
+    
+    % Etiqueta del límite
+    \node[anchor=west] at (axis cs:1.1,2.3) {$\lim_{x\to 1} f(x) = 2$};
+  \end{axis}
+\end{tikzpicture}
+\caption{Visualización del límite: aunque \(f(1)\) no está definida, \(\lim_{x\to 1} f(x) = 2\).}
+\label{fig:limite}
+\end{figure}
+
+\paragraph{Conclusión.}
+\begin{quote}
+\textit{``El concepto de límite es fundamental en el cálculo diferencial y sirve como base para las derivadas y la continuidad.''}\\
+— Stewart, J. (2016). \textit{Cálculo de varias variables} (8a ed.). Cengage Learning.
+\end{quote}
+

@@ -1,0 +1,34 @@
+% ==================== PREÁMBULO ====================
+% Paquetes base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+% Estilo visual
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Definición de colores
+\definecolor{brand}{RGB}{0,90,160}
+\definecolor{softgray}{RGB}{245,246,248}
+\definecolor{midgray}{RGB}{110,110,110}
+
+% Definición de cajas personalizadas
+\newtcolorbox{TemaBox}[1][]{breakable, colback=softgray, colframe=brand, title={#1}, fonttitle=\bfseries}
+\newtcolorbox{InfoBox}{colback=white, colframe=brand!60!black, breakable}
+\newtcolorbox{EjercicioBox}[1][]{colback=white, colframe=black!40, breakable, title={#1}}
+
+% Comando personalizado
+\newcommand{\Meta}[2]{\textbf{#1:}~#2\par}
+
