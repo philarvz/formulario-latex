@@ -1109,8 +1109,355 @@ Aplicamos la fórmula:
 
 \subsection{Vector gradiente y derivada direccional}
 
+\begin{TemaBox}[Vector gradiente y derivada direccional: Concepto unificador]
+El gradiente es uno de los conceptos más importantes del cálculo multivariable. Unifica todas las derivadas parciales en un solo vector que apunta en la dirección de máximo crecimiento de la función. La derivada direccional nos permite medir la tasa de cambio en cualquier dirección deseada.
+\end{TemaBox}
+
+\paragraph{Introducción y contextualización.}
+
+Hasta ahora hemos estudiado las derivadas parciales \(\frac{\partial f}{\partial x}\) y \(\frac{\partial f}{\partial y}\), que miden cómo cambia la función cuando nos movemos en las direcciones de los ejes coordenados. Pero, ¿qué sucede si queremos saber cómo cambia la función cuando nos movemos en cualquier otra dirección?
+
+Imagina que estás de excursión en una montaña y tienes un mapa topográfico con curvas de nivel. Las derivadas parciales te dicen qué tan empinado es el terreno si caminas exactamente hacia el norte (\(y\)) o hacia el este (\(x\)). Pero si quieres caminar en dirección noreste, o en cualquier otra dirección, necesitas un concepto más general: \textbf{la derivada direccional}.
+
+Además, si quieres encontrar la dirección más empinada para subir (o bajar) lo más rápido posible, necesitas el \textbf{vector gradiente}, que siempre apunta en la dirección de máxima pendiente ascendente.
+
 \subsubsection{Cálculo e interpretación geométrica del gradiente y derivada direccional}
-% (Contenido pendiente)
+
+\paragraph{Definición: Vector gradiente.}
+
+\begin{InfoBox}
+\Meta{Definición}{Sea \(f(x,y)\) una función diferenciable. El \textbf{gradiente} de \(f\) se denota \(\nabla f\) (se lee "nabla \(f\)") y se define como:}
+\[
+\nabla f(x,y) = \left\langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right\rangle = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j}
+\]
+
+\Meta{Para funciones de tres variables}{\(f(x,y,z)\):}
+\[
+\nabla f(x,y,z) = \left\langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right\rangle
+\]
+
+\Meta{Notación alternativa}{También se escribe como \(\text{grad}\,f\).}
+\end{InfoBox}
+
+El gradiente es un \textbf{campo vectorial}: en cada punto \((x,y)\) del dominio de \(f\), el gradiente \(\nabla f(x,y)\) es un vector.
+
+\paragraph{Propiedades geométricas del gradiente.}
+
+El vector gradiente tiene propiedades geométricas fundamentales:
+
+\begin{enumerate}
+  \item \textbf{Dirección:} \(\nabla f\) apunta en la dirección de máximo crecimiento de \(f\).
+  
+  \item \textbf{Magnitud:} \(\|\nabla f\|\) es la razón de cambio máxima de \(f\) en ese punto.
+  
+  \item \textbf{Perpendicularidad:} \(\nabla f\) es perpendicular a las curvas de nivel de \(f\).
+  
+  \item \textbf{Cero en puntos críticos:} Si \(\nabla f = \mathbf{0}\), entonces \((x,y)\) es un punto crítico.
+\end{enumerate}
+
+\begin{EjercicioBox}[Ejemplo 1: Cálculo del gradiente]
+Calcular el gradiente de \(f(x,y) = x^2 + xy + y^2\) y evaluarlo en el punto \((1,2)\).
+
+\textbf{Solución:}
+
+Calculamos las derivadas parciales:
+\begin{align*}
+\frac{\partial f}{\partial x} &= 2x + y \\
+\frac{\partial f}{\partial y} &= x + 2y
+\end{align*}
+
+Por lo tanto, el gradiente es:
+\[
+\nabla f(x,y) = \langle 2x + y, x + 2y \rangle
+\]
+
+Evaluamos en \((1,2)\):
+\[
+\nabla f(1,2) = \langle 2(1) + 2, 1 + 2(2) \rangle = \langle 4, 5 \rangle
+\]
+
+\textbf{Interpretación:} En el punto \((1,2)\), la función crece más rápidamente en la dirección del vector \(\langle 4, 5 \rangle\), con una razón de cambio de \(\|\langle 4, 5 \rangle\| = \sqrt{16+25} = \sqrt{41} \approx 6.40\).
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 2: Gradiente de función exponencial]
+Calcular \(\nabla f\) para \(f(x,y) = e^{x^2+y^2}\) en el punto \((0,0)\).
+
+\textbf{Solución:}
+
+\begin{align*}
+\frac{\partial f}{\partial x} &= e^{x^2+y^2} \cdot 2x = 2xe^{x^2+y^2} \\
+\frac{\partial f}{\partial y} &= e^{x^2+y^2} \cdot 2y = 2ye^{x^2+y^2}
+\end{align*}
+
+Por lo tanto:
+\[
+\nabla f(x,y) = \langle 2xe^{x^2+y^2}, 2ye^{x^2+y^2} \rangle
+\]
+
+En \((0,0)\):
+\[
+\nabla f(0,0) = \langle 2(0)e^{0}, 2(0)e^{0} \rangle = \langle 0, 0 \rangle
+\]
+
+\textbf{Interpretación:} El punto \((0,0)\) es un punto crítico (en este caso, un mínimo local).
+\end{EjercicioBox}
+
+\paragraph{Definición: Derivada direccional.}
+
+Las derivadas parciales miden el cambio de \(f\) en las direcciones de los ejes. La derivada direccional generaliza esto a cualquier dirección.
+
+\begin{InfoBox}
+\Meta{Definición}{Sea \(f(x,y)\) una función diferenciable y \(\mathbf{u} = \langle a, b \rangle\) un \textbf{vector unitario} (es decir, \(\|\mathbf{u}\| = 1\)). La \textbf{derivada direccional} de \(f\) en la dirección de \(\mathbf{u}\) se denota \(D_{\mathbf{u}}f\) y se define como:}
+\[
+D_{\mathbf{u}}f(x,y) = \lim_{h \to 0} \frac{f(x + ha, y + hb) - f(x,y)}{h}
+\]
+
+\Meta{Fórmula práctica}{Si \(f\) es diferenciable:}
+\[
+D_{\mathbf{u}}f(x,y) = \nabla f(x,y) \cdot \mathbf{u} = \frac{\partial f}{\partial x}a + \frac{\partial f}{\partial y}b
+\]
+
+Esta fórmula nos dice que la derivada direccional es el producto punto entre el gradiente y el vector de dirección.
+\end{InfoBox}
+
+\paragraph{Relación entre gradiente y derivada direccional.}
+
+La relación entre el gradiente y la derivada direccional es fundamental:
+
+\begin{InfoBox}
+\Meta{Teorema}{Sea \(f\) diferenciable y \(\mathbf{u}\) un vector unitario. Entonces:}
+\[
+D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u} = \|\nabla f\| \|\mathbf{u}\| \cos(\theta) = \|\nabla f\| \cos(\theta)
+\]
+donde \(\theta\) es el ángulo entre \(\nabla f\) y \(\mathbf{u}\).
+
+\Meta{Consecuencias importantes}{}
+\begin{itemize}
+  \item \textbf{Máximo:} \(D_{\mathbf{u}}f\) es máxima cuando \(\theta = 0\), es decir, cuando \(\mathbf{u}\) apunta en la dirección de \(\nabla f\). El valor máximo es \(\|\nabla f\|\).
+  
+  \item \textbf{Mínimo:} \(D_{\mathbf{u}}f\) es mínima cuando \(\theta = \pi\), es decir, cuando \(\mathbf{u}\) apunta en dirección opuesta a \(\nabla f\). El valor mínimo es \(-\|\nabla f\|\).
+  
+  \item \textbf{Cero:} \(D_{\mathbf{u}}f = 0\) cuando \(\theta = \pi/2\), es decir, cuando \(\mathbf{u}\) es perpendicular a \(\nabla f\). Esto ocurre en la dirección tangente a la curva de nivel.
+\end{itemize}
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo 3: Derivada direccional básica]
+Sea \(f(x,y) = x^2 + y^2\). Calcular la derivada direccional en el punto \((3,4)\) en la dirección del vector \(\mathbf{v} = \langle 1, 1 \rangle\).
+
+\textbf{Solución:}
+
+\textbf{Paso 1:} Calcular el gradiente:
+\begin{align*}
+\frac{\partial f}{\partial x} &= 2x \\
+\frac{\partial f}{\partial y} &= 2y
+\end{align*}
+\[
+\nabla f(3,4) = \langle 2(3), 2(4) \rangle = \langle 6, 8 \rangle
+\]
+
+\textbf{Paso 2:} Normalizar el vector de dirección:
+\[
+\|\mathbf{v}\| = \sqrt{1^2 + 1^2} = \sqrt{2}
+\]
+\[
+\mathbf{u} = \frac{\mathbf{v}}{\|\mathbf{v}\|} = \left\langle \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} \right\rangle
+\]
+
+\textbf{Paso 3:} Calcular la derivada direccional:
+\begin{align*}
+D_{\mathbf{u}}f(3,4) &= \nabla f(3,4) \cdot \mathbf{u} \\
+&= \langle 6, 8 \rangle \cdot \left\langle \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} \right\rangle \\
+&= \frac{6}{\sqrt{2}} + \frac{8}{\sqrt{2}} \\
+&= \frac{14}{\sqrt{2}} = 7\sqrt{2} \approx \boxed{9.90}
+\end{align*}
+
+\textbf{Interpretación:} Si nos movemos desde \((3,4)\) en dirección \(45°\) (noreste), la función aumenta a una razón de aproximadamente \(9.90\) unidades por unidad de distancia.
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 4: Dirección de máximo crecimiento]
+Para \(f(x,y) = x^2 - xy + y^2\) en el punto \((2,1)\):
+\begin{enumerate}
+  \item Encontrar la dirección de máximo crecimiento.
+  \item Calcular la razón de cambio máxima.
+  \item Encontrar la dirección de máximo decrecimiento.
+\end{enumerate}
+
+\textbf{Solución:}
+
+\textbf{Calculamos el gradiente:}
+\begin{align*}
+\frac{\partial f}{\partial x} &= 2x - y \\
+\frac{\partial f}{\partial y} &= -x + 2y
+\end{align*}
+\[
+\nabla f(2,1) = \langle 2(2) - 1, -2 + 2(1) \rangle = \langle 3, 0 \rangle
+\]
+
+\textbf{a) Dirección de máximo crecimiento:}
+
+El vector gradiente apunta en la dirección de máximo crecimiento. El vector unitario correspondiente es:
+\[
+\mathbf{u}_{\text{max}} = \frac{\nabla f}{\|\nabla f\|} = \frac{\langle 3, 0 \rangle}{3} = \boxed{\langle 1, 0 \rangle}
+\]
+
+La dirección es horizontal hacia la derecha (dirección positiva del eje \(x\)).
+
+\textbf{b) Razón de cambio máxima:}
+\[
+\text{Razón máxima} = \|\nabla f(2,1)\| = \sqrt{3^2 + 0^2} = \boxed{3}
+\]
+
+\textbf{c) Dirección de máximo decrecimiento:}
+
+Es la dirección opuesta al gradiente:
+\[
+\mathbf{u}_{\text{min}} = -\frac{\nabla f}{\|\nabla f\|} = \boxed{\langle -1, 0 \rangle}
+\]
+
+La razón de decrecimiento es \(-3\).
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 5: Temperatura y flujo de calor]
+La temperatura en una placa metálica está dada por:
+\[
+T(x,y) = 100 - x^2 - 2y^2
+\]
+donde \(T\) se mide en grados Celsius y \(x, y\) en metros.
+
+\begin{enumerate}
+  \item Encontrar la dirección de máximo incremento de temperatura en el punto \((2,1)\).
+  \item ¿Cuál es la razón de cambio máxima en ese punto?
+  \item En qué dirección no cambia la temperatura (curva isotérmica)?
+\end{enumerate}
+
+\textbf{Solución:}
+
+\textbf{Calculamos el gradiente:}
+\begin{align*}
+\frac{\partial T}{\partial x} &= -2x \\
+\frac{\partial T}{\partial y} &= -4y
+\end{align*}
+\[
+\nabla T(2,1) = \langle -2(2), -4(1) \rangle = \langle -4, -4 \rangle
+\]
+
+\textbf{a) Dirección de máximo incremento:}
+\[
+\mathbf{u}_{\text{max}} = \frac{\langle -4, -4 \rangle}{\sqrt{16+16}} = \frac{\langle -4, -4 \rangle}{4\sqrt{2}} = \left\langle \frac{-1}{\sqrt{2}}, \frac{-1}{\sqrt{2}} \right\rangle
+\]
+
+Esta dirección apunta hacia el suroeste (\(225°\)).
+
+\textbf{b) Razón de cambio máxima:}
+\[
+\|\nabla T(2,1)\| = \sqrt{16+16} = 4\sqrt{2} \approx \boxed{5.66 \text{ °C/m}}
+\]
+
+\textbf{c) Dirección sin cambio:}
+
+La temperatura no cambia en direcciones perpendiculares al gradiente. Si \(\nabla T = \langle -4, -4 \rangle\), las direcciones perpendiculares son:
+\[
+\mathbf{u}_{\perp} = \pm\left\langle \frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}} \right\rangle
+\]
+
+Estas direcciones son tangentes a la curva isotérmica (curva de nivel de temperatura constante).
+\end{EjercicioBox}
+
+\paragraph{Interpretación física y geométrica.}
+
+\begin{InfoBox}
+\Meta{Interpretaciones del gradiente}{}
+
+\textbf{1. Geométrica:}
+\begin{itemize}
+  \item El gradiente es perpendicular a las curvas de nivel.
+  \item Apunta "cuesta arriba" en la superficie \(z = f(x,y)\).
+  \item Su magnitud indica qué tan empinada es la superficie.
+\end{itemize}
+
+\textbf{2. Física (campo de temperaturas):}
+\begin{itemize}
+  \item \(\nabla T\) apunta en la dirección del flujo de calor.
+  \item \(\|\nabla T\|\) indica la intensidad del gradiente térmico.
+  \item El calor fluye de regiones calientes a frías.
+\end{itemize}
+
+\textbf{3. Optimización:}
+\begin{itemize}
+  \item Para maximizar \(f\), seguir la dirección de \(\nabla f\).
+  \item Para minimizar \(f\), seguir la dirección de \(-\nabla f\).
+  \item Este principio es la base del algoritmo de \textbf{gradiente descendente} en machine learning.
+\end{itemize}
+\end{InfoBox}
+
+\paragraph{Aplicaciones prácticas.}
+
+\begin{enumerate}
+  \item \textbf{Física:} 
+  \begin{itemize}
+    \item Campos conservativos: \(\mathbf{F} = -\nabla U\) (fuerza desde potencial)
+    \item Ley de Fourier: flujo de calor proporcional a \(-\nabla T\)
+    \item Ley de Fick: difusión proporcional a \(-\nabla C\) (concentración)
+  \end{itemize}
+  
+  \item \textbf{Ingeniería:}
+  \begin{itemize}
+    \item Optimización de diseños estructurales
+    \item Control de procesos industriales
+    \item Análisis de distribución de esfuerzos
+  \end{itemize}
+  
+  \item \textbf{Machine Learning:}
+  \begin{itemize}
+    \item Gradiente descendente para entrenar redes neuronales
+    \item Minimización de funciones de pérdida
+    \item Backpropagation (propagación hacia atrás)
+  \end{itemize}
+  
+  \item \textbf{Geografía y topografía:}
+  \begin{itemize}
+    \item Determinación de pendientes máximas
+    \item Análisis de escorrentía de agua
+    \item Planificación de rutas
+  \end{itemize}
+  
+  \item \textbf{Economía:}
+  \begin{itemize}
+    \item Dirección de máximo beneficio
+    \item Análisis marginal multivariable
+    \item Optimización de portafolios
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{Ejercicios propuestos.}
+
+\begin{enumerate}
+  \item Calcular \(\nabla f\) para las siguientes funciones:
+  \begin{enumerate}
+    \item \(f(x,y) = \sin(x) + \cos(y)\)
+    \item \(f(x,y) = \ln(x^2 + y^2)\)
+    \item \(f(x,y,z) = xyz + x^2 + y^2 + z^2\)
+  \end{enumerate}
+  
+  \item Para \(f(x,y) = x^3 - 3xy + y^3\), encontrar:
+  \begin{enumerate}
+    \item El gradiente en \((1,1)\)
+    \item La dirección de máximo crecimiento en ese punto
+    \item La razón de cambio máxima
+  \end{enumerate}
+  
+  \item Calcular \(D_{\mathbf{u}}f(2,3)\) para \(f(x,y) = e^{x-y}\) en la dirección del vector \(\mathbf{v} = \langle 3, 4 \rangle\).
+  
+  \item Demostrar que para \(f(x,y) = c\) (constante), \(\nabla f = \mathbf{0}\).
+  
+  \item Si la temperatura en el espacio está dada por \(T(x,y,z) = 100 - x^2 - y^2 - z^2\), encontrar la dirección de máximo enfriamiento en el punto \((1,2,2)\).
+  
+  \item Demostrar que \(\nabla(fg) = f\nabla g + g\nabla f\) (regla del producto para gradientes).
+  
+  \item Para \(f(x,y) = x^2 + y^2\), verificar que el gradiente es perpendicular a las curvas de nivel calculando \(\nabla f \cdot \mathbf{T}\), donde \(\mathbf{T}\) es el vector tangente a la curva de nivel.
+  
+  \item En el punto \((1,2)\) de la superficie \(z = x^2 + 2y^2\), encontrar la dirección en la que la altura \(z\) no cambia.
+\end{enumerate}
 
 \subsubsection{Representar SW vectores gradientes en superficies}
 % (Contenido pendiente)
