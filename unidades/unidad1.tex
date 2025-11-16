@@ -199,58 +199,279 @@ Las funciones de varias variables tienen aplicaciones en:
 Una \textbf{curva de nivel} de una función \(z=f(x,y)\) es el conjunto de puntos \((x,y)\) en el plano \(xy\) tales que
 \(f(x,y)=k\) para una constante fija \(k\). Geométricamente, surge al intersectar la \emph{superficie} \(z=f(x,y)\) con el
 \emph{plano horizontal} \(z=k\) y proyectar el contorno sobre el plano \(xy\).
+
+Las curvas de nivel permiten describir el comportamiento de la función sin necesidad de visualizar la superficie completa
+en tres dimensiones: cada valor de \(k\) produce una figura distinta que representa cómo “sube” o “baja” la superficie.
+Dependiendo de la forma de \(f(x,y)\), estas curvas pueden ser líneas, círculos, elipses, hipérbolas u otras curvas
+características. Conforme \(k\) varía, las curvas muestran la estructura global de la superficie y permiten identificar
+crestas, valles, simetrías, pendientes e incluso puntos críticos. Por ello, son una herramienta fundamental en el análisis
+de funciones multivariables.
 \end{TemaBox}
 
 \begin{InfoBox}
 \Meta{Propósito}{Visualizar funciones de dos variables mediante sus curvas de nivel y relacionarlas con cortes horizontales de la superficie.}
-\Meta{Competencias}{Modelación, representación gráfica y comunicación matemática.}
 \end{InfoBox}
 
-\paragraph{Teoría breve.}
-Para \(f(x,y)=x^2+y^2\), las curvas de nivel satisfacen \(x^2+y^2=k\).  
-Cada \(k>0\) produce una circunferencia de radio \(r=\sqrt{k}\) centrada en el origen.  
-El patrón de circunferencias concéntricas refleja que la superficie \(z=x^2+y^2\) es un paraboloide circular.
+\subsubsection*{Planos}
 
-% ---------- Figura 2D: Curvas de nivel (CORREGIDA) ----------
+\begin{TemaBox}[Descripción]
+Un \textbf{plano} en el espacio tridimensional se describe mediante una ecuación lineal de la forma
+\[
+Ax + By + Cz = D,
+\]
+donde \(A\), \(B\) y \(C\) determinan la dirección del vector normal al plano y \(D\) controla su posición respecto al origen.
+Las curvas de nivel asociadas a un plano provienen de la intersección con planos horizontales \(z=k\), lo cual produce siempre
+rectas en el plano \(xy\). Por ello, los planos generan \textbf{curvas de nivel lineales} igualmente espaciadas.
+\end{TemaBox}
+
+\paragraph{Curvas de nivel de un plano.}
+Dado un plano expresado como función:
+\[
+z = f(x,y) = ax + by + c,
+\]
+la curva de nivel para \(z = k\) resulta en:
+\[
+ax + by + c = k \quad \Rightarrow \quad ax + by = k - c,
+\]
+que es la ecuación de una recta en el plano \(xy\).  
+A medida que \(k\) varía, estas rectas son paralelas entre sí, lo que refleja que la superficie tiene inclinación constante.
+
 \begin{figure}[h!]
 \centering
-\begin{tikzpicture}
-  \begin{axis}[
-      axis equal image,
-      width=12cm,height=9cm,
-      axis lines=middle, xlabel={$x$}, ylabel={$y$},
-      xmin=-3.2, xmax=3.2, ymin=-3.2, ymax=3.2,
-      grid=both, minor tick num=1, grid style={gray!20},
-      title={Curvas de nivel de \(f(x,y)=x^2+y^2\)}
-  ]
-    % radios: sqrt(2), sqrt(3), 2, sqrt(5), sqrt(6)
-    \def\rrA{1.414}
-    \def\rrB{1.732}
-    \def\rrC{2.000}
-    \def\rrD{2.236}
-    \def\rrE{2.449}
-
-    \addplot[brand,thick,domain=0:360,samples=300] ({\rrA*cos(x)},{\rrA*sin(x)});
-    \addlegendentry{$k=2$}
-
-    \addplot[brand!70!black,thick,domain=0:360,samples=300] ({\rrB*cos(x)},{\rrB*sin(x)});
-    \addlegendentry{$k=3$}
-
-    \addplot[Plum,thick,domain=0:360,samples=300] ({\rrC*cos(x)},{\rrC*sin(x)});
-    \addlegendentry{$k=4$}
-
-    \addplot[Cyan,thick,domain=0:360,samples=300] ({\rrD*cos(x)},{\rrD*sin(x)});
-    \addlegendentry{$k=5$}
-
-    \addplot[Sepia,thick,domain=0:360,samples=300] ({\rrE*cos(x)},{\rrE*sin(x)});
-    \addlegendentry{$k=6$}
-  \end{axis}
-\end{tikzpicture}
-\caption{Curvas de nivel concéntricas para \(k=2,3,4,5,6\).}
-\label{fig:niveles2d}
+\includegraphics[width=0.75\textwidth]{imagenes/plano.png}
+\caption{Ejemplo de plano}
+\label{fig:plano}
 \end{figure}
 
-% ---------- Figura 3D: Superficie + cortes (SIMPLIFICADA) ----------
+\paragraph{Ejemplo completo.}
+Considera el plano
+\[
+z = 2x - y + 1.
+\]
+
+\textbf{1) Curvas de nivel:}  
+Para \(z=k\), se obtiene:
+\[
+2x - y + 1 = k \quad \Rightarrow \quad y = 2x + 1 - k.
+\]
+Las curvas de nivel para distintos valores de \(k\) son rectas paralelas con pendiente \(2\).
+
+\textbf{2) Ejemplo numérico:}
+\[
+\begin{aligned}
+k = 0: &\quad y = 2x + 1 \\
+k = 1: &\quad y = 2x \\
+k = 2: &\quad y = 2x - 1 \\
+k = 3: &\quad y = 2x - 2
+\end{aligned}
+\]
+
+\textbf{3) Interpretación geométrica:}  
+Cada incremento en \(k\) desplaza la recta hacia abajo en el eje \(y\), manteniendo siempre la misma pendiente.  
+Esto indica que el plano tiene \textbf{pendiente uniforme} y no presenta curvatura.
+
+\textbf{Conclusión:}  
+Los planos producen curvas de nivel lineales y paralelas, lo cual refleja su naturaleza como superficies con tasa de cambio constante en todas direcciones.
+
+
+\subsubsection*{Elipsoides}
+
+\begin{TemaBox}[Descripción]
+Un \textbf{elipsoide} es una superficie cerrada en el espacio tridimensional que generaliza la forma de una esfera.
+Su ecuación cartesiana estándar es
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1,
+\]
+donde \(a\), \(b\) y \(c\) son los semiejes en las direcciones \(x\), \(y\) y \(z\), respectivamente.  
+Las \textbf{curvas de nivel} de un elipsoide, obtenidas al considerar la intersección con planos horizontales \(z=k\), producen
+\textbf{elipses} siempre que \(|k| < c\), y no hay intersección para \(|k| > c\).
+\end{TemaBox}
+
+\paragraph{Curvas de nivel de un elipsoide.}
+Partiendo del elipsoide estándar,
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1,
+\]
+y fijando \(z = k\), se obtiene:
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 - \frac{k^2}{c^2}.
+\]
+Para que exista la curva de nivel, se requiere:
+\[
+1 - \frac{k^2}{c^2} > 0 \quad \Rightarrow \quad |k| < c.
+\]
+Esto corresponde a una \textbf{elipse} cuyos semiejes disminuyen conforme \(k\) se aproxima a \(-c\) o \(c\).  
+Cuando \(|k| = c\), la elipse colapsa en un punto; cuando \(|k| > c\), la intersección es vacía.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{imagenes/elipsoide.png}
+\caption{Ejemplo de elipsoide}
+\label{fig:elipsoide}
+\end{figure}
+
+\paragraph{Ejemplo completo.}
+Considera el elipsoide
+\[
+\frac{x^2}{4} + \frac{y^2}{9} + \frac{z^2}{16} = 1.
+\]
+Aquí \(a=2\), \(b=3\), \(c=4\).
+
+\textbf{1) Curva de nivel en \(z=k\):}
+\[
+\frac{x^2}{4} + \frac{y^2}{9} = 1 - \frac{k^2}{16}.
+\]
+
+\textbf{2) Casos representativos:}
+
+\[
+k = 0: 
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 1
+\quad (\text{elipse máxima})
+\]
+
+\[
+k = 2:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 1 - \frac{4}{16} = \frac{3}{4}
+\quad (\text{elipse más pequeña})
+\]
+
+\[
+k = 4:
+\quad
+1 - \frac{16}{16} = 0 
+\quad \Rightarrow \quad \text{punto}
+\]
+
+\[
+k = 5:
+\quad
+1 - \frac{25}{16} < 0 
+\quad \Rightarrow \quad \text{sin intersección}
+\]
+
+\textbf{3) Interpretación geométrica:}  
+Al cortar un elipsoide con planos horizontales se obtienen elipses que cambian de tamaño progresivamente.
+El elipsoide es una superficie cerrada, por lo que el “mapa” de curvas de nivel es una familia de elipses que
+disminuyen hasta llegar a un punto en los extremos.
+
+\textbf{Conclusión:}  
+Las curvas de nivel de un elipsoide son elipses para \(|k| < c\),
+un punto para \(|k| = c\), y no existe intersección para \(|k| > c\).
+
+
+\subsubsection*{Conos}
+
+\begin{TemaBox}[Descripción]
+Un \textbf{cono} es una superficie cuadrática que se caracteriza por tener un vértice y extenderse de manera lineal en todas las direcciones. 
+El cono cuádrico más común se expresa mediante la ecuación
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = \frac{z^2}{c^2}.
+\]
+Es una superficie \emph{doble}: se abre tanto hacia arriba como hacia abajo, con el vértice en el origen.  
+Las \textbf{curvas de nivel} obtenidas al fijar \(z=k\) son \textbf{elipses} (o círculos en el caso \(a=b\)), excepto en \(z=0\), donde la superficie colapsa en un punto: el vértice.
+\end{TemaBox}
+
+\paragraph{Curvas de nivel de un cono.}
+Dado el cono estándar
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = \frac{z^2}{c^2},
+\]
+al considerar el plano horizontal \(z=k\), se obtiene:
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = \frac{k^2}{c^2}.
+\]
+
+Esto corresponde a una \textbf{elipse} para todo \(k \neq 0\).  
+Cuando \(k = 0\), la elipse se reduce al vértice \((0,0,0)\).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{imagenes/cono.png}
+\caption{Ejemplo de cono y curvas de nivel.}
+\label{fig:cono_curvas_nivel}
+\end{figure}
+
+\paragraph{Ejemplo completo.}
+Considera el cono
+\[
+\frac{x^2}{4} + \frac{y^2}{9} = \frac{z^2}{16}.
+\]
+Aquí \(a=2\), \(b=3\), \(c=4\).
+
+\textbf{1) Curva de nivel en \(z=k\):}
+\[
+\frac{x^2}{4} + \frac{y^2}{9} = \frac{k^2}{16}.
+\]
+
+\textbf{2) Casos representativos:}
+
+\[
+k = 1:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = \frac{1}{16}
+\quad (\text{elipse pequeña})
+\]
+
+\[
+k = 2:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = \frac{4}{16} = \frac14
+\quad (\text{elipse más grande})
+\]
+
+\[
+k = 4:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 1
+\quad (\text{sección que corta al cono a la altura del semieje mayor})
+\]
+
+\[
+k = 0:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 0
+\quad \Rightarrow \quad (0,0)
+\quad (\text{vértice})
+\]
+
+\textbf{3) Interpretación geométrica:}  
+El cono genera curvas de nivel elípticas cuyos radios aumentan linealmente con \(|k|\).  
+La superficie tiene simetría respecto al origen y un único punto singular en el vértice.
+
+\textbf{Conclusión:}  
+Los conos producen curvas de nivel elípticas para \(|k| > 0\) y un punto único cuando \(k = 0\).
+
+
+\subsubsection*{Paraboloide Elíptico}
+
+\begin{TemaBox}[Descripción]
+Un \textbf{paraboloide elíptico} es una superficie cuadrática abierta cuya ecuación cartesiana estándar es
+\[
+z = \frac{x^2}{a^2} + \frac{y^2}{b^2}.
+\]
+Se trata de una superficie que se abre hacia arriba (o hacia abajo si se usa un signo negativo), 
+y cuyas secciones horizontales \(z=k\) son \textbf{elipses}.  
+El vértice del paraboloide se encuentra en el origen, y la superficie nunca produce valores de \(z\) negativos cuando
+la ecuación está en su forma estándar con coeficientes positivos.
+\end{TemaBox}
+
+\paragraph{Curvas de nivel de un paraboloide elíptico.}
+A partir de la ecuación
+\[
+z = \frac{x^2}{a^2} + \frac{y^2}{b^2},
+\]
+al fijar \(z=k\), con \(k \ge 0\), se obtiene:
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = k.
+\]
+
+Esto corresponde a una \textbf{elipse} para \(k>0\).  
+Cuando \(k=0\), la curva de nivel es un solo punto: \((0,0)\).  
+No existe curva de nivel para \(k < 0\), ya que la superficie no toma valores negativos en esta forma estándar.
+
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
@@ -272,209 +493,512 @@ El patrón de circunferencias concéntricas refleja que la superficie \(z=x^2+y^
     \addplot3[thick,brand,domain=0:360,samples=100] ({sqrt(6)*cos(x)},{sqrt(6)*sin(x)},{6});
   \end{axis}
 \end{tikzpicture}
-\caption{Paraboloide \(z=x^2+y^2\) y cortes horizontales \(z=\text{const}\).}
+\caption{Paraboloide elíptico con cortes horizontales.}
 \label{fig:niveles3d}
 \end{figure}
 
-\paragraph{Ejemplos guiados.}
-\begin{itemize}
-  \item \(k=2 \Rightarrow r=\sqrt{2}\approx1.41\)
-  \item \(k=3 \Rightarrow r=\sqrt{3}\approx1.73\)
-  \item \(k=4 \Rightarrow r=2.00\)
-  \item \(k=5 \Rightarrow r=\sqrt{5}\approx2.24\)
-  \item \(k=6 \Rightarrow r=\sqrt{6}\approx2.45\)
-\end{itemize}
+\paragraph{Ejemplo completo.}
+Considera el paraboloide elíptico
+\[
+z = \frac{x^2}{4} + \frac{y^2}{9}.
+\]
+Aquí \(a=2\) y \(b=3\).
 
-\paragraph{Ejercicios.}
-\begin{EjercicioBox}[1) Identificación de curvas]
-Dibuja las curvas de nivel para \(k=2,3,4,5,6\) y anota sus radios.
-\end{EjercicioBox}
+\textbf{1) Curva de nivel en \(z=k\):}
+\[
+\frac{x^2}{4} + \frac{y^2}{9} = k.
+\]
 
-\begin{EjercicioBox}[2) Intersección con planos]
-Encuentra las curvas resultantes de los cortes con los planos \(z=k\) y describe su forma.
-\end{EjercicioBox}
+\textbf{2) Casos representativos:}
 
-\begin{EjercicioBox}[3) Normalización]
-Transforma \(x^2+y^2=k\) en la forma \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\) y deduce que \(a=b=\sqrt{k}\).
-\end{EjercicioBox}
+\[
+k = 0:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 0
+\quad \Rightarrow \quad (0,0)
+\quad (\text{vértice})
+\]
+
+\[
+k = 1:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 1
+\quad \Rightarrow \quad \text{elipse}
+\]
+
+\[
+k = 2:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 2
+\quad \Rightarrow \quad \text{elipse más grande}
+\]
+
+\[
+k = 3:
+\quad
+\frac{x^2}{4} + \frac{y^2}{9} = 3
+\quad \Rightarrow \quad \text{elipse aún mayor}
+\]
+
+\textbf{3) Interpretación geométrica:}  
+El paraboloide elíptico genera una familia de elipses que crecen de manera proporcional a \(\sqrt{k}\).  
+A diferencia del elipsoide (superficie cerrada), aquí las curvas de nivel crecen indefinidamente.  
+La superficie tiene un único punto crítico: el vértice en \((0,0,0)\).
+
+\textbf{Conclusión:}  
+Las curvas de nivel de un paraboloide elíptico son elipses para \(k>0\), un punto para \(k=0\), 
+y no existen para \(k<0\).
+
+
+\subsubsection*{Paraboloide Hiperbólico}
+
+\begin{TemaBox}[Descripción]
+Un \textbf{paraboloide hiperbólico} es una superficie cuadrática cuya ecuación estándar es
+\[
+z = \frac{x^2}{a^2} - \frac{y^2}{b^2}.
+\]
+Se caracteriza por ser una superficie \emph{ensillada}: tiene una curvatura positiva en una dirección y negativa en la otra.
+Esto implica que la superficie se abre hacia arriba a lo largo del eje \(x\) y hacia abajo a lo largo del eje \(y\).
+El punto \((0,0,0)\) es un \textbf{punto de silla}, donde la superficie no presenta ni máximo ni mínimo.
+\end{TemaBox}
+
+\paragraph{Curvas de nivel.}
+Las curvas de nivel se obtienen fijando \(z=k\). A partir de
+\[
+k = \frac{x^2}{a^2} - \frac{y^2}{b^2},
+\]
+obtenemos diferentes tipos de curvas según el valor de \(k\):
+
+\[
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = k.
+\]
+
+\textbf{Caso 1: \(k>0\).}  
+La ecuación representa una \textbf{hipérbola} con eje transversal en la dirección del eje \(x\).
+
+\textbf{Caso 2: \(k<0\).}  
+Sigue siendo una \textbf{hipérbola}, pero ahora con eje transversal en la dirección del eje \(y\).
+
+\textbf{Caso 3: \(k=0\).}  
+La curva de nivel es un par de rectas que pasan por el origen:
+\[
+\frac{x^2}{a^2} = \frac{y^2}{b^2}
+\quad \Rightarrow \quad
+y = \pm \frac{b}{a} x.
+\]
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.50\textwidth]{imagenes/paraboloide_hiperbolico.png}
+\caption{Paraboloide hiperbólico y sus curvas de nivel para distintos valores de \(k\).}
+\label{fig:paraboloide_hiperbolico}
+\end{figure}
+
+\paragraph{Ejemplo completo.}
+
+Consideremos el paraboloide hiperbólico:
+\[
+z = \frac{x^2}{4} - \frac{y^2}{9}.
+\]
+Aquí \(a=2\) y \(b=3\).
+
+\textbf{1) Curva de nivel en \(z=k\):}
+\[
+\frac{x^2}{4} - \frac{y^2}{9} = k.
+\]
+
+\textbf{2) Casos representativos:}
+
+\[
+k = 1:
+\quad
+\frac{x^2}{4} - \frac{y^2}{9} = 1
+\quad \Rightarrow \quad \text{hipérbola (eje transversal en \(x\))}
+\]
+
+\[
+k = -1:
+\quad
+\frac{x^2}{4} - \frac{y^2}{9} = -1
+\quad \Rightarrow \quad \text{hipérbola (eje transversal en \(y\))}
+\]
+
+\[
+k = 0:
+\quad
+\frac{x^2}{4} - \frac{y^2}{9} = 0
+\Rightarrow
+x^2 = \frac{4}{9} y^2
+\Rightarrow
+y = \pm \frac{3}{2} x
+\quad (\text{dos rectas})
+\]
+
+\textbf{3) Interpretación geométrica.}  
+El paraboloide hiperbólico tiene curvatura negativa: mientras que en la dirección \(x\) la superficie se abre hacia arriba,
+en la dirección \(y\) se abre hacia abajo.  
+Por ello se le llama \emph{superficie de silla}.  
+Este tipo de superficie aparece en arquitectura (tejados y cubiertas) y en física (superficies potenciales).
+
+\textbf{Conclusión.}  
+Las curvas de nivel del paraboloide hiperbólico siempre son hipérbolas excepto cuando \(k=0\), donde aparecen dos rectas que se cruzan en el punto de silla.
+
+
+\subsubsection*{Hiperboloides}
+
+\begin{TemaBox}[Descripción]
+Los \textbf{hiperboloides} son superficies cuadráticas tridimensionales que pueden presentarse en dos formas:
+\textbf{hiperboloide de una hoja} y \textbf{hiperboloide de dos hojas}.  
+Ambos se describen mediante ecuaciones del tipo
+\[
+\pm\frac{x^2}{a^2} \pm \frac{y^2}{b^2} \pm \frac{z^2}{c^2} = 1,
+\]
+con combinaciones de signos que determinan la forma geométrica.  
+Estas superficies son fundamentales en geometría analítica y modelan estructuras en ingeniería, óptica y arquitectura.
+\end{TemaBox}
+
+% =====================================================
+% HIPERBOLOIDE DE UNA HOJA
+% =====================================================
+
+\paragraph{Hiperboloide de una hoja.}
+
+Su ecuación estándar es:
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1.
+\]
+
+Es una superficie abierta y continua, con secciones transversales de diferentes formas:
+
+- Para \(z = k\), se obtiene:
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 + \frac{k^2}{c^2},
+\]
+es decir, \textbf{elipses}.  
+- Para \(x = k\) o \(y = k\): aparecen \textbf{hipérbolas}.  
+
+Geometría conocida como “forma de torre” o “collar” (ej.: torres de enfriamiento).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.3\textwidth]{imagenes/hiperboloide_una_hoja.png}
+\caption{Ejemplo de hiperboloide de una hoja.}
+\label{fig:hiperboloide_una_hoja}
+\end{figure}
+
+\textbf{Ejemplo completo.}  
+Considera el hiperboloide
+\[
+\frac{x^2}{4} + \frac{y^2}{9} - \frac{z^2}{16} = 1.
+\]
+
+\textbf{1) Corte horizontal \(z=k\):}
+\[
+\frac{x^2}{4} + \frac{y^2}{9} = 1 + \frac{k^2}{16}.
+\]
+Esto es una \textbf{elipse} cuyo tamaño aumenta conforme \(|k|\) crece.
+
+\textbf{2) Casos:}
+
+\[
+z = 0:
+\quad \frac{x^2}{4} + \frac{y^2}{9} = 1
+\quad (\text{elipse base})
+\]
+
+\[
+z = 4:
+\quad \frac{x^2}{4} + \frac{y^2}{9} = 2
+\quad (\text{elipse más grande})
+\]
+
+\[
+z = -4:
+\quad \frac{x^2}{4} + \frac{y^2}{9} = 2
+\quad (\text{simétrica})
+\]
+
+\textbf{Conclusión:}  
+El hiperboloide de una hoja presenta elipses horizontales y se estrecha al acercarse al centro.
+
+
+% =====================================================
+% HIPERBOLOIDE DE DOS HOJAS
+% =====================================================
+
+\paragraph{Hiperboloide de dos hojas.}
+
+Su ecuación estándar es:
+\[
+\frac{z^2}{c^2} - \frac{x^2}{a^2} - \frac{y^2}{b^2} = 1.
+\]
+
+En este caso la variable con signo positivo determina la dirección en la que aparecen las hojas (dos componentes separadas).  
+El hiperboloide no tiene puntos para valores donde el miembro izquierdo no puede ser mayor que 1.
+
+\textbf{Cortes horizontales \(z=k\):}
+\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = \frac{k^2}{c^2} - 1.
+\]
+
+- Si \(|k| < c\): no existe curva (la superficie no está definida).  
+- Si \(|k| = c\): aparece un punto.  
+- Si \(|k| > c\): se obtiene una \textbf{elipse}.  
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.3\textwidth]{imagenes/hiperboloide_dos_hojas.png}
+\caption{Ejemplo de hiperboloide de dos hojas.}
+\label{fig:hiperboloide_dos_hojas}
+\end{figure}
+
+\textbf{Ejemplo completo.}  
+Considera el hiperboloide de dos hojas
+\[
+\frac{z^2}{4} - \frac{x^2}{9} - \frac{y^2}{9} = 1.
+\]
+
+\textbf{1) Curvas para \(z=k\):}
+\[
+\frac{x^2}{9} + \frac{y^2}{9} = \frac{k^2}{4} - 1.
+\]
+
+\textbf{2) Casos:}
+
+\[
+k = 0:
+\quad \frac{k^2}{4}-1 = -1 \quad (\text{no hay puntos})
+\]
+
+\[
+k = 2:
+\quad \frac{x^2}{9} + \frac{y^2}{9} = 0
+\quad (\text{punto único en la hoja superior})
+\]
+
+\[
+k = 3:
+\quad \frac{x^2}{9} + \frac{y^2}{9} = \frac{9}{4}-1 = \frac{5}{4}
+\quad (\text{elipse})
+\]
+
+\[
+k = -3:
+\quad \text{elipse simétrica en la hoja inferior}
+\]
+
+\textbf{Conclusión:}  
+El hiperboloide de dos hojas se abre en dos direcciones opuestas, con elipses cada vez más amplias conforme \(|z|\) crece.
+
+
+
 
 % ==================== UNIDAD 3 ====================
 % Límites y continuidad en funciones de 3 variables
 
-\subsection{Límites y continuidad en funciones de 3 variables}
+% ============================================================
+%     LÍMITES Y CONTINUIDAD EN FUNCIONES DE TRES VARIABLES
+% ============================================================
 
-\begin{TemaBox}[Descripción]
-Un \textbf{límite} describe el comportamiento de una función \(f(x)\) cuando la variable independiente \(x\) se aproxima a un valor específico \(a\). La notación formal es:
+\section{Límites y Continuidad en Funciones de Tres Variables}
+
+\begin{TemaBox}[Definición de función de 3 variables]
+Una función de tres variables es una regla que asigna a cada punto
+\((x,y,z)\in D\subset \mathbb{R}^3\) un número real:
 \[
-\lim_{x\to a} f(x) = L
+f: D\subset\mathbb{R}^3 \longrightarrow \mathbb{R}, \qquad f(x,y,z)=w.
 \]
-Esto significa que los valores de \(f(x)\) se acercan arbitrariamente a \(L\) cuando \(x\) se acerca a \(a\). Los límites son fundamentales para definir la \textbf{continuidad} de una función y establecer las bases del cálculo diferencial e integral.
+El dominio \(D\) es una región del espacio tridimensional y la imagen es un conjunto de valores reales.
 \end{TemaBox}
 
-\begin{InfoBox}
-\Meta{Propósito}{Comprender el comportamiento de una función cuando la variable se aproxima a un valor determinado.}
-\Meta{Competencias}{Razonamiento lógico, análisis algebraico y comprensión de la continuidad.}
-\end{InfoBox}
-
-\subsubsection{Definición y conceptos}
-
-\paragraph{Definición formal.}
-Decimos que el límite de \(f(x)\) cuando \(x\) tiende a \(a\) es \(L\) si:
+\begin{TemaBox}[Definición formal de límite en 3 variables]
+Sea \(f(x,y,z)\) una función definida en un conjunto que contiene puntos arbitrariamente cercanos a \((a,b,c)\).
+Decimos que
 \[
-\lim_{x\to a} f(x) = L
+\lim_{(x,y,z)\to(a,b,c)} f(x,y,z)=L
 \]
-siempre que para cada \(\varepsilon > 0\) exista un \(\delta > 0\) tal que si \(0 < |x-a| < \delta\), entonces \(|f(x)-L| < \varepsilon\).
+siempre que para toda sucesión \(\{(x_n,y_n,z_n)\}\) con 
+\((x_n,y_n,z_n)\neq(a,b,c)\) y \((x_n,y_n,z_n)\to(a,b,c)\), se cumpla que
+\[
+f(x_n,y_n,z_n)\to L.
+\]
+Equivalentemente, para todo \(\varepsilon>0\) existe un \(\delta>0\) tal que
+\[
+0<\sqrt{(x-a)^2+(y-b)^2+(z-c)^2}<\delta 
+\Rightarrow 
+|f(x,y,z)-L|<\varepsilon.
+\]
+\end{TemaBox}
 
-\paragraph{Indeterminaciones comunes.}
-Algunas formas indeterminadas requieren técnicas algebraicas para resolverse:
+\subsection*{Métodos para determinar la existencia del límite}
+
 \begin{itemize}
-  \item \(\frac{0}{0}\) — Factorización, racionalización o L'Hôpital
-  \item \(\frac{\infty}{\infty}\) — Simplificación algebraica
-  \item \(0\cdot\infty\), \(\infty - \infty\), \(1^\infty\), \(0^0\), \(\infty^0\) — Transformaciones logarítmicas o algebraicas
+    \item \textbf{Sustitución directa:} funciona si la función es polinómica o el denominador no se anula.
+    \item \textbf{Revisión de caminos:} si dos caminos dan límites diferentes, el límite no existe.
+    \item \textbf{Acotación (Squeeze):} si la función queda entre dos límites iguales.
+    \item \textbf{Coordenadas esféricas:} cuando se busca el límite al origen, usando \(x^2+y^2+z^2=\rho^2\).
 \end{itemize}
 
-\paragraph{Continuidad.}
-Una función \(f(x)\) es \textbf{continua} en \(x=a\) si:
+% ============================================================
+%              EJEMPLOS RESUELTOS DE LÍMITES
+% ============================================================
+
+\section*{Ejemplos Resueltos}
+
+\subsection*{Ejemplo 1 — Sustitución directa}
+
 \[
-\lim_{x\to a} f(x) = f(a)
+\lim_{(x,y,z)\to(1,2,-1)} (3x - y + 2z).
 \]
-Es decir, el límite existe, la función está definida en \(a\), y ambos valores coinciden.
-
-\subsubsection{Racionalización de límites}
-
-Cuando aparecen raíces cuadradas en expresiones que producen indeterminaciones \(\frac{0}{0}\), podemos usar la técnica de \textbf{multiplicar por el conjugado}.
-
-\paragraph{Ejemplo resuelto.}
-Calcular:
+La función es un polinomio (continua), por lo que basta sustituir:
 \[
-\lim_{x\to 0} \frac{\sqrt{9+x}-3}{x}
-\]
-
-\textbf{Solución:}
-\begin{align*}
-\lim_{x\to 0} \frac{\sqrt{9+x}-3}{x} &= \lim_{x\to 0} \frac{\sqrt{9+x}-3}{x} \cdot \frac{\sqrt{9+x}+3}{\sqrt{9+x}+3} \\[0.5em]
-&= \lim_{x\to 0} \frac{(9+x)-9}{x(\sqrt{9+x}+3)} \\[0.5em]
-&= \lim_{x\to 0} \frac{x}{x(\sqrt{9+x}+3)} \\[0.5em]
-&= \lim_{x\to 0} \frac{1}{\sqrt{9+x}+3} \\[0.5em]
-&= \frac{1}{\sqrt{9}+3} = \frac{1}{6}
-\end{align*}
-
-Por lo tanto, \(\boxed{\lim_{x\to 0} \frac{\sqrt{9+x}-3}{x} = \frac{1}{6}}\).
-
-\subsubsection{Ejercicios prácticos}
-
-\begin{EjercicioBox}[Ejercicio 1]
-Calcular:
-\[
-\lim_{x\to -3} \frac{x+3}{x^2-9}
+3(1)-2+2(-1)=3-2-2=-1.
 \]
 
-\textbf{Solución:}
-\begin{align*}
-\lim_{x\to -3} \frac{x+3}{x^2-9} &= \lim_{x\to -3} \frac{x+3}{(x-3)(x+3)} \\[0.5em]
-&= \lim_{x\to -3} \frac{1}{x-3} \\[0.5em]
-&= \frac{1}{-3-3} = \frac{1}{-6} = \boxed{-\frac{1}{6}}
-\end{align*}
-\end{EjercicioBox}
-
-\begin{EjercicioBox}[Ejercicio 2]
-Calcular:
 \[
-\lim_{x\to 1} \frac{x^2-4x+3}{x^2+3x-4}
+\boxed{-1}
 \]
 
-\textbf{Solución:}
-\begin{align*}
-\lim_{x\to 1} \frac{x^2-4x+3}{x^2+3x-4} &= \lim_{x\to 1} \frac{(x-1)(x-3)}{(x-1)(x+4)} \\[0.5em]
-&= \lim_{x\to 1} \frac{x-3}{x+4} \\[0.5em]
-&= \frac{1-3}{1+4} = \frac{-2}{5} = \boxed{-\frac{2}{5}}
-\end{align*}
-\end{EjercicioBox}
+\subsection*{Ejemplo 2 — Límite existente (acotación)}
 
-\begin{EjercicioBox}[Ejercicio 3]
-Calcular:
 \[
-\lim_{x\to 0} \frac{x^3-2x^2}{3x^2}
+\lim_{(x,y,z)\to(0,0,0)} 
+\frac{x^2 + y^2}{\sqrt{x^2+y^2+z^2}}.
 \]
 
-\textbf{Solución:}
-\begin{align*}
-\lim_{x\to 0} \frac{x^3-2x^2}{3x^2} &= \lim_{x\to 0} \frac{x^2(x-2)}{3x^2} \\[0.5em]
-&= \lim_{x\to 0} \frac{x-2}{3} \\[0.5em]
-&= \frac{0-2}{3} = \boxed{-\frac{2}{3}}
-\end{align*}
-\end{EjercicioBox}
-
-\begin{EjercicioBox}[Ejercicio 4 (Racionalización)]
-Calcular:
+Se cumple:
 \[
-\lim_{x\to 0} \frac{\sqrt{4-2x+x^2}-2}{x}
+0 \le 
+\frac{x^2 + y^2}{\sqrt{x^2+y^2+z^2}}
+\le \sqrt{x^2+y^2}.
 \]
 
-\textbf{Solución:}
-\begin{align*}
-\lim_{x\to 0} \frac{\sqrt{4-2x+x^2}-2}{x} &= \lim_{x\to 0} \frac{\sqrt{4-2x+x^2}-2}{x} \cdot \frac{\sqrt{4-2x+x^2}+2}{\sqrt{4-2x+x^2}+2} \\[0.5em]
-&= \lim_{x\to 0} \frac{(4-2x+x^2)-4}{x(\sqrt{4-2x+x^2}+2)} \\[0.5em]
-&= \lim_{x\to 0} \frac{-2x+x^2}{x(\sqrt{4-2x+x^2}+2)} \\[0.5em]
-&= \lim_{x\to 0} \frac{x(-2+x)}{x(\sqrt{4-2x+x^2}+2)} \\[0.5em]
-&= \lim_{x\to 0} \frac{-2+x}{\sqrt{4-2x+x^2}+2} \\[0.5em]
-&= \frac{-2+0}{\sqrt{4}+2} = \frac{-2}{4} = \boxed{-\frac{1}{2}}
-\end{align*}
-\end{EjercicioBox}
+Como \(\sqrt{x^2+y^2}\to0\), por el criterio del sándwich:
 
-\begin{EjercicioBox}[Ejercicio 5 (Racionalización)]
-Calcular:
 \[
-\lim_{x\to 1} \frac{\sqrt{x+3}-2}{x-1}
+\boxed{0}
 \]
 
-\textbf{Solución:}
-\begin{align*}
-\lim_{x\to 1} \frac{\sqrt{x+3}-2}{x-1} &= \lim_{x\to 1} \frac{\sqrt{x+3}-2}{x-1} \cdot \frac{\sqrt{x+3}+2}{\sqrt{x+3}+2} \\[0.5em]
-&= \lim_{x\to 1} \frac{(x+3)-4}{(x-1)(\sqrt{x+3}+2)} \\[0.5em]
-&= \lim_{x\to 1} \frac{x-1}{(x-1)(\sqrt{x+3}+2)} \\[0.5em]
-&= \lim_{x\to 1} \frac{1}{\sqrt{x+3}+2} \\[0.5em]
-&= \frac{1}{\sqrt{4}+2} = \frac{1}{4} = \boxed{\frac{1}{4}}
-\end{align*}
-\end{EjercicioBox}
+\subsection*{Ejemplo 3 — Límite que NO existe}
 
-\paragraph{Gráfica ilustrativa.}
-La siguiente figura muestra la función \(f(x)=\frac{x^2-1}{x-1}\) y su comportamiento cerca de \(x=1\), donde existe una discontinuidad removible:
+\[
+\lim_{(x,y,z)\to(0,0,0)} \frac{xy}{x^2+y^2+z^2}.
+\]
 
-\begin{figure}[h!]
-\centering
-\begin{tikzpicture}
-  \begin{axis}[
-      width=12cm, height=8cm,
-      axis lines=middle,
-      xlabel={$x$}, ylabel={$y$},
-      xmin=-0.5, xmax=3,
-      ymin=-0.5, ymax=4,
-      grid=both, grid style={gray!20},
-      title={Función \(f(x)=\frac{x^2-1}{x-1}\) con discontinuidad removible en \(x=1\)}
-  ]
-    % Función simplificada f(x) = x+1, excepto en x=1
-    \addplot[brand, thick, domain=-0.5:0.95, samples=100] {x+1};
-    \addplot[brand, thick, domain=1.05:3, samples=100] {x+1};
-    
-    % Círculo hueco en el punto discontinuo
-    \addplot[only marks, mark=o, mark size=3pt, brand, fill=white, thick] coordinates {(1,2)};
-    
-    % Línea punteada indicando el límite
-    \addplot[dashed, gray, thick] coordinates {(1,0) (1,2)};
-    \addplot[dashed, gray, thick] coordinates {(0,2) (1,2)};
-    
-    % Etiqueta del límite
-    \node[anchor=west] at (axis cs:1.1,2.3) {$\lim_{x\to 1} f(x) = 2$};
-  \end{axis}
-\end{tikzpicture}
-\caption{Visualización del límite: aunque \(f(1)\) no está definida, \(\lim_{x\to 1} f(x) = 2\).}
-\label{fig:limite}
-\end{figure}
+Camino \(x=y=t, z=0\):
+\[
+\frac{t^2}{2t^2}=\frac12.
+\]
 
-\paragraph{Conclusión.}
-\begin{quote}
-\textit{``El concepto de límite es fundamental en el cálculo diferencial y sirve como base para las derivadas y la continuidad.''}\\
-— Stewart, J. (2016). \textit{Cálculo de varias variables} (8a ed.). Cengage Learning.
-\end{quote}
+Camino \(x=t,y=-t,z=0\):
+\[
+\frac{-t^2}{2t^2}=-\frac12.
+\]
 
+Como los límites difieren:
+\[
+\boxed{\text{El límite no existe}}
+\]
+
+\subsection*{Ejemplo 4 — Uso de coordenadas esféricas}
+
+\[
+f(x,y,z)=\frac{x^2+y^2+z^2}{\sqrt{x^2+y^2+z^2+1}}.
+\]
+
+Sustituyendo \(x^2+y^2+z^2=\rho^2\):
+\[
+f(\rho)=\frac{\rho^2}{\sqrt{1+\rho^2}}\to0.
+\]
+
+\[
+\boxed{0}
+\]
+
+% ============================================================
+%                CONTINUIDAD EN 3 VARIABLES
+% ============================================================
+
+\section{Continuidad de Funciones de Tres Variables}
+
+\begin{TemaBox}[Definición de continuidad]
+Una función \(f(x,y,z)\) es continua en el punto \((a,b,c)\) si:
+\[
+\lim_{(x,y,z)\to(a,b,c)} f(x,y,z)=f(a,b,c).
+\]
+Esto requiere:
+\begin{enumerate}
+    \item \(f(a,b,c)\) definido,
+    \item el límite existe,
+    \item ambos valores son iguales.
+\end{enumerate}
+\end{TemaBox}
+
+\subsection*{Ejemplo 5 — Función continua en todo su dominio}
+
+\[
+f(x,y,z)=\sqrt{x^2+y^2+z^2+5}.
+\]
+
+El radicando es positivo, por lo que es continua en todo \(\mathbb{R}^3\).
+
+\subsection*{Ejemplo 6 — Discontinuidad removible}
+
+\[
+f(x,y,z)=
+\begin{cases}
+\dfrac{x^2+y^2+z^2}{x^2+y^2+z^2+1}, & (x,y,z)\neq (0,0,0),\\[4pt]
+0, & (x,y,z)=(0,0,0).
+\end{cases}
+\]
+
+En esféricas:
+\[
+\frac{\rho^2}{\rho^2+1}\to0.
+\]
+
+Como coincide con el valor dado:
+\[
+\boxed{\text{Es continua en el origen.}}
+\]
+
+\subsection*{Ejemplo 7 — Discontinuidad esencial}
+
+\[
+f(x,y,z)=\frac{x+y+z}{\sqrt{x^2+y^2+z^2}}.
+\]
+
+Camino \(x=y=z=t\):
+\[
+\frac{3t}{\sqrt{3t^2}}=
+\begin{cases}
+\sqrt3, & t>0,\\
+-\sqrt3, & t<0.
+\end{cases}
+\]
+
+Límites distintos:
+
+\[
+\boxed{\text{No es continua en }(0,0,0).}
+\]
+
+\subsection*{Ejemplo 8 — Continuidad excepto en la esfera unitaria}
+
+\[
+f(x,y,z)=\frac{x-y+z}{x^2+y^2+z^2-1}.
+\]
+
+El denominador se anula cuando:
+\[
+x^2+y^2+z^2 = 1.
+\]
+
+Esto describe la \textbf{esfera unitaria}.  
+Una función racional es continua donde el denominador no es cero, por lo que:
+
+\[
+\boxed{
+f \text{ es continua en } \mathbb{R}^3 \setminus \{(x,y,z)\,\mid\,x^2+y^2+z^2=1\}.
+}
+\]
