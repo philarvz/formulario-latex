@@ -1,17 +1,1215 @@
 % ==================== UNIDAD III ====================
-% Integral múltiple
+% Integral Múltiple
 
-\section{Unidad III: Integral múltiple}
+\section{Unidad III: Integral Múltiple}
+
+\begin{TemaBox}[Integrales Múltiples: Fundamentos]
+Las integrales múltiples extienden el concepto de integración a funciones de varias variables, permitiendo calcular volúmenes, masas, centros de masa y otras cantidades físicas sobre regiones en el plano y en el espacio. Son herramientas fundamentales en física, ingeniería, economía y todas las áreas donde se requiere el cálculo de cantidades distribuidas sobre regiones multidimensionales.
+\end{TemaBox}
 
 \subsection{Integrales dobles}
-% (Contenido pendiente)
+
+\paragraph{Introducción.}
+Las \textbf{integrales dobles} son la extensión natural de las integrales definidas a funciones de dos variables. Mientras que una integral definida calcula el área bajo una curva, una integral doble calcula el volumen bajo una superficie o cantidades distribuidas sobre una región plana.
+
+\begin{InfoBox}
+\Meta{Definición formal}{La integral doble de una función \(f(x,y)\) continua sobre una región \(R \subset \mathbb{R}^2\) se define como el límite de sumas de Riemann:}
+\[
+\iint_R f(x,y)\, dA = \lim_{m,n \to \infty} \sum_{i=1}^m \sum_{j=1}^n f(x_{ij}^\ast, y_{ij}^\ast)\Delta A,
+\]
+donde \(\Delta A = \Delta x \Delta y\) es el área de cada subrectángulo.
+
+\Meta{Interpretación geométrica}{Si \(f(x,y) \geq 0\), la integral doble representa el \textbf{volumen} del sólido bajo la superficie \(z = f(x,y)\) y sobre la región \(R\) en el plano \(xy\).}
+\end{InfoBox}
+
+\subsubsection{Regiones rectangulares}
+
+\begin{TemaBox}[Integración sobre regiones rectangulares]
+Cuando la región de integración es un rectángulo \(R = [a,b] \times [c,d]\), la integral doble se puede calcular mediante dos integrales iteradas. El orden de integración puede ser \(dy\, dx\) o \(dx\, dy\), y bajo condiciones de continuidad, ambos órdenes dan el mismo resultado.
+\end{TemaBox}
+
+\paragraph{Teorema de Fubini para rectángulos.}
+Si \(f(x,y)\) es continua en el rectángulo \(R = [a,b] \times [c,d]\), entonces:
+\[
+\iint_R f(x,y)\, dA = \int_a^b \int_c^d f(x,y)\, dy\, dx = \int_c^d \int_a^b f(x,y)\, dx\, dy.
+\]
+
+\paragraph{Ejemplos resueltos.}
+
+\begin{EjercicioBox}[Ejemplo 1: Integral doble sobre rectángulo]
+Calcular
+\[
+\iint_R (x + 2y)\, dA,
+\]
+donde \(R = [0,2] \times [1,3]\).
+
+\textbf{Solución:}
+
+Integramos primero con respecto a \(y\), luego con respecto a \(x\):
+\[
+\begin{aligned}
+\iint_R (x + 2y)\, dA &= \int_0^2 \int_1^3 (x + 2y)\, dy\, dx \\
+&= \int_0^2 \left[ xy + y^2 \right]_{y=1}^{y=3} dx \\
+&= \int_0^2 \left[ (3x + 9) - (x + 1) \right] dx \\
+&= \int_0^2 (2x + 8)\, dx \\
+&= \left[ x^2 + 8x \right]_0^2 \\
+&= 4 + 16 = \boxed{20}.
+\end{aligned}
+\]
+
+\textbf{Verificación con orden inverso:}
+\[
+\begin{aligned}
+\iint_R (x + 2y)\, dA &= \int_1^3 \int_0^2 (x + 2y)\, dx\, dy \\
+&= \int_1^3 \left[ \frac{x^2}{2} + 2xy \right]_{x=0}^{x=2} dy \\
+&= \int_1^3 (2 + 4y)\, dy \\
+&= \left[ 2y + 2y^2 \right]_1^3 \\
+&= (6 + 18) - (2 + 2) = 20.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 2: Función producto separable]
+Calcular
+\[
+\iint_R xy^2\, dA,
+\]
+donde \(R = [1,3] \times [0,2]\).
+
+\textbf{Solución:}
+
+Como la función es producto \(xy^2 = x \cdot y^2\), podemos separar las integrales:
+\[
+\begin{aligned}
+\iint_R xy^2\, dA &= \int_1^3 \int_0^2 xy^2\, dy\, dx \\
+&= \int_1^3 x \left( \int_0^2 y^2\, dy \right) dx \\
+&= \int_1^3 x \left[ \frac{y^3}{3} \right]_0^2 dx \\
+&= \int_1^3 x \cdot \frac{8}{3} dx \\
+&= \frac{8}{3} \left[ \frac{x^2}{2} \right]_1^3 \\
+&= \frac{8}{3} \cdot \frac{9-1}{2} = \frac{8}{3} \cdot 4 = \boxed{\frac{32}{3}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Regiones no rectangulares}
+
+\begin{TemaBox}[Integración sobre regiones generales]
+En la práctica, muchas regiones no son rectangulares. Existen dos tipos principales:
+\begin{enumerate}
+  \item \textbf{Región tipo I:} Acotada por abajo y arriba por funciones de \(x\)
+    \[
+    R = \{(x,y) : a \leq x \leq b, g_1(x) \leq y \leq g_2(x)\}
+    \]
+  \item \textbf{Región tipo II:} Acotada por izquierda y derecha por funciones de \(y\)
+    \[
+    R = \{(x,y) : c \leq y \leq d, h_1(y) \leq x \leq h_2(y)\}
+    \]
+\end{enumerate}
+\end{TemaBox}
+
+\paragraph{Integración sobre regiones tipo I.}
+Para una región tipo I:
+\[
+\iint_R f(x,y)\, dA = \int_a^b \int_{g_1(x)}^{g_2(x)} f(x,y)\, dy\, dx.
+\]
+
+\paragraph{Integración sobre regiones tipo II.}
+Para una región tipo II:
+\[
+\iint_R f(x,y)\, dA = \int_c^d \int_{h_1(y)}^{h_2(y)} f(x,y)\, dx\, dy.
+\]
+
+\begin{EjercicioBox}[Ejemplo 3: Región tipo I — triangular]
+Calcular
+\[
+\iint_R (x + y)\, dA,
+\]
+donde \(R\) es la región triangular con vértices \((0,0)\), \((2,0)\) y \((2,3)\).
+
+\textbf{Solución:}
+
+Primero identificamos los límites. La recta que pasa por \((0,0)\) y \((2,3)\) tiene ecuación:
+\[
+y = \frac{3}{2}x.
+\]
+
+La región puede describirse como tipo I:
+\[
+R = \{(x,y) : 0 \leq x \leq 2, 0 \leq y \leq \frac{3}{2}x\}.
+\]
+
+Calculamos la integral:
+\[
+\begin{aligned}
+\iint_R (x + y)\, dA &= \int_0^2 \int_0^{\frac{3}{2}x} (x + y)\, dy\, dx \\
+&= \int_0^2 \left[ xy + \frac{y^2}{2} \right]_0^{\frac{3}{2}x} dx \\
+&= \int_0^2 \left( x \cdot \frac{3x}{2} + \frac{1}{2} \cdot \frac{9x^2}{4} \right) dx \\
+&= \int_0^2 \left( \frac{3x^2}{2} + \frac{9x^2}{8} \right) dx \\
+&= \int_0^2 \frac{21x^2}{8} dx \\
+&= \frac{21}{8} \left[ \frac{x^3}{3} \right]_0^2 \\
+&= \frac{21}{8} \cdot \frac{8}{3} = \boxed{7}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 4: Región tipo II]
+Calcular
+\[
+\iint_R x^2 y\, dA,
+\]
+donde \(R\) es la región acotada por \(y = x^2\) y \(y = 2x\).
+
+\textbf{Solución:}
+
+Primero encontramos los puntos de intersección:
+\[
+x^2 = 2x \Rightarrow x^2 - 2x = 0 \Rightarrow x(x-2) = 0 \Rightarrow x = 0, x = 2.
+\]
+
+Para \(x \in [0,2]\), tenemos \(x^2 \leq 2x\), por lo que la región es tipo I:
+\[
+R = \{(x,y) : 0 \leq x \leq 2, x^2 \leq y \leq 2x\}.
+\]
+
+\[
+\begin{aligned}
+\iint_R x^2 y\, dA &= \int_0^2 \int_{x^2}^{2x} x^2 y\, dy\, dx \\
+&= \int_0^2 x^2 \left[ \frac{y^2}{2} \right]_{x^2}^{2x} dx \\
+&= \int_0^2 x^2 \left( \frac{4x^2}{2} - \frac{x^4}{2} \right) dx \\
+&= \int_0^2 \left( 2x^4 - \frac{x^6}{2} \right) dx \\
+&= \left[ \frac{2x^5}{5} - \frac{x^7}{14} \right]_0^2 \\
+&= \frac{64}{5} - \frac{128}{14} = \frac{64}{5} - \frac{64}{7} \\
+&= \frac{448 - 320}{35} = \boxed{\frac{128}{35}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Integrales dobles en coordenadas polares}
+
+\begin{TemaBox}[Coordenadas polares en integrales dobles]
+Para regiones circulares o con simetría radial, el uso de coordenadas polares simplifica significativamente el cálculo. La transformación está dada por:
+\[
+x = r\cos\theta, \quad y = r\sin\theta, \quad dA = r\, dr\, d\theta.
+\]
+
+La integral doble en coordenadas polares es:
+\[
+\iint_R f(x,y)\, dA = \iint_S f(r\cos\theta, r\sin\theta) r\, dr\, d\theta,
+\]
+donde \(S\) es la región correspondiente en coordenadas polares.
+\end{TemaBox}
+
+\begin{EjercicioBox}[Ejemplo 5: Integral doble en coordenadas polares]
+Calcular
+\[
+\iint_R e^{x^2+y^2}\, dA,
+\]
+donde \(R\) es el disco de radio 2 centrado en el origen.
+
+\textbf{Solución:}
+
+En coordenadas polares, \(R\) se describe como:
+\[
+S = \{(r,\theta) : 0 \leq r \leq 2, 0 \leq \theta \leq 2\pi\}.
+\]
+
+Notando que \(x^2 + y^2 = r^2\):
+\[
+\begin{aligned}
+\iint_R e^{x^2+y^2}\, dA &= \int_0^{2\pi} \int_0^2 e^{r^2} r\, dr\, d\theta \\
+&= \int_0^{2\pi} d\theta \int_0^2 re^{r^2} dr \\
+&= 2\pi \cdot \left[ \frac{1}{2} e^{r^2} \right]_0^2 \\
+&= 2\pi \cdot \frac{1}{2}(e^4 - 1) \\
+&= \boxed{\pi(e^4 - 1)}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 6: Área usando coordenadas polares]
+Calcular el área de la región dentro del círculo \(r = 2\cos\theta\) y fuera del círculo \(r = 1\).
+
+\textbf{Solución:}
+
+La región está en coordenadas polares. Para encontrar los límites de \(\theta\), resolvemos:
+\[
+2\cos\theta = 1 \Rightarrow \cos\theta = \frac{1}{2} \Rightarrow \theta = \pm \frac{\pi}{3}.
+\]
+
+El área es:
+\[
+\begin{aligned}
+A &= \int_{-\pi/3}^{\pi/3} \int_1^{2\cos\theta} r\, dr\, d\theta \\
+&= \int_{-\pi/3}^{\pi/3} \left[ \frac{r^2}{2} \right]_1^{2\cos\theta} d\theta \\
+&= \int_{-\pi/3}^{\pi/3} \left( 2\cos^2\theta - \frac{1}{2} \right) d\theta \\
+&= \int_{-\pi/3}^{\pi/3} \left( 1 + \cos(2\theta) - \frac{1}{2} \right) d\theta \\
+&= \int_{-\pi/3}^{\pi/3} \left( \frac{1}{2} + \cos(2\theta) \right) d\theta \\
+&= \left[ \frac{\theta}{2} + \frac{\sin(2\theta)}{2} \right]_{-\pi/3}^{\pi/3} \\
+&= \frac{\pi}{3} + \frac{\sqrt{3}}{2} = \boxed{\frac{\pi}{3} + \frac{\sqrt{3}}{2}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\paragraph{Cambio de orden de integración.}
+A veces es más conveniente cambiar el orden de integración. Esto requiere reescribir los límites de integración.
+
+\begin{EjercicioBox}[Ejemplo 4b: Cambio de orden de integración]
+Calcular
+\[
+\int_0^1 \int_{x^2}^1 x^3 y\, dy\, dx
+\]
+cambiando el orden de integración.
+
+\textbf{Solución:}
+
+Primero identificamos la región. Del orden original \(dy\, dx\):
+\[
+R = \{(x,y) : 0 \leq x \leq 1, x^2 \leq y \leq 1\}.
+\]
+
+Esta es una región tipo I. Para convertirla a tipo II (orden \(dx\, dy\)):
+\[
+R = \{(x,y) : 0 \leq y \leq 1, 0 \leq x \leq \sqrt{y}\}.
+\]
+
+\[
+\begin{aligned}
+\int_0^1 \int_{x^2}^1 x^3 y\, dy\, dx &= \int_0^1 \int_0^{\sqrt{y}} x^3 y\, dx\, dy \\
+&= \int_0^1 y \left[ \frac{x^4}{4} \right]_0^{\sqrt{y}} dy \\
+&= \int_0^1 y \cdot \frac{y^2}{4} dy \\
+&= \frac{1}{4} \int_0^1 y^3 dy \\
+&= \frac{1}{4} \left[ \frac{y^4}{4} \right]_0^1 = \boxed{\frac{1}{16}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\paragraph{Propiedades de las integrales dobles.}
+Las integrales dobles satisfacen propiedades similares a las integrales definidas:
+
+\begin{itemize}
+  \item \textbf{Linealidad:} \(\iint_R [f(x,y) + g(x,y)]\, dA = \iint_R f(x,y)\, dA + \iint_R g(x,y)\, dA\)
+  \item \textbf{Constante:} \(\iint_R cf(x,y)\, dA = c\iint_R f(x,y)\, dA\)
+  \item \textbf{Aditividad:} Si \(R = R_1 \cup R_2\) con \(R_1 \cap R_2 = \emptyset\), entonces \(\iint_R f(x,y)\, dA = \iint_{R_1} f(x,y)\, dA + \iint_{R_2} f(x,y)\, dA\)
+  \item \textbf{Comparación:} Si \(f(x,y) \geq g(x,y)\) para todo \((x,y) \in R\), entonces \(\iint_R f(x,y)\, dA \geq \iint_R g(x,y)\, dA\)
+\end{itemize}
+
+\paragraph{Aplicaciones de las integrales dobles.}
+Las integrales dobles tienen aplicaciones en:
+\begin{itemize}
+  \item \textbf{Volumen:} \(V = \iint_R f(x,y)\, dA\) cuando \(f(x,y) \geq 0\)
+  \item \textbf{Área:} \(A = \iint_R 1\, dA\)
+  \item \textbf{Masa de una lámina:} \(M = \iint_R \rho(x,y)\, dA\) donde \(\rho\) es la densidad
+  \item \textbf{Centro de masa:} \((\bar{x}, \bar{y}) = \left( \frac{M_y}{M}, \frac{M_x}{M} \right)\) donde \(M_x = \iint_R y\rho(x,y)\, dA\) y \(M_y = \iint_R x\rho(x,y)\, dA\)
+\end{itemize}
+
 
 \subsection{Integrales triples}
-% (Contenido pendiente)
+
+\begin{TemaBox}[Integrales triples: Extensión al espacio]
+Las integrales triples extienden el concepto de integración a funciones de tres variables sobre regiones sólidas en el espacio tridimensional. Son esenciales para calcular volúmenes, masas, centros de masa, momentos de inercia y otras cantidades físicas distribuidas en el espacio.
+\end{TemaBox}
+
+\paragraph{Definición formal.}
+La integral triple de una función \(f(x,y,z)\) continua sobre una región sólida \(V \subset \mathbb{R}^3\) se define como:
+\[
+\iiint_V f(x,y,z)\, dV = \lim_{m,n,p \to \infty} \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^p f(x_{ijk}^\ast, y_{ijk}^\ast, z_{ijk}^\ast) \Delta V,
+\]
+donde \(\Delta V = \Delta x \Delta y \Delta z\) es el volumen de cada subcaja.
+
+\begin{InfoBox}
+\Meta{Interpretación física}{Si \(f(x,y,z) = \rho(x,y,z)\) representa la densidad de masa en un punto \((x,y,z)\), entonces la integral triple da la masa total del sólido.}
+
+\Meta{Interpretación geométrica}{Si \(f(x,y,z) = 1\), la integral triple da el volumen de la región sólida \(V\).}
+\end{InfoBox}
+
+\subsubsection{Regiones sólidas rectangulares}
+
+\paragraph{Teorema de Fubini para sólidos rectangulares.}
+Si \(f(x,y,z)\) es continua en el bloque rectangular \(V = [a,b] \times [c,d] \times [e,f]\), entonces:
+\[
+\iiint_V f(x,y,z)\, dV = \int_a^b \int_c^d \int_e^f f(x,y,z)\, dz\, dy\, dx.
+\]
+
+El orden de integración puede cambiarse siempre que se ajusten los límites correspondientes.
+
+\begin{EjercicioBox}[Ejemplo 7: Integral triple sobre bloque rectangular]
+Calcular
+\[
+\iiint_V (x + y + z)\, dV,
+\]
+donde \(V = [0,1] \times [0,2] \times [0,3]\).
+
+\textbf{Solución:}
+
+\[
+\begin{aligned}
+\iiint_V (x + y + z)\, dV &= \int_0^1 \int_0^2 \int_0^3 (x + y + z)\, dz\, dy\, dx \\
+&= \int_0^1 \int_0^2 \left[ xz + yz + \frac{z^2}{2} \right]_0^3 dy\, dx \\
+&= \int_0^1 \int_0^2 (3x + 3y + \frac{9}{2}) dy\, dx \\
+&= \int_0^1 \left[ 3xy + \frac{3y^2}{2} + \frac{9y}{2} \right]_0^2 dx \\
+&= \int_0^1 (6x + 6 + 9) dx \\
+&= \int_0^1 (6x + 15) dx \\
+&= \left[ 3x^2 + 15x \right]_0^1 \\
+&= 3 + 15 = \boxed{18}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Regiones sólidas generales}
+
+\begin{TemaBox}[Tipos de regiones sólidas]
+Las regiones sólidas se clasifican según cómo están acotadas:
+\begin{enumerate}
+  \item \textbf{Tipo I:} Acotada por arriba y abajo por superficies \(z = g_1(x,y)\) y \(z = g_2(x,y)\), y lateralmente por una región \(D\) en el plano \(xy\)
+  \item \textbf{Tipo II:} Similar, pero con acotaciones en \(y\) o \(x\) según la proyección
+\end{enumerate}
+\end{TemaBox}
+
+\paragraph{Región sólida tipo I.}
+Para una región sólida tipo I:
+\[
+\iiint_V f(x,y,z)\, dV = \iint_D \int_{g_1(x,y)}^{g_2(x,y)} f(x,y,z)\, dz\, dA,
+\]
+donde \(D\) es la proyección de \(V\) sobre el plano \(xy\).
+
+\begin{EjercicioBox}[Ejemplo 8: Volumen de un tetraedro]
+Calcular el volumen del tetraedro con vértices \((0,0,0)\), \((1,0,0)\), \((0,2,0)\) y \((0,0,3)\).
+
+\textbf{Solución:}
+
+Primero encontramos la ecuación del plano que pasa por \((1,0,0)\), \((0,2,0)\) y \((0,0,3)\):
+\[
+\frac{x}{1} + \frac{y}{2} + \frac{z}{3} = 1 \Rightarrow z = 3\left(1 - x - \frac{y}{2}\right).
+\]
+
+La región base en el plano \(xy\) está acotada por:
+\[
+x \geq 0, \quad y \geq 0, \quad x + \frac{y}{2} \leq 1.
+\]
+
+El volumen es:
+\[
+\begin{aligned}
+V &= \int_0^1 \int_0^{2(1-x)} \int_0^{3(1-x-y/2)} dz\, dy\, dx \\
+&= \int_0^1 \int_0^{2(1-x)} 3\left(1 - x - \frac{y}{2}\right) dy\, dx \\
+&= \int_0^1 3 \left[ (1-x)y - \frac{y^2}{4} \right]_0^{2(1-x)} dx \\
+&= \int_0^1 3 \left( 2(1-x)^2 - \frac{4(1-x)^2}{4} \right) dx \\
+&= \int_0^1 3(1-x)^2 dx \\
+&= 3 \left[ \frac{(1-x)^3}{-3} \right]_0^1 \\
+&= 3 \cdot \frac{1}{3} = \boxed{1}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 9: Masa de un sólido con densidad variable]
+Calcular la masa de un sólido \(V\) dado por:
+\[
+V = \{(x,y,z) : 0 \leq x \leq 1, 0 \leq y \leq 2, 0 \leq z \leq 3\},
+\]
+con densidad \(\rho(x,y,z) = xyz\).
+
+\textbf{Solución:}
+
+\[
+\begin{aligned}
+M &= \iiint_V \rho(x,y,z)\, dV = \int_0^1 \int_0^2 \int_0^3 xyz\, dz\, dy\, dx \\
+&= \int_0^1 \int_0^2 xy \left[ \frac{z^2}{2} \right]_0^3 dy\, dx \\
+&= \int_0^1 \int_0^2 xy \cdot \frac{9}{2} dy\, dx \\
+&= \frac{9}{2} \int_0^1 x \left[ \frac{y^2}{2} \right]_0^2 dx \\
+&= \frac{9}{2} \int_0^1 2x\, dx \\
+&= 9 \left[ \frac{x^2}{2} \right]_0^1 = \boxed{\frac{9}{2}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Integrales triples en coordenadas cilíndricas}
+
+\begin{TemaBox}[Coordenadas cilíndricas]
+Las coordenadas cilíndricas son útiles para regiones con simetría circular alrededor de un eje. La transformación es:
+\[
+x = r\cos\theta, \quad y = r\sin\theta, \quad z = z, \quad dV = r\, dr\, d\theta\, dz.
+\]
+
+La integral triple en coordenadas cilíndricas es:
+\[
+\iiint_V f(x,y,z)\, dV = \iiint_S f(r\cos\theta, r\sin\theta, z) r\, dr\, d\theta\, dz,
+\]
+donde \(S\) es la región correspondiente en coordenadas cilíndricas.
+\end{TemaBox}
+
+\begin{EjercicioBox}[Ejemplo 10: Volumen usando coordenadas cilíndricas]
+Calcular el volumen del sólido limitado por el paraboloide \(z = x^2 + y^2\) y el plano \(z = 4\).
+
+\textbf{Solución:}
+
+En coordenadas cilíndricas, el paraboloide es \(z = r^2\). La región sólida es:
+\[
+S = \{(r,\theta,z) : 0 \leq r \leq 2, 0 \leq \theta \leq 2\pi, r^2 \leq z \leq 4\}.
+\]
+
+\[
+\begin{aligned}
+V &= \int_0^{2\pi} \int_0^2 \int_{r^2}^4 r\, dz\, dr\, d\theta \\
+&= \int_0^{2\pi} d\theta \int_0^2 r(4 - r^2) dr \\
+&= 2\pi \int_0^2 (4r - r^3) dr \\
+&= 2\pi \left[ 2r^2 - \frac{r^4}{4} \right]_0^2 \\
+&= 2\pi (8 - 4) = \boxed{8\pi}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Regiones sólidas tipo II y tipo III}
+
+\paragraph{Región sólida tipo II.}
+Una región sólida tipo II está acotada por planos o superficies que definen límites en \(x\):
+\[
+\iiint_V f(x,y,z)\, dV = \iint_D \int_{h_1(y,z)}^{h_2(y,z)} f(x,y,z)\, dx\, dA,
+\]
+donde \(D\) es la proyección de \(V\) sobre el plano \(yz\).
+
+\paragraph{Región sólida tipo III.}
+Una región sólida tipo III está acotada por planos o superficies que definen límites en \(y\):
+\[
+\iiint_V f(x,y,z)\, dV = \iint_D \int_{k_1(x,z)}^{k_2(x,z)} f(x,y,z)\, dy\, dA,
+\]
+donde \(D\) es la proyección de \(V\) sobre el plano \(xz\).
+
+\begin{EjercicioBox}[Ejemplo 9b: Volumen de un sólido entre dos superficies]
+Calcular el volumen del sólido acotado por \(z = 0\), \(z = \sqrt{x^2 + y^2}\) y el cilindro \(x^2 + y^2 = 4\).
+
+\textbf{Solución:}
+
+Usando coordenadas cilíndricas, el sólido está descrito por:
+\[
+S = \{(r,\theta,z) : 0 \leq r \leq 2, 0 \leq \theta \leq 2\pi, 0 \leq z \leq r\}.
+\]
+
+\[
+\begin{aligned}
+V &= \int_0^{2\pi} \int_0^2 \int_0^r r\, dz\, dr\, d\theta \\
+&= \int_0^{2\pi} d\theta \int_0^2 r^2 dr \\
+&= 2\pi \left[ \frac{r^3}{3} \right]_0^2 \\
+&= 2\pi \cdot \frac{8}{3} = \boxed{\frac{16\pi}{3}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Integrales triples en coordenadas esféricas}
+
+\begin{TemaBox}[Coordenadas esféricas]
+Para regiones con simetría esférica, las coordenadas esféricas son ideales. La transformación es:
+\[
+x = \rho\sin\phi\cos\theta, \quad y = \rho\sin\phi\sin\theta, \quad z = \rho\cos\phi,
+\]
+con \(dV = \rho^2\sin\phi\, d\rho\, d\phi\, d\theta\).
+
+\begin{itemize}
+  \item \(\rho \geq 0\): distancia desde el origen
+  \item \(0 \leq \phi \leq \pi\): ángulo desde el eje \(z\) positivo (colatitud)
+  \item \(0 \leq \theta \leq 2\pi\): ángulo en el plano \(xy\) desde el eje \(x\) positivo (azimut)
+\end{itemize}
+\end{TemaBox}
+
+\begin{EjercicioBox}[Ejemplo 11: Volumen de una esfera usando coordenadas esféricas]
+Calcular el volumen de la esfera \(x^2 + y^2 + z^2 \leq R^2\).
+
+\textbf{Solución:}
+
+En coordenadas esféricas, la esfera es:
+\[
+S = \{(\rho,\phi,\theta) : 0 \leq \rho \leq R, 0 \leq \phi \leq \pi, 0 \leq \theta \leq 2\pi\}.
+\]
+
+\[
+\begin{aligned}
+V &= \int_0^{2\pi} \int_0^{\pi} \int_0^R \rho^2\sin\phi\, d\rho\, d\phi\, d\theta \\
+&= \int_0^{2\pi} d\theta \int_0^{\pi} \sin\phi\, d\phi \int_0^R \rho^2 d\rho \\
+&= 2\pi \cdot [-\cos\phi]_0^{\pi} \cdot \left[ \frac{\rho^3}{3} \right]_0^R \\
+&= 2\pi \cdot 2 \cdot \frac{R^3}{3} \\
+&= \boxed{\frac{4\pi R^3}{3}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 11b: Masa de una esfera con densidad radial]
+Calcular la masa de una esfera de radio \(R\) con densidad \(\rho = k\rho\) (densidad proporcional a la distancia desde el centro), donde \(\rho\) es la coordenada esférica.
+
+\textbf{Solución:}
+
+En coordenadas esféricas, la densidad es \(\rho(\rho) = k\rho\). La masa es:
+\[
+\begin{aligned}
+M &= \iiint_V k\rho \cdot \rho^2\sin\phi\, d\rho\, d\phi\, d\theta \\
+&= k \int_0^{2\pi} \int_0^{\pi} \int_0^R \rho^3\sin\phi\, d\rho\, d\phi\, d\theta \\
+&= k \int_0^{2\pi} d\theta \int_0^{\pi} \sin\phi\, d\phi \int_0^R \rho^3 d\rho \\
+&= k \cdot 2\pi \cdot [-\cos\phi]_0^{\pi} \cdot \left[ \frac{\rho^4}{4} \right]_0^R \\
+&= k \cdot 2\pi \cdot 2 \cdot \frac{R^4}{4} \\
+&= \boxed{\pi k R^4}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\paragraph{Elección entre coordenadas cilíndricas y esféricas.}
+\begin{itemize}
+  \item \textbf{Coordenadas cilíndricas:} Útiles para sólidos con simetría alrededor de un eje (cilindros, paraboloides, conos)
+  \item \textbf{Coordenadas esféricas:} Útiles para sólidos con simetría alrededor de un punto (esferas, hemisferios)
+  \item \textbf{Coordenadas cartesianas:} Útiles cuando los límites son rectas o planos paralelos a los ejes coordenados
+\end{itemize}
+
 
 \subsection{Cambio de variable en integrales múltiples}
-% (Contenido pendiente)
+
+\begin{TemaBox}[Cambio de variables: Transformación de regiones]
+El cambio de variables permite transformar integrales complicadas sobre regiones complejas en integrales más simples sobre regiones rectangulares o con formas conocidas. El elemento clave es el \textbf{Jacobiano}, que mide cómo se transforma el área (o volumen) bajo la transformación.
+\end{TemaBox}
+
+\paragraph{Teorema del cambio de variables.}
+Sea \(T: (u,v) \mapsto (x,y)\) una transformación uno a uno de clase \(C^1\) que mapea una región \(S\) en el plano \(uv\) a una región \(R\) en el plano \(xy\). Entonces:
+\[
+\iint_R f(x,y)\, dA = \iint_S f(x(u,v), y(u,v)) |J(u,v)|\, dA_{uv},
+\]
+donde el \textbf{Jacobiano} es:
+\[
+J(u,v) = \frac{\partial(x,y)}{\partial(u,v)} = 
+\begin{vmatrix}
+\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\
+\dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v}
+\end{vmatrix}.
+\]
+
+\begin{InfoBox}
+\Meta{Interpretación}{El valor absoluto del Jacobiano \(|J|\) representa el factor por el cual el área se amplía o contrae bajo la transformación.}
+
+\Meta{Casos especiales}{Los siguientes casos son comunes:}
+\begin{itemize}
+  \item Coordenadas polares: \(x = r\cos\theta, y = r\sin\theta\) → \(|J| = r\)
+  \item Transformación lineal: \(|J|\) es constante (determinante de la matriz de transformación)
+\end{itemize}
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo 12: Cambio de variable lineal]
+Calcular
+\[
+\iint_R (x + y)\, dA,
+\]
+donde \(R\) es la región acotada por \(x - y = 0\), \(x - y = 2\), \(x + y = 0\) y \(x + y = 4\).
+
+\textbf{Solución:}
+
+Usamos la transformación:
+\[
+u = x - y, \quad v = x + y.
+\]
+
+El Jacobiano:
+\[
+J = \frac{\partial(x,y)}{\partial(u,v)} = 
+\begin{vmatrix}
+\frac{1}{2} & \frac{1}{2} \\
+-\frac{1}{2} & \frac{1}{2}
+\end{vmatrix}
+= \frac{1}{2} \cdot \frac{1}{2} - \left(-\frac{1}{2} \cdot \frac{1}{2}\right) = \frac{1}{2}.
+\]
+
+La región transformada es:
+\[
+S = \{(u,v) : 0 \leq u \leq 2, 0 \leq v \leq 4\}.
+\]
+
+Además, \(x + y = v\), por lo que:
+\[
+\begin{aligned}
+\iint_R (x + y)\, dA &= \iint_S v \cdot \frac{1}{2} \, du\, dv \\
+&= \frac{1}{2} \int_0^4 \int_0^2 v\, du\, dv \\
+&= \frac{1}{2} \int_0^4 2v\, dv \\
+&= \int_0^4 v\, dv \\
+&= \left[ \frac{v^2}{2} \right]_0^4 = \boxed{8}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejemplo 13: Cambio de variable a coordenadas polares generalizadas]
+Calcular
+\[
+\iint_R e^{(x^2+y^2)/a^2}\, dA,
+\]
+donde \(R\) es la región elíptica \(\frac{x^2}{a^2} + \frac{y^2}{b^2} \leq 1\).
+
+\textbf{Solución:}
+
+Usamos el cambio:
+\[
+x = ar\cos\theta, \quad y = br\sin\theta,
+\]
+que transforma la elipse en un círculo unitario.
+
+El Jacobiano:
+\[
+J = 
+\begin{vmatrix}
+a\cos\theta & -ar\sin\theta \\
+b\sin\theta & br\cos\theta
+\end{vmatrix}
+= abr(\cos^2\theta + \sin^2\theta) = abr.
+\]
+
+La región transformada:
+\[
+S = \{(r,\theta) : 0 \leq r \leq 1, 0 \leq \theta \leq 2\pi\}.
+\]
+
+\[
+\begin{aligned}
+\iint_R e^{(x^2+y^2)/a^2}\, dA &= \int_0^{2\pi} \int_0^1 e^{r^2(\cos^2\theta + (b^2/a^2)\sin^2\theta)} abr\, dr\, d\theta.
+\end{aligned}
+\]
+
+Para \(a = b\), esto se simplifica a:
+\[
+\begin{aligned}
+\iint_R e^{(x^2+y^2)/a^2}\, dA &= \int_0^{2\pi} \int_0^1 e^{r^2} a^2 r\, dr\, d\theta \\
+&= 2\pi a^2 \left[ \frac{1}{2} e^{r^2} \right]_0^1 \\
+&= \boxed{\pi a^2(e - 1)}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\paragraph{Interpretación geométrica del Jacobiano.}
+El Jacobiano \(|J(u,v)|\) representa el factor de escala del área bajo la transformación. Si \(|J| > 1\), el área se expande; si \(|J| < 1\), el área se contrae. Esto es crucial para mantener la igualdad en el cambio de variables.
+
+\paragraph{Propiedades del Jacobiano.}
+\begin{itemize}
+  \item Si \(T\) es una transformación lineal, el Jacobiano es constante (el determinante de la matriz de transformación)
+  \item El Jacobiano del producto de transformaciones es el producto de los Jacobianos
+  \item Para coordenadas polares, cilíndricas y esféricas, el Jacobiano ya está incluido en las fórmulas estándar
+\end{itemize}
+
+\paragraph{Cambio de variables en integrales triples.}
+Para una transformación \(T: (u,v,w) \mapsto (x,y,z)\), el teorema del cambio de variables es:
+\[
+\iiint_V f(x,y,z)\, dV = \iiint_S f(x(u,v,w), y(u,v,w), z(u,v,w)) |J(u,v,w)|\, dV_{uvw},
+\]
+donde el Jacobiano es:
+\[
+J(u,v,w) = \frac{\partial(x,y,z)}{\partial(u,v,w)} = 
+\begin{vmatrix}
+\dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} & \dfrac{\partial x}{\partial w} \\
+\dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} & \dfrac{\partial y}{\partial w} \\
+\dfrac{\partial z}{\partial u} & \dfrac{\partial z}{\partial v} & \dfrac{\partial z}{\partial w}
+\end{vmatrix}.
+\]
+
+\paragraph{Jacobianos de transformaciones comunes.}
+\begin{itemize}
+  \item \textbf{Coordenadas cilíndricas:} \(|J| = r\)
+  \item \textbf{Coordenadas esféricas:} \(|J| = \rho^2\sin\phi\)
+  \item \textbf{Transformación de escala:} \(x = au, y = bv, z = cw\) → \(|J| = abc\)
+\end{itemize}
+
+\begin{EjercicioBox}[Ejemplo 13b: Cambio de escala en integral triple]
+Calcular el volumen del elipsoide \(\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leq 1\) usando cambio de variables.
+
+\textbf{Solución:}
+
+Usamos la transformación:
+\[
+x = au, \quad y = bv, \quad z = cw.
+\]
+
+El Jacobiano es:
+\[
+J = 
+\begin{vmatrix}
+a & 0 & 0 \\
+0 & b & 0 \\
+0 & 0 & c
+\end{vmatrix}
+= abc.
+\]
+
+El elipsoide se transforma en la esfera unitaria \(u^2 + v^2 + w^2 \leq 1\). El volumen es:
+\[
+\begin{aligned}
+V &= \iiint_V dV = \iiint_S abc\, dV_{uvw} \\
+&= abc \cdot \text{Volumen de la esfera unitaria} \\
+&= abc \cdot \frac{4\pi}{3} = \boxed{\frac{4\pi abc}{3}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
 
 \subsection{Aplicaciones de integrales múltiples}
-% (Contenido pendiente)
 
+\begin{TemaBox}[Aplicaciones prácticas de integrales múltiples]
+Las integrales múltiples tienen innumerables aplicaciones en física, ingeniería, economía y otras áreas. Permiten calcular cantidades distribuidas sobre regiones planas y sólidas, resolver problemas de optimización y modelar fenómenos complejos.
+\end{TemaBox}
+
+\subsubsection{Volumen de sólidos}
+
+\paragraph{Método general.}
+El volumen de un sólido acotado superiormente por \(z = f(x,y)\) e inferiormente por \(z = g(x,y)\) sobre una región \(D\) en el plano \(xy\) es:
+\[
+V = \iint_D [f(x,y) - g(x,y)]\, dA.
+\]
+
+\begin{EjercicioBox}[Ejemplo 14: Volumen entre dos superficies]
+Calcular el volumen del sólido acotado por los paraboloides \(z = x^2 + y^2\) y \(z = 8 - x^2 - y^2\).
+
+\textbf{Solución:}
+
+Los paraboloides se intersectan cuando:
+\[
+x^2 + y^2 = 8 - x^2 - y^2 \Rightarrow x^2 + y^2 = 4.
+\]
+
+La región base es el círculo \(x^2 + y^2 \leq 4\). El volumen es:
+\[
+\begin{aligned}
+V &= \iint_D [(8 - x^2 - y^2) - (x^2 + y^2)]\, dA \\
+&= \iint_D (8 - 2x^2 - 2y^2)\, dA.
+\end{aligned}
+\]
+
+Usando coordenadas polares:
+\[
+\begin{aligned}
+V &= \int_0^{2\pi} \int_0^2 (8 - 2r^2) r\, dr\, d\theta \\
+&= 2\pi \int_0^2 (8r - 2r^3) dr \\
+&= 2\pi \left[ 4r^2 - \frac{r^4}{2} \right]_0^2 \\
+&= 2\pi (16 - 8) = \boxed{16\pi}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Masa y centro de masa}
+
+\paragraph{Masa de una lámina.}
+Para una lámina con densidad \(\rho(x,y)\), la masa es:
+\[
+M = \iint_R \rho(x,y)\, dA.
+\]
+
+\paragraph{Centro de masa.}
+Las coordenadas del centro de masa \((\bar{x}, \bar{y})\) son:
+\[
+\bar{x} = \frac{M_y}{M} = \frac{1}{M} \iint_R x\rho(x,y)\, dA, \quad
+\bar{y} = \frac{M_x}{M} = \frac{1}{M} \iint_R y\rho(x,y)\, dA,
+\]
+donde \(M_x\) y \(M_y\) son los momentos respecto a los ejes \(x\) e \(y\).
+
+\begin{EjercicioBox}[Ejemplo 15: Centro de masa de una lámina triangular]
+Encontrar el centro de masa de una lámina triangular con vértices \((0,0)\), \((2,0)\) y \((2,3)\), con densidad constante \(\rho(x,y) = k\).
+
+\textbf{Solución:}
+
+Primero calculamos la masa:
+\[
+M = k \iint_R dA = k \cdot \text{Área} = k \cdot \frac{1}{2} \cdot 2 \cdot 3 = 3k.
+\]
+
+Los momentos:
+\[
+\begin{aligned}
+M_y &= \int_0^2 \int_0^{\frac{3}{2}x} kx\, dy\, dx \\
+&= k \int_0^2 x \cdot \frac{3x}{2} dx \\
+&= \frac{3k}{2} \int_0^2 x^2 dx = \frac{3k}{2} \cdot \frac{8}{3} = 4k.
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+M_x &= \int_0^2 \int_0^{\frac{3}{2}x} ky\, dy\, dx \\
+&= k \int_0^2 \left[ \frac{y^2}{2} \right]_0^{\frac{3}{2}x} dx \\
+&= k \int_0^2 \frac{9x^2}{8} dx \\
+&= \frac{9k}{8} \cdot \frac{8}{3} = 3k.
+\end{aligned}
+\]
+
+El centro de masa:
+\[
+\bar{x} = \frac{4k}{3k} = \frac{4}{3}, \quad \bar{y} = \frac{3k}{3k} = 1.
+\]
+
+\[
+\boxed{\left(\frac{4}{3}, 1\right)}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Momentos de inercia}
+
+\paragraph{Definición.}
+Para una lámina con densidad \(\rho(x,y)\), el momento de inercia respecto al eje \(x\) es:
+\[
+I_x = \iint_R y^2\rho(x,y)\, dA,
+\]
+y respecto al eje \(y\):
+\[
+I_y = \iint_R x^2\rho(x,y)\, dA.
+\]
+
+El momento de inercia respecto al origen (momento polar) es:
+\[
+I_0 = I_x + I_y = \iint_R (x^2 + y^2)\rho(x,y)\, dA.
+\]
+
+\begin{EjercicioBox}[Ejemplo 16: Momento de inercia de un disco]
+Calcular el momento de inercia respecto al origen de un disco circular de radio \(R\) con densidad constante \(\rho = k\).
+
+\textbf{Solución:}
+
+Usando coordenadas polares:
+\[
+\begin{aligned}
+I_0 &= \iint_R (x^2 + y^2)k\, dA = k \int_0^{2\pi} \int_0^R r^2 \cdot r\, dr\, d\theta \\
+&= k \int_0^{2\pi} d\theta \int_0^R r^3 dr \\
+&= k \cdot 2\pi \cdot \left[ \frac{r^4}{4} \right]_0^R \\
+&= 2\pi k \cdot \frac{R^4}{4} = \boxed{\frac{\pi k R^4}{2}}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Carga eléctrica y otras aplicaciones}
+
+\paragraph{Carga eléctrica.}
+Para una distribución de carga con densidad \(\sigma(x,y)\) sobre una superficie, la carga total es:
+\[
+Q = \iint_R \sigma(x,y)\, dA.
+\]
+
+\paragraph{Valor promedio.}
+El valor promedio de una función \(f(x,y)\) sobre una región \(R\) es:
+\[
+f_{\text{prom}} = \frac{1}{\text{Área}(R)} \iint_R f(x,y)\, dA.
+\]
+
+\begin{EjercicioBox}[Ejemplo 17: Temperatura promedio en una placa]
+Una placa circular de radio \(a\) tiene temperatura \(T(x,y) = 100 - x^2 - y^2\) (en grados Celsius). Calcular la temperatura promedio de la placa.
+
+\textbf{Solución:}
+
+El área de la placa es \(A = \pi a^2\). La temperatura promedio es:
+\[
+\begin{aligned}
+T_{\text{prom}} &= \frac{1}{\pi a^2} \iint_R (100 - x^2 - y^2)\, dA \\
+&= \frac{1}{\pi a^2} \int_0^{2\pi} \int_0^a (100 - r^2) r\, dr\, d\theta \\
+&= \frac{1}{\pi a^2} \int_0^{2\pi} d\theta \int_0^a (100r - r^3) dr \\
+&= \frac{1}{\pi a^2} \cdot 2\pi \left[ 50r^2 - \frac{r^4}{4} \right]_0^a \\
+&= \frac{2}{a^2} \left( 50a^2 - \frac{a^4}{4} \right) \\
+&= 100 - \frac{a^2}{2} = \boxed{100 - \frac{a^2}{2}} \text{°C}.
+\end{aligned}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Masa y centro de masa de sólidos}
+
+\paragraph{Masa de un sólido.}
+Para un sólido con densidad \(\rho(x,y,z)\), la masa es:
+\[
+M = \iiint_V \rho(x,y,z)\, dV.
+\]
+
+\paragraph{Centro de masa de un sólido.}
+Las coordenadas del centro de masa \((\bar{x}, \bar{y}, \bar{z})\) son:
+\[
+\bar{x} = \frac{M_{yz}}{M} = \frac{1}{M} \iiint_V x\rho(x,y,z)\, dV,
+\]
+\[
+\bar{y} = \frac{M_{xz}}{M} = \frac{1}{M} \iiint_V y\rho(x,y,z)\, dV,
+\]
+\[
+\bar{z} = \frac{M_{xy}}{M} = \frac{1}{M} \iiint_V z\rho(x,y,z)\, dV,
+\]
+donde \(M_{yz}\), \(M_{xz}\) y \(M_{xy}\) son los momentos respecto a los planos correspondientes.
+
+\begin{EjercicioBox}[Ejemplo 18: Centro de masa de un sólido homogéneo]
+Calcular el centro de masa del sólido limitado por el paraboloide \(z = 4 - x^2 - y^2\) y el plano \(z = 0\), suponiendo densidad constante \(\rho = k\).
+
+\textbf{Solución:}
+
+La proyección en el plano \(xy\) es el círculo \(x^2 + y^2 = 4\), es decir, \(0 \leq r \leq 2\).
+
+Primero calculamos la masa:
+\[
+\begin{aligned}
+M &= k \iiint_V dV = k \int_0^{2\pi} \int_0^2 \int_0^{4-r^2} r\, dz\, dr\, d\theta \\
+&= k \int_0^{2\pi} d\theta \int_0^2 r(4 - r^2) dr \\
+&= 2\pi k \int_0^2 (4r - r^3) dr \\
+&= 2\pi k \left[ 2r^2 - \frac{r^4}{4} \right]_0^2 \\
+&= 2\pi k (8 - 4) = 8\pi k.
+\end{aligned}
+\]
+
+Por simetría, \(\bar{x} = \bar{y} = 0\). Calculamos \(\bar{z}\):
+\[
+\begin{aligned}
+M_{xy} &= k \iiint_V z\, dV = k \int_0^{2\pi} \int_0^2 \int_0^{4-r^2} zr\, dz\, dr\, d\theta \\
+&= k \int_0^{2\pi} d\theta \int_0^2 r \left[ \frac{z^2}{2} \right]_0^{4-r^2} dr \\
+&= 2\pi k \int_0^2 \frac{r(4-r^2)^2}{2} dr \\
+&= \pi k \int_0^2 r(16 - 8r^2 + r^4) dr \\
+&= \pi k \int_0^2 (16r - 8r^3 + r^5) dr \\
+&= \pi k \left[ 8r^2 - 2r^4 + \frac{r^6}{6} \right]_0^2 \\
+&= \pi k \left( 32 - 32 + \frac{64}{6} \right) = \frac{32\pi k}{3}.
+\end{aligned}
+\]
+
+Por lo tanto:
+\[
+\bar{z} = \frac{M_{xy}}{M} = \frac{32\pi k/3}{8\pi k} = \frac{4}{3}.
+\]
+
+\[
+\boxed{\left(0, 0, \frac{4}{3}\right)}
+\]
+\end{EjercicioBox}
+
+\subsubsection{Aplicaciones a probabilidad}
+
+\paragraph{Funciones de densidad de probabilidad conjunta.}
+Si \(X\) e \(Y\) son variables aleatorias continuas con función de densidad conjunta \(f(x,y)\), entonces:
+
+\begin{itemize}
+  \item \textbf{Probabilidad sobre una región:} \(P((X,Y) \in R) = \iint_R f(x,y)\, dA\)
+  \item \textbf{Normalización:} \(\iint_{\mathbb{R}^2} f(x,y)\, dA = 1\)
+  \item \textbf{Valor esperado:} \(E[g(X,Y)] = \iint_{\mathbb{R}^2} g(x,y) f(x,y)\, dA\)
+\end{itemize}
+
+\begin{EjercicioBox}[Ejemplo 19: Probabilidad con distribución uniforme]
+Sea \(f(x,y) = k\) una función de densidad constante sobre la región triangular con vértices \((0,0)\), \((2,0)\) y \((0,2)\). Encontrar \(k\) y calcular \(P(X + Y \leq 1)\).
+
+\textbf{Solución:}
+
+Primero encontramos \(k\) usando la condición de normalización:
+\[
+1 = \iint_R k\, dA = k \cdot \text{Área} = k \cdot \frac{1}{2} \cdot 2 \cdot 2 = 2k \Rightarrow k = \frac{1}{2}.
+\]
+
+Para calcular \(P(X + Y \leq 1)\), la región es:
+\[
+R' = \{(x,y) : 0 \leq x \leq 1, 0 \leq y \leq 1 - x\}.
+\]
+
+\[
+P(X + Y \leq 1) = \int_0^1 \int_0^{1-x} \frac{1}{2} dy\, dx = \frac{1}{2} \int_0^1 (1-x) dx = \frac{1}{2} \left[ x - \frac{x^2}{2} \right]_0^1 = \boxed{\frac{1}{4}}.
+\]
+\end{EjercicioBox}
+
+\subsubsection{Momentos de inercia para sólidos}
+
+\paragraph{Definición.}
+Para un sólido con densidad \(\rho(x,y,z)\), los momentos de inercia son:
+\[
+I_x = \iiint_V (y^2 + z^2)\rho(x,y,z)\, dV,
+\]
+\[
+I_y = \iiint_V (x^2 + z^2)\rho(x,y,z)\, dV,
+\]
+\[
+I_z = \iiint_V (x^2 + y^2)\rho(x,y,z)\, dV.
+\]
+
+\begin{EjercicioBox}[Ejemplo 20: Momento de inercia de un sólido esférico]
+Calcular el momento de inercia respecto al eje \(z\) de una esfera sólida de radio \(R\) con densidad constante \(\rho = k\).
+
+\textbf{Solución:}
+
+En coordenadas esféricas, \(x^2 + y^2 = \rho^2\sin^2\phi\). El momento de inercia es:
+\[
+\begin{aligned}
+I_z &= k \iiint_V (x^2 + y^2)\, dV \\
+&= k \int_0^{2\pi} \int_0^{\pi} \int_0^R \rho^2\sin^2\phi \cdot \rho^2\sin\phi\, d\rho\, d\phi\, d\theta \\
+&= k \int_0^{2\pi} d\theta \int_0^{\pi} \sin^3\phi\, d\phi \int_0^R \rho^4 d\rho.
+\end{aligned}
+\]
+
+Calculando por partes:
+\[
+\int_0^{\pi} \sin^3\phi\, d\phi = \int_0^{\pi} \sin\phi(1 - \cos^2\phi)\, d\phi = \left[-\cos\phi + \frac{\cos^3\phi}{3}\right]_0^{\pi} = \frac{4}{3}.
+\]
+
+\[
+I_z = k \cdot 2\pi \cdot \frac{4}{3} \cdot \frac{R^5}{5} = \boxed{\frac{8\pi k R^5}{15}}.
+\]
+\end{EjercicioBox}
+
+\paragraph{Aplicaciones en física e ingeniería.}
+Las integrales múltiples tienen aplicaciones extensas en:
+\begin{itemize}
+  \item \textbf{Física:} Cálculo de campos gravitacionales, distribución de carga, momento de inercia de cuerpos rígidos, potencial eléctrico
+  \item \textbf{Ingeniería:} Análisis estructural, transferencia de calor, dinámica de fluidos, análisis de tensiones
+  \item \textbf{Economía:} Modelado de distribución de recursos, análisis de probabilidad conjunta, optimización de portafolios
+  \item \textbf{Probabilidad:} Funciones de densidad de probabilidad conjunta, valores esperados, covarianza
+  \item \textbf{Geometría:} Cálculo de áreas y volúmenes de regiones complejas, superficies de revolución
+  \item \textbf{Estadística:} Análisis multivariable, regresión múltiple, funciones de verosimilitud
+\end{itemize}
+
+\subsubsection{Aplicaciones adicionales}
+
+\paragraph{Área de superficies.}
+El área de una superficie \(z = f(x,y)\) sobre una región \(R\) es:
+\[
+A = \iint_R \sqrt{1 + \left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2}\, dA.
+\]
+
+\begin{EjercicioBox}[Ejemplo 22: Área de una superficie]
+Calcular el área de la parte del paraboloide \(z = x^2 + y^2\) que está dentro del cilindro \(x^2 + y^2 = 4\).
+
+\textbf{Solución:}
+
+Primero calculamos las derivadas parciales:
+\[
+\frac{\partial z}{\partial x} = 2x, \quad \frac{\partial z}{\partial y} = 2y.
+\]
+
+El elemento de área de superficie es:
+\[
+\sqrt{1 + (2x)^2 + (2y)^2} = \sqrt{1 + 4(x^2 + y^2)} = \sqrt{1 + 4r^2}.
+\]
+
+Usando coordenadas polares:
+\[
+\begin{aligned}
+A &= \int_0^{2\pi} \int_0^2 \sqrt{1 + 4r^2} \cdot r\, dr\, d\theta \\
+&= 2\pi \int_0^2 r\sqrt{1 + 4r^2} dr.
+\end{aligned}
+\]
+
+Haciendo \(u = 1 + 4r^2\), \(du = 8r\, dr\):
+\[
+A = 2\pi \int_1^{17} \frac{1}{8}\sqrt{u} du = \frac{\pi}{4} \left[\frac{2u^{3/2}}{3}\right]_1^{17} = \boxed{\frac{\pi}{6}(17\sqrt{17} - 1)}.
+\]
+\end{EjercicioBox}
+
+\paragraph{Valor promedio en el espacio.}
+El valor promedio de una función \(f(x,y,z)\) sobre una región sólida \(V\) es:
+\[
+f_{\text{prom}} = \frac{1}{\text{Volumen}(V)} \iiint_V f(x,y,z)\, dV.
+\]
+
+\begin{EjercicioBox}[Ejemplo 23: Densidad promedio de un sólido]
+Un sólido tiene la forma de un cubo \([0,2] \times [0,2] \times [0,2]\) con densidad \(\rho(x,y,z) = xyz\). Calcular la densidad promedio.
+
+\textbf{Solución:}
+
+El volumen es \(V = 8\). La masa total es:
+\[
+M = \int_0^2 \int_0^2 \int_0^2 xyz\, dz\, dy\, dx = \left(\int_0^2 x\, dx\right)\left(\int_0^2 y\, dy\right)\left(\int_0^2 z\, dz\right) = 2 \cdot 2 \cdot 2 = 8.
+\]
+
+La densidad promedio es:
+\[
+\rho_{\text{prom}} = \frac{M}{V} = \frac{8}{8} = \boxed{1}.
+\]
+\end{EjercicioBox}
+
+\paragraph{Resumen de fórmulas importantes.}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Concepto} & \textbf{Fórmula} \\
+\hline
+Volumen bajo superficie & \(V = \iint_R f(x,y)\, dA\) \\
+\hline
+Volumen entre superficies & \(V = \iint_D [f(x,y) - g(x,y)]\, dA\) \\
+\hline
+Área de una región & \(A = \iint_R 1\, dA\) \\
+\hline
+Área de superficie & \(A = \iint_R \sqrt{1 + f_x^2 + f_y^2}\, dA\) \\
+\hline
+Masa de lámina & \(M = \iint_R \rho(x,y)\, dA\) \\
+\hline
+Centro de masa (lámina) & \((\bar{x}, \bar{y}) = \left(\frac{M_y}{M}, \frac{M_x}{M}\right)\) \\
+\hline
+Momentos (lámina) & \(M_x = \iint_R y\rho\, dA\), \(M_y = \iint_R x\rho\, dA\) \\
+\hline
+Momento de inercia (lámina) & \(I_0 = \iint_R (x^2 + y^2)\rho(x,y)\, dA\) \\
+\hline
+Masa de sólido & \(M = \iiint_V \rho(x,y,z)\, dV\) \\
+\hline
+Centro de masa (sólido) & \((\bar{x}, \bar{y}, \bar{z}) = \left(\frac{M_{yz}}{M}, \frac{M_{xz}}{M}, \frac{M_{xy}}{M}\right)\) \\
+\hline
+Valor promedio (2D) & \(f_{\text{prom}} = \frac{1}{A(R)}\iint_R f(x,y)\, dA\) \\
+\hline
+Valor promedio (3D) & \(f_{\text{prom}} = \frac{1}{V}\iiint_V f(x,y,z)\, dV\) \\
+\hline
+Coordenadas polares & \(dA = r\, dr\, d\theta\) \\
+\hline
+Coordenadas cilíndricas & \(dV = r\, dr\, d\theta\, dz\), \(|J| = r\) \\
+\hline
+Coordenadas esféricas & \(dV = \rho^2\sin\phi\, d\rho\, d\phi\, d\theta\), \(|J| = \rho^2\sin\phi\) \\
+\hline
+Cambio de variables (2D) & \(dA = |J(u,v)|\, du\, dv\) \\
+\hline
+Cambio de variables (3D) & \(dV = |J(u,v,w)|\, du\, dv\, dw\) \\
+\hline
+Probabilidad & \(P((X,Y) \in R) = \iint_R f(x,y)\, dA\) \\
+\hline
+Valor esperado & \(E[g(X,Y)] = \iint_{\mathbb{R}^2} g(x,y) f(x,y)\, dA\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Integrales dobles impropias}
+
+\paragraph{Definición.}
+Las integrales dobles pueden ser impropias cuando:
+\begin{enumerate}
+  \item La región de integración es no acotada
+  \item La función tiene discontinuidades en la región
+\end{enumerate}
+
+Para regiones no acotadas, definimos:
+\[
+\iint_R f(x,y)\, dA = \lim_{n \to \infty} \iint_{R_n} f(x,y)\, dA,
+\]
+donde \(\{R_n\}\) es una sucesión creciente de regiones acotadas que cubren \(R\).
+
+\begin{EjercicioBox}[Ejemplo 21: Integral doble impropia]
+Calcular
+\[
+\iint_{\mathbb{R}^2} e^{-(x^2+y^2)}\, dA.
+\]
+
+\textbf{Solución:}
+
+Usando coordenadas polares:
+\[
+\begin{aligned}
+\iint_{\mathbb{R}^2} e^{-(x^2+y^2)}\, dA &= \lim_{R \to \infty} \int_0^{2\pi} \int_0^R e^{-r^2} r\, dr\, d\theta \\
+&= 2\pi \lim_{R \to \infty} \int_0^R re^{-r^2} dr \\
+&= 2\pi \lim_{R \to \infty} \left[-\frac{1}{2}e^{-r^2}\right]_0^R \\
+&= 2\pi \cdot \frac{1}{2} = \boxed{\pi}.
+\end{aligned}
+\]
+
+Este resultado es importante en probabilidad y estadística (distribución normal).
+\end{EjercicioBox}
+
+\subsubsection{Técnicas de integración numérica}
+
+\paragraph{Integración aproximada.}
+Cuando las integrales no pueden resolverse analíticamente, se usan métodos numéricos:
+\begin{itemize}
+  \item \textbf{Regla del punto medio:} Aproxima la función por constantes en subrectángulos
+  \item \textbf{Regla de Simpson:} Extensión bidimensional de la regla de Simpson
+  \item \textbf{Cuadratura de Gauss:} Usa puntos y pesos óptimos para mayor precisión
+  \item \textbf{Monte Carlo:} Método probabilístico útil para dimensiones altas
+\end{itemize}
+
+\paragraph{Consideraciones prácticas.}
+\begin{itemize}
+  \item \textbf{Elección del orden de integración:} A veces es más fácil integrar primero respecto a una variable. Considera los límites de integración para elegir el orden óptimo. Si un límite depende de otra variable, integra primero respecto a la variable que tiene límites constantes.
+  \item \textbf{Simetría:} Aprovecha la simetría de la región y la función para simplificar cálculos (por ejemplo, si \(f(-x,y) = f(x,y)\), puedes calcular sobre la mitad y duplicar). Si la región es simétrica y la función tiene cierta paridad, la integral puede ser cero o simplificarse.
+  \item \textbf{Sistema de coordenadas:} Usa coordenadas polares para círculos, cilíndricas para cilindros y esféricas para esferas. El cambio de coordenadas puede convertir una integral difícil en una simple.
+  \item \textbf{Cambio de variables:} Cuando la región es complicada, busca una transformación que la simplifique a una región rectangular o conocida. Identifica simetrías en la región que sugieran transformaciones útiles.
+  \item \textbf{Factorización:} Si la función es producto de funciones de una sola variable, puedes separar las integrales: \(\iint_R f(x)g(y)\, dA = \left(\int_a^b f(x)\, dx\right)\left(\int_c^d g(y)\, dy\right)\).
+  \item \textbf{Integrales iteradas:} Resuelve paso a paso, evaluando primero la integral interior antes de integrar respecto a la variable exterior.
+\end{itemize}
+
+\paragraph{Errores comunes a evitar.}
+\begin{enumerate}
+  \item Olvidar el factor \(r\) en coordenadas polares: \(dA = r\, dr\, d\theta\), no \(dr\, d\theta\).
+  \item Confundir el orden de los límites de integración: el límite interior debe estar en términos de la variable exterior.
+  \item No verificar que el Jacobiano en cambio de variables sea positivo o tomar su valor absoluto.
+  \item No ajustar los límites de integración al cambiar el orden de integración.
+  \item Olvidar incluir la densidad en cálculos de masa cuando no es constante.
+\end{enumerate}
