@@ -301,6 +301,115 @@ Las integrales dobles tienen aplicaciones en:
   \item \textbf{Centro de masa:} \((\bar{x}, \bar{y}) = \left( \frac{M_y}{M}, \frac{M_x}{M} \right)\) donde \(M_x = \iint_R y\rho(x,y)\, dA\) y \(M_y = \iint_R x\rho(x,y)\, dA\)
 \end{itemize}
 
+\subsubsection{Ejercicios: Integrales dobles}
+
+Calcula las siguientes integrales:
+
+\paragraph{Integrales indefinidas con funciones exponenciales y trigonométricas}
+
+\begin{enumerate}
+  \item \(\displaystyle \int e^{4x} \cos(3x + 2)\, dx\)
+  
+  \textbf{Solución:}
+  Usamos integración por partes repetida. Sea \(u = e^{4x}\) y \(dv = \cos(3x+2)\, dx\).
+  
+  Entonces \(du = 4e^{4x}\, dx\) y \(v = \frac{\sin(3x+2)}{3}\).
+  
+  \[\int e^{4x}\cos(3x+2)\, dx = \frac{e^{4x}\sin(3x+2)}{3} - \frac{4}{3}\int e^{4x}\sin(3x+2)\, dx\]
+  
+  Aplicamos integración por partes nuevamente:
+  
+  \[\int e^{4x}\sin(3x+2)\, dx = -\frac{e^{4x}\cos(3x+2)}{3} + \frac{4}{3}\int e^{4x}\cos(3x+2)\, dx\]
+  
+  Sustituyendo y resolviendo:
+  
+  \[\int e^{4x}\cos(3x+2)\, dx = \frac{e^{4x}(4\sin(3x+2) + 3\cos(3x+2))}{25} + C\]
+  
+  \item \(\displaystyle \int e^{3x} \sin(4x + 2)\, dx\)
+  
+  \textbf{Solución:}
+  Análogamente a la anterior, usando integración por partes repetida:
+  
+  \[\int e^{3x}\sin(4x+2)\, dx = \frac{e^{3x}(3\sin(4x+2) - 4\cos(4x+2))}{25} + C\]
+  
+  \item \(\displaystyle \int e^{-x} \cos(2x)\, dx\)
+  
+  \textbf{Solución:}
+  Usamos integración por partes repetida.
+  
+  \[\int e^{-x}\cos(2x)\, dx = \frac{e^{-x}(-\cos(2x) - 2\sin(2x))}{5} + C = \frac{e^{-x}(-\cos(2x) - 2\sin(2x))}{5} + C\]
+  
+  \[\text{O equivalentemente: } \frac{-e^{-x}(\cos(2x) + 2\sin(2x))}{5} + C\]
+\end{enumerate}
+
+\paragraph{Integrales dobles iteradas}
+
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  
+  \item \(\displaystyle \int_{x=0}^{4} \int_{y=1}^{3} 6x^2y\, dy\, dx\)
+  
+  \textbf{Solución:}
+  Integramos primero con respecto a \(y\):
+  
+  \[\int_1^3 6x^2y\, dy = 6x^2 \left[ \frac{y^2}{2} \right]_1^3 = 6x^2 \left( \frac{9}{2} - \frac{1}{2} \right) = 6x^2 \cdot 4 = 24x^2\]
+  
+  Luego integramos con respecto a \(x\):
+  
+  \[\int_0^4 24x^2\, dx = 24 \left[ \frac{x^3}{3} \right]_0^4 = 8[4^3 - 0] = 8 \cdot 64 = 512\]
+  
+  \item \(\displaystyle \int_{x=0}^{4} \int_{y=2}^{3} (6x^2y - 2x)\, dy\, dx\)
+  
+  \textbf{Solución:}
+  Integramos primero con respecto a \(y\):
+  
+  \[\int_2^3 (6x^2y - 2x)\, dy = \left[ 3x^2y^2 - 2xy \right]_2^3 = (3x^2 \cdot 9 - 2x \cdot 3) - (3x^2 \cdot 4 - 2x \cdot 2)\]
+  \[= 27x^2 - 6x - 12x^2 + 4x = 15x^2 - 2x\]
+  
+  Luego integramos con respecto a \(x\):
+  
+  \[\int_0^4 (15x^2 - 2x)\, dx = \left[ 5x^3 - x^2 \right]_0^4 = 5 \cdot 64 - 16 = 320 - 16 = 304\]
+  
+  \item \(\displaystyle \int_{x=0}^{\pi/2} \int_{y=0}^{x} \sin(x - y)\, dy\, dx\)
+  
+  \textbf{Solución:}
+  Integramos primero con respecto a \(y\):
+  
+  \[\int_0^x \sin(x-y)\, dy = \left[ \cos(x-y) \right]_0^x = \cos(0) - \cos(x) = 1 - \cos(x)\]
+  
+  Luego integramos con respecto a \(x\):
+  
+  \[\int_0^{\pi/2} (1 - \cos(x))\, dx = \left[ x - \sin(x) \right]_0^{\pi/2} = \frac{\pi}{2} - 1\]
+  
+  \item \(\displaystyle \int_{x=0}^{\pi/2} \int_{y=0}^{x} \sin(x + 2y)\, dy\, dx\)
+  
+  \textbf{Solución:}
+  Integramos primero con respecto a \(y\):
+  
+  \[\int_0^x \sin(x+2y)\, dy = \left[ -\frac{\cos(x+2y)}{2} \right]_0^x = -\frac{\cos(3x)}{2} + \frac{\cos(x)}{2} = \frac{\cos(x) - \cos(3x)}{2}\]
+  
+  Luego integramos con respecto a \(x\):
+  
+  \[\int_0^{\pi/2} \frac{\cos(x) - \cos(3x)}{2}\, dx = \frac{1}{2}\left[ \sin(x) - \frac{\sin(3x)}{3} \right]_0^{\pi/2}\]
+  
+  \[= \frac{1}{2}\left( 1 - \frac{\sin(3\pi/2)}{3} - 0 + 0 \right) = \frac{1}{2}\left( 1 - \frac{-1}{3} \right) = \frac{1}{2} \cdot \frac{4}{3} = \frac{2}{3}\]
+  
+  \item \(\displaystyle \int_{x=0}^{2} \int_{y=0}^{x} e^{x^2} \sin(2y)\, dy\, dx\)
+  
+  \textbf{Solución:}
+  Integramos primero con respecto a \(y\):
+  
+  \[\int_0^x e^{x^2}\sin(2y)\, dy = e^{x^2} \left[ -\frac{\cos(2y)}{2} \right]_0^x = e^{x^2}\left( -\frac{\cos(2x)}{2} + \frac{1}{2} \right) = \frac{e^{x^2}(1 - \cos(2x))}{2}\]
+  
+  Luego integramos con respecto a \(x\):
+  
+  \[\int_0^2 \frac{e^{x^2}(1 - \cos(2x))}{2}\, dx\]
+  
+  Esta integral no tiene una forma cerrada simple. Se puede aproximar numéricamente o expresar en términos de funciones especiales como la función error.
+  
+  \textbf{Valor aproximado: } \(\approx 1.855\)
+\end{enumerate}
+
 
 \subsection{Integrales triples}
 

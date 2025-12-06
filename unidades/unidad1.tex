@@ -114,6 +114,137 @@ En funciones explícitas, es directo calcular derivadas parciales:
 \frac{\partial z}{\partial x} = 2x, \quad \frac{\partial z}{\partial y} = 2y \quad \text{para } z = x^2 + y^2
 \]
 
+\subsubsection{Ejercicios: Dominio y rango de funciones de una variable}
+
+Encuentra el dominio y rango de las siguientes funciones:
+
+\begin{enumerate}
+  \item \(f(x) = x^2 + 3x + 2\)
+  
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Dominio:} Es una función polinomial, sin restricciones. \(\text{Dom}(f) = \mathbb{R}\) o \((-\infty, +\infty)\)
+    \item \textbf{Rango:} Completando cuadrados: \(f(x) = (x + \frac{3}{2})^2 + 2 - \frac{9}{4} = (x + \frac{3}{2})^2 - \frac{1}{4}\)
+    
+    El mínimo ocurre en \(x = -\frac{3}{2}\), con valor \(f(-\frac{3}{2}) = -\frac{1}{4}\)
+    
+    \(\text{Ran}(f) = [-\frac{1}{4}, +\infty)\)
+  \end{itemize}
+  
+  \item \(f(x) = \frac{x+2}{x+3}\)
+  
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Dominio:} El denominador no puede ser cero: \(x + 3 \neq 0 \Rightarrow x \neq -3\)
+    
+    \(\text{Dom}(f) = \mathbb{R} \setminus \{-3\}\) o \((-\infty, -3) \cup (-3, +\infty)\)
+    
+    \item \textbf{Rango:} Despejando \(x\) en términos de \(y\):
+    \[y(x+3) = x+2 \Rightarrow yx + 3y = x + 2 \Rightarrow yx - x = 2 - 3y \Rightarrow x(y-1) = 2-3y\]
+    \[x = \frac{2-3y}{y-1}\]
+    
+    Para que \(x\) exista, necesitamos \(y - 1 \neq 0 \Rightarrow y \neq 1\)
+    
+    \(\text{Ran}(f) = \mathbb{R} \setminus \{1\}\) o \((-\infty, 1) \cup (1, +\infty)\)
+  \end{itemize}
+  
+  \item \(f(x) = \frac{2x-1}{x^2-x-12}\)
+  
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Dominio:} Factorizamos el denominador: \(x^2 - x - 12 = (x-4)(x+3)\)
+    
+    El denominador es cero cuando \(x = 4\) o \(x = -3\)
+    
+    \(\text{Dom}(f) = \mathbb{R} \setminus \{-3, 4\}\) o \((-\infty, -3) \cup (-3, 4) \cup (4, +\infty)\)
+    
+    \item \textbf{Rango:} Por el método de despejar \(y\):
+    \[y(x^2-x-12) = 2x-1 \Rightarrow yx^2 - yx - 12y = 2x - 1\]
+    \[yx^2 - (y+2)x + (12y-1) = 0\]
+    
+    Si \(y = 0\): \(-2x - 1 = 0 \Rightarrow x = -\frac{1}{2}\) (válido)
+    
+    Si \(y \neq 0\): Para que exista \(x\) real, el discriminante debe ser \(\geq 0\):
+    \[\Delta = (y+2)^2 - 4y(12y-1) \geq 0\]
+    \[\Delta = y^2 + 4y + 4 - 48y^2 + 4y \geq 0\]
+    \[-47y^2 + 8y + 4 \geq 0 \Rightarrow 47y^2 - 8y - 4 \leq 0\]
+    
+    \(\text{Ran}(f) = [-\frac{2}{47}, \frac{4}{47}]\) (aproximadamente)
+  \end{itemize}
+  
+  \item \(f(x) = \sqrt{x} + 3\)
+  
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Dominio:} La expresión dentro de la raíz debe ser no negativa: \(x \geq 0\)
+    
+    \(\text{Dom}(f) = [0, +\infty)\)
+    
+    \item \textbf{Rango:} El mínimo ocurre cuando \(x = 0\): \(f(0) = \sqrt{0} + 3 = 3\)
+    
+    A medida que \(x\) aumenta, \(\sqrt{x}\) también aumenta sin límite.
+    
+    \(\text{Ran}(f) = [3, +\infty)\)
+  \end{itemize}
+  
+  \item \(f(x) = \sqrt{x+8}\)
+  
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Dominio:} La expresión dentro de la raíz debe ser no negativa: \(x + 8 \geq 0 \Rightarrow x \geq -8\)
+    
+    \(\text{Dom}(f) = [-8, +\infty)\)
+    
+    \item \textbf{Rango:} El mínimo ocurre cuando \(x = -8\): \(f(-8) = \sqrt{-8+8} = \sqrt{0} = 0\)
+    
+    A medida que \(x\) aumenta, \(\sqrt{x+8}\) también aumenta sin límite.
+    
+    \(\text{Ran}(f) = [0, +\infty)\)
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Ejercicios: Variables dependientes e independientes}
+
+Identifica la variable dependiente e independiente en las siguientes expresiones:
+
+\begin{enumerate}
+  \item \(y = 2 + x^2\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(y\) \quad \textbf{I:} \(x\)
+  
+  \item \(z = y + 9\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(z\) \quad \textbf{I:} \(y\)
+  
+  \item \(y = 2x + 3x^2 + 9\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(y\) \quad \textbf{I:} \(x\)
+  
+  \item \(t^2 + 9t = x\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(x\) \quad \textbf{I:} \(t\)
+  
+  (Equivalentemente: \(x = t^2 + 9t\))
+  
+  \item \(9x + 20 = z\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(z\) \quad \textbf{I:} \(x\)
+  
+  (Equivalentemente: \(z = 9x + 20\))
+  
+  \item \(t^5 - y^4 + 2x = z\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(z\) \quad \textbf{I:} \(t, y, x\) (tres variables independientes)
+  
+  (Equivalentemente: \(z = t^5 - y^4 + 2x\))
+  
+  \item \(y^2 + 2x + 8y = t\)
+  
+  \textbf{Respuesta:} \textbf{D:} \(t\) \quad \textbf{I:} \(x, y\) (dos variables independientes)
+  
+  (Equivalentemente: \(t = y^2 + 2x + 8y\))
+\end{enumerate}
+
 \subsubsection{Funciones implícitas}
 Una función se dice \textbf{implícita} cuando no está despejada, sino que se define mediante una ecuación de la forma:
 \[
@@ -791,6 +922,56 @@ k = -3:
 El hiperboloide de dos hojas se abre en dos direcciones opuestas, con elipses cada vez más amplias conforme \(|z|\) crece.
 
 
+\subsubsection{Ejercicios: Curvas de nivel}
+
+Encuentra y describe las curvas de nivel de la siguiente función:
+
+\begin{enumerate}
+  \item \(z = x^2 + y^2\) para \(z = 4, 5, 6\)
+  
+  \textbf{Solución:}
+  
+  Esta es una función paraboloide circular (paraboloide de revolución). Para encontrar las curvas de nivel, 
+  igualamos \(z\) a cada valor constante y despejamos la relación entre \(x\) e \(y\).
+  
+  \begin{itemize}
+    \item \textbf{Cuando } \(z = 4\):
+    \[
+    x^2 + y^2 = 4
+    \]
+    Esta es la ecuación de una \textbf{circunferencia} con centro en \((0,0)\) y radio \(r = 2\).
+    
+    \item \textbf{Cuando } \(z = 5\):
+    \[
+    x^2 + y^2 = 5
+    \]
+    Esta es la ecuación de una \textbf{circunferencia} con centro en \((0,0)\) y radio \(r = \sqrt{5} \approx 2.236\).
+    
+    \item \textbf{Cuando } \(z = 6\):
+    \[
+    x^2 + y^2 = 6
+    \]
+    Esta es la ecuación de una \textbf{circunferencia} con centro en \((0,0)\) y radio \(r = \sqrt{6} \approx 2.449\).
+  \end{itemize}
+  
+  \textbf{Interpretación geométrica:}
+  \begin{itemize}
+    \item Las tres curvas de nivel son circunferencias concéntricas (con el mismo centro pero radios diferentes).
+    \item La función \(z = x^2 + y^2\) representa un paraboloide elíptico (en este caso, de revolución).
+    \item El vértice del paraboloide está en \((0, 0, 0)\), el punto de menor altura.
+    \item Conforme aumenta el valor de \(z\), las curvas de nivel son circunferencias cada vez más grandes.
+    \item La distancia al origen es \(\sqrt{z}\), de modo que:
+    \begin{align*}
+      z = 4 &\Rightarrow r = 2 \\
+      z = 5 &\Rightarrow r = \sqrt{5} \\
+      z = 6 &\Rightarrow r = \sqrt{6}
+    \end{align*}
+  \end{itemize}
+  
+  \textbf{Conclusión:}
+  Las curvas de nivel del paraboloide \(z = x^2 + y^2\) son circunferencias concéntricas. 
+  Para cualquier valor \(z = k > 0\), la curva de nivel es una circunferencia de radio \(\sqrt{k}\) centrada en el origen.
+\end{enumerate}
 
 
 % ==================== UNIDAD 3 ====================
@@ -1002,3 +1183,98 @@ Una función racional es continua donde el denominador no es cero, por lo que:
 f \text{ es continua en } \mathbb{R}^3 \setminus \{(x,y,z)\,\mid\,x^2+y^2+z^2=1\}.
 }
 \]
+
+\subsection*{Ejercicios: Límites de funciones de una variable}
+
+Calcula los siguientes límites:
+
+\begin{enumerate}
+  \item \(\displaystyle \lim_{x \to -3} \frac{x+3}{x^2 - 9}\)
+  
+  \textbf{Solución:}
+  Factorizamos el denominador: \(x^2 - 9 = (x-3)(x+3)\)
+  
+  \[\lim_{x \to -3} \frac{x+3}{(x-3)(x+3)} = \lim_{x \to -3} \frac{1}{x-3} = \frac{1}{-3-3} = \frac{1}{-6} = -\frac{1}{6}\]
+  
+  \item \(\displaystyle \lim_{x \to 1} \frac{x^2 - 4x + 3}{x^2 + 3x - 4}\)
+  
+  \textbf{Solución:}
+  Factorizamos: \(x^2 - 4x + 3 = (x-1)(x-3)\) y \(x^2 + 3x - 4 = (x-1)(x+4)\)
+  
+  \[\lim_{x \to 1} \frac{(x-1)(x-3)}{(x-1)(x+4)} = \lim_{x \to 1} \frac{x-3}{x+4} = \frac{1-3}{1+4} = \frac{-2}{5} = -\frac{2}{5}\]
+  
+  \item \(\displaystyle \lim_{x \to 0} \frac{x^3 - 2x^2}{3x^2}\)
+  
+  \textbf{Solución:}
+  Factorizamos el numerador: \(x^3 - 2x^2 = x^2(x - 2)\)
+  
+  \[\lim_{x \to 0} \frac{x^2(x-2)}{3x^2} = \lim_{x \to 0} \frac{x-2}{3} = \frac{0-2}{3} = -\frac{2}{3}\]
+  
+  \item \(\displaystyle \lim_{x \to 5} \frac{x^2 - 10x + 25}{x^2 - 3x - 10}\)
+  
+  \textbf{Solución:}
+  Factorizamos: \(x^2 - 10x + 25 = (x-5)^2\) y \(x^2 - 3x - 10 = (x-5)(x+2)\)
+  
+  \[\lim_{x \to 5} \frac{(x-5)^2}{(x-5)(x+2)} = \lim_{x \to 5} \frac{x-5}{x+2} = \frac{5-5}{5+2} = \frac{0}{7} = 0\]
+  
+  \item \(\displaystyle \lim_{x \to 4} \frac{x^2 - 4x}{x^2 - 16}\)
+  
+  \textbf{Solución:}
+  Factorizamos: \(x^2 - 4x = x(x-4)\) y \(x^2 - 16 = (x-4)(x+4)\)
+  
+  \[\lim_{x \to 4} \frac{x(x-4)}{(x-4)(x+4)} = \lim_{x \to 4} \frac{x}{x+4} = \frac{4}{4+4} = \frac{4}{8} = \frac{1}{2}\]
+  
+  \item \(\displaystyle \lim_{x \to 0} \frac{x^3 - 5x^2 + 3x}{4x^2 - 4x}\)
+  
+  \textbf{Solución:}
+  Factorizamos: \(x^3 - 5x^2 + 3x = x(x^2 - 5x + 3)\) y \(4x^2 - 4x = 4x(x-1)\)
+  
+  \[\lim_{x \to 0} \frac{x(x^2 - 5x + 3)}{4x(x-1)} = \lim_{x \to 0} \frac{x^2 - 5x + 3}{4(x-1)} = \frac{0 - 0 + 3}{4(0-1)} = \frac{3}{-4} = -\frac{3}{4}\]
+  
+  \item \(\displaystyle \lim_{x \to 0} \frac{\sqrt{9+x} - 3}{x}\)
+  
+  \textbf{Solución:}
+  Multiplicamos por el conjugado:
+  
+  \[\lim_{x \to 0} \frac{\sqrt{9+x} - 3}{x} \cdot \frac{\sqrt{9+x} + 3}{\sqrt{9+x} + 3} = \lim_{x \to 0} \frac{(9+x) - 9}{x(\sqrt{9+x} + 3)}\]
+  
+  \[= \lim_{x \to 0} \frac{x}{x(\sqrt{9+x} + 3)} = \lim_{x \to 0} \frac{1}{\sqrt{9+x} + 3} = \frac{1}{\sqrt{9} + 3} = \frac{1}{3+3} = \frac{1}{6}\]
+  
+  \item \(\displaystyle \lim_{x \to 1} \frac{\sqrt{x+3} - 2}{x-1}\)
+  
+  \textbf{Solución:}
+  Multiplicamos por el conjugado:
+  
+  \[\lim_{x \to 1} \frac{\sqrt{x+3} - 2}{x-1} \cdot \frac{\sqrt{x+3} + 2}{\sqrt{x+3} + 2} = \lim_{x \to 1} \frac{(x+3) - 4}{(x-1)(\sqrt{x+3} + 2)}\]
+  
+  \[= \lim_{x \to 1} \frac{x-1}{(x-1)(\sqrt{x+3} + 2)} = \lim_{x \to 1} \frac{1}{\sqrt{x+3} + 2} = \frac{1}{\sqrt{1+3} + 2} = \frac{1}{\sqrt{4} + 2} = \frac{1}{2+2} = \frac{1}{4}\]
+  
+  \item \(\displaystyle \lim_{x \to -2} \frac{x+2}{\sqrt{x+3} - 1}\)
+  
+  \textbf{Solución:}
+  Multiplicamos por el conjugado:
+  
+  \[\lim_{x \to -2} \frac{x+2}{\sqrt{x+3} - 1} \cdot \frac{\sqrt{x+3} + 1}{\sqrt{x+3} + 1} = \lim_{x \to -2} \frac{(x+2)(\sqrt{x+3} + 1)}{(x+3) - 1}\]
+  
+  \[= \lim_{x \to -2} \frac{(x+2)(\sqrt{x+3} + 1)}{x+2} = \lim_{x \to -2} (\sqrt{x+3} + 1) = \sqrt{-2+3} + 1 = \sqrt{1} + 1 = 1 + 1 = 2\]
+  
+  \item \(\displaystyle \lim_{x \to 0} \frac{x^2}{\sqrt{x+3} - \sqrt{3}}\)
+  
+  \textbf{Solución:}
+  Multiplicamos por el conjugado:
+  
+  \[\lim_{x \to 0} \frac{x^2}{\sqrt{x+3} - \sqrt{3}} \cdot \frac{\sqrt{x+3} + \sqrt{3}}{\sqrt{x+3} + \sqrt{3}} = \lim_{x \to 0} \frac{x^2(\sqrt{x+3} + \sqrt{3})}{(x+3) - 3}\]
+  
+  \[= \lim_{x \to 0} \frac{x^2(\sqrt{x+3} + \sqrt{3})}{x} = \lim_{x \to 0} x(\sqrt{x+3} + \sqrt{3})\]
+  
+  Cuando \(x \to 0\): \(0 \cdot (\sqrt{3} + \sqrt{3}) = 0 \cdot 2\sqrt{3} = 0\)
+  
+  \item \(\displaystyle \lim_{x \to 0} \frac{\sqrt{4 - 2x + x^2} - 2}{x}\)
+  
+  \textbf{Solución:}
+  Observa que \(4 - 2x + x^2 = (2-x)^2\), entonces \(\sqrt{4 - 2x + x^2} = |2-x|\)
+  
+  Para \(x\) cercano a 0, \(2 - x > 0\), entonces \(|2-x| = 2-x\)
+  
+  \[\lim_{x \to 0} \frac{2-x - 2}{x} = \lim_{x \to 0} \frac{-x}{x} = \lim_{x \to 0} (-1) = -1\]
+\end{enumerate}

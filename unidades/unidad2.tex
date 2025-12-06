@@ -1107,6 +1107,151 @@ Aplicamos la fórmula:
 \label{tab:regla_cadena}
 \end{table}
 
+\subsubsection{Ejercicios: Derivadas parciales de primer orden}
+
+Calcula \(\displaystyle \frac{\partial f}{\partial x}\) y \(\displaystyle \frac{\partial f}{\partial y}\) para las siguientes funciones:
+
+\begin{enumerate}
+  \item \(f(x, y) = x^2 + 3x + y^2 + 5\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = 2x + 3\) \quad \(\displaystyle \frac{\partial f}{\partial y} = 2y\)
+  
+  \item \(f(x, y) = e^{2x^2 + xy + y^2}\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = e^{2x^2 + xy + y^2}(4x + y)\) \quad \(\displaystyle \frac{\partial f}{\partial y} = e^{2x^2 + xy + y^2}(x + 2y)\)
+  
+  \item \(f(x, y) = \sin(3x + 2y^2)\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = 3\cos(3x + 2y^2)\) \quad \(\displaystyle \frac{\partial f}{\partial y} = 4y\cos(3x + 2y^2)\)
+  
+  \item \(f(x, y) = x^3 + y^5 - 3x^2 y\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = 3x^2 - 6xy\) \quad \(\displaystyle \frac{\partial f}{\partial y} = 5y^4 - 3x^2\)
+  
+  \item \(f(x, y) = \frac{x^4 y^3}{6} - \frac{2xy^6}{3}\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = \frac{4x^3 y^3}{6} - \frac{2y^6}{3} = \frac{2x^3 y^3}{3} - \frac{2y^6}{3}\) 
+  
+  \(\displaystyle \frac{\partial f}{\partial y} = \frac{3x^4 y^2}{6} - \frac{12xy^5}{3} = \frac{x^4 y^2}{2} - 4xy^5\)
+  
+  \item \(f(x, y) = 6x^2 \cos(y^3)\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = 12x\cos(y^3)\) \quad \(\displaystyle \frac{\partial f}{\partial y} = -18x^2 y^2 \sin(y^3)\)
+  
+  \item \(f(x, y) = (5x^2 + 3xy - y^3)^5\)
+  
+  \(\displaystyle \frac{\partial f}{\partial x} = 5(5x^2 + 3xy - y^3)^4(10x + 3y)\)
+  
+  \(\displaystyle \frac{\partial f}{\partial y} = 5(5x^2 + 3xy - y^3)^4(3x - 3y^2)\)
+\end{enumerate}
+
+\subsubsection{Ejercicios: Derivadas parciales de segundo orden}
+
+Calcula todas las derivadas parciales de segundo orden \(\displaystyle \frac{\partial^2 f}{\partial x^2}\), \(\displaystyle \frac{\partial^2 f}{\partial y^2}\), \(\displaystyle \frac{\partial^2 f}{\partial x \partial y}\), y \(\displaystyle \frac{\partial^2 f}{\partial y \partial x}\) para las siguientes funciones:
+
+\begin{enumerate}
+  \item \(f(x, y) = x^3 + y^5 - 3x^2 y\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = 3x^2 - 6xy\) \quad \(\frac{\partial f}{\partial y} = 5y^4 - 3x^2\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = 6x - 6y\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = 20y^3\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = -6x\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = -6x\)
+  \end{itemize}
+  
+  \item \(f(x, y) = \frac{x^4 y^3}{6} - \frac{2xy^6}{3}\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = \frac{2x^3 y^3}{3} - \frac{2y^6}{3}\) \quad \(\frac{\partial f}{\partial y} = \frac{x^4 y^2}{2} - 4xy^5\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = 2x^2 y^3\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = x^4 y - 20xy^4\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = 2x^3 y^2 - 4y^5\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = 2x^3 y^2 - 4y^5\)
+  \end{itemize}
+  
+  \item \(f(x, y) = 6x^2 \cos(y^3)\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = 12x\cos(y^3)\) \quad \(\frac{\partial f}{\partial y} = -18x^2 y^2 \sin(y^3)\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = 12\cos(y^3)\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = -36x^2 y \sin(y^3) - 54x^2 y^4 \cos(y^3)\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = -36xy^2 \sin(y^3)\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = -36xy^2 \sin(y^3)\)
+  \end{itemize}
+  
+  \item \(f(x,y) = \cos(x^4 + y^7)\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = -4x^3 \sin(x^4 + y^7)\) \quad \(\frac{\partial f}{\partial y} = -7y^6 \sin(x^4 + y^7)\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = -12x^2 \sin(x^4 + y^7) - 16x^6 \cos(x^4 + y^7)\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = -42y^5 \sin(x^4 + y^7) - 49y^{12} \cos(x^4 + y^7)\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = -28x^3 y^6 \cos(x^4 + y^7)\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = -28x^3 y^6 \cos(x^4 + y^7)\)
+  \end{itemize}
+  
+  \item \(f(x,y) = (30 - 6x + 2y)(4x - 5)\)
+  
+  \textbf{Simplificando:} \(f(x,y) = 120x - 150 - 24x^2 + 30x + 8xy - 10y = -24x^2 + 8xy + 150x - 10y - 150\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = -48x + 8y + 150\) \quad \(\frac{\partial f}{\partial y} = 8x - 10\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = -48\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = 0\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = 8\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = 8\)
+  \end{itemize}
+  
+  \item \(f(x,y) = x^3(4x + 5y) = 4x^4 + 5x^3 y\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = 16x^3 + 15x^2 y\) \quad \(\frac{\partial f}{\partial y} = 5x^3\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = 48x^2 + 30xy\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = 0\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = 15x^2\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = 15x^2\)
+  \end{itemize}
+  
+  \item \(f(x,y) = y^4(2x + 3y) = 2xy^4 + 3y^5\)
+  
+  \textbf{Primeras derivadas:} \(\frac{\partial f}{\partial x} = 2y^4\) \quad \(\frac{\partial f}{\partial y} = 8xy^3 + 15y^4\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = 0\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = 24xy^2 + 60y^3\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = 8y^3\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = 8y^3\)
+  \end{itemize}
+  
+  \item \(f(x,y) = \frac{x^2}{x^2 + y^2}\)
+  
+  \textbf{Primeras derivadas:} 
+  \(\displaystyle \frac{\partial f}{\partial x} = \frac{2x(x^2 + y^2) - x^2(2x)}{(x^2 + y^2)^2} = \frac{2xy^2}{(x^2 + y^2)^2}\)
+  
+  \(\displaystyle \frac{\partial f}{\partial y} = \frac{0 \cdot (x^2 + y^2) - x^2(2y)}{(x^2 + y^2)^2} = \frac{-2x^2 y}{(x^2 + y^2)^2}\)
+  
+  \textbf{Segundas derivadas:}
+  \begin{itemize}
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x^2} = \frac{2y^2(x^2 + y^2)^2 - 2xy^2 \cdot 2(x^2 + y^2)(2x)}{(x^2 + y^2)^4} = \frac{2y^2(y^2 - 3x^2)}{(x^2 + y^2)^3}\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y^2} = \frac{-2x^2(x^2 + y^2)^2 - (-2x^2 y) \cdot 2(x^2 + y^2)(2y)}{(x^2 + y^2)^4} = \frac{-2x^2(x^2 - 3y^2)}{(x^2 + y^2)^3}\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial x \partial y} = \frac{4xy(x^2 + y^2)^2 - 2xy^2 \cdot 2(x^2 + y^2)(2y)}{(x^2 + y^2)^4} = \frac{-4xy(x^2 - y^2)}{(x^2 + y^2)^3}\)
+    \item \(\displaystyle \frac{\partial^2 f}{\partial y \partial x} = \frac{-4xy(x^2 - y^2)}{(x^2 + y^2)^3}\)
+  \end{itemize}
+\end{enumerate}
+
 \subsection{Vector gradiente y derivada direccional}
 
 \begin{TemaBox}[Vector gradiente y derivada direccional: Concepto unificador]
