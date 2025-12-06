@@ -1,17 +1,1963 @@
-% ==================== UNIDAD IV ====================
-% Funciones vectoriales
+\section{Unidad 4: Funciones vectoriales e integral de línea}
 
-\section{Unidad IV: Funciones vectoriales}
+En esta unidad se estudian herramientas fundamentales del cálculo vectorial que
+permiten describir y analizar curvas en el plano y en el espacio, así como
+medir cantidades a lo largo de dichas curvas mediante integrales de línea.
+El objetivo es que el estudiante sea capaz de interpretar, manipular y aplicar
+funciones vectoriales, ecuaciones paramétricas, operaciones de cálculo sobre
+ellas y el concepto de integral de línea en contextos geométricos y físicos.
 
-\subsection{Funciones vectoriales de una variable}
-% (Contenido pendiente)
+\subsection{Funciones Vectoriales}
 
-\subsection{Derivadas e integrales de funciones vectoriales}
-% (Contenido pendiente)
+\subsubsubsection{Definición y análisis geométrico}
 
-\subsection{Longitud de arco y curvatura}
-% (Contenido pendiente)
+Una función vectorial es una aplicación
+\[
+\vec r : I \subset \mathbb{R} \to \mathbb{R}^n,
+\qquad
+\vec r(t) = \langle x(t), y(t), z(t) \rangle,
+\]
+donde cada componente es una función real. La imagen de \(\vec r\) es una curva
+parametrizada en el espacio, y el parámetro \(t\) determina la forma y la manera
+en que se recorre dicha curva.
 
-\subsection{Aplicaciones de funciones vectoriales}
-% (Contenido pendiente)
+\begin{InfoBox}
+El parámetro no necesariamente es tiempo. Un cambio de parámetro puede modificar
+la rapidez del recorrido sin alterar la geometría de la curva.
+\end{InfoBox}
 
+El análisis geométrico de una función vectorial incluye:
+
+\begin{itemize}
+    \item el dominio del parámetro,
+    \item el recorrido o trayectoria,
+    \item la orientación de la curva,
+    \item la posible presencia de simetrías,
+    \item el estudio de puntos singulares.
+\end{itemize}
+
+Una curva es \textbf{regular} en un punto si su derivada no se anula allí:
+\[
+\vec r'(t_0) \ne \vec 0.
+\]
+En tal caso, existe un vector tangente bien definido.
+
+\subsubsubsection{Propiedades fundamentales}
+
+Las funciones vectoriales heredan propiedades de las funciones reales
+componente a componente. Entre las más relevantes:
+
+\begin{itemize}
+    \item \textbf{Continuidad:} \(\vec r(t)\) es continua en \(t=a\) si todas las
+    componentes \(x(t), y(t), z(t)\) lo son.
+    \item \textbf{Derivabilidad:} La derivada existe si las funciones
+    coordenadas son derivables.
+    \item \textbf{Linealidad:}
+    \[
+    (\vec r + \vec s)' = \vec r' + \vec s', \qquad (c\vec r)' = c\,\vec r'.
+    \]
+    \item \textbf{Regla del producto punto:}
+    \[
+    \frac{d}{dt}(\vec r \cdot \vec s)
+    = \vec r' \cdot \vec s + \vec r \cdot \vec s'.
+    \]
+    \item \textbf{Regla del producto cruz:}
+    \[
+    \frac{d}{dt}(\vec r \times \vec s)
+    = \vec r' \times \vec s + \vec r \times \vec s'.
+    \]
+\end{itemize}
+
+\begin{InfoBox}
+La continuidad y derivabilidad se miden coordenada por coordenada, lo cual
+simplifica muchos análisis teóricos.
+\end{InfoBox}
+
+\subsubsubsection{Teoremas esenciales}
+
+\begin{TemaBox}[Teorema: Derivabilidad implica continuidad]
+Si \(\vec r\) es derivable en \(t=a\), entonces es continua en dicho punto.
+\end{TemaBox}
+
+\textbf{Demostración:}
+La derivabilidad de cada componente implica su continuidad. Luego,
+\[
+\vec r(t) = \langle x(t), y(t), z(t)\rangle
+\]
+es continua porque sus componentes lo son. \(\square\)
+
+\begin{TemaBox}[Teorema: Vector tangente unitario]
+Si \(\vec r'(t) \ne \vec 0\), el vector
+\[
+\vec T(t) = \frac{\vec r'(t)}{\|\vec r'(t)\|}
+\]
+define la dirección instantánea de la curva.
+\end{TemaBox}
+
+\textbf{Demostración:}  
+El vector \(\vec r'(t)\) es tangente y su normalización produce un vector
+unitario en la misma dirección. \(\square\)
+
+\subsubsubsection{Aplicaciones matemáticas}
+
+Las funciones vectoriales son fundamentales en:
+
+\begin{itemize}
+    \item descripción de curvas implícitas mediante parametrizaciones,
+    \item cálculo de longitudes de arco,
+    \item integración a lo largo de trayectorias,
+    \item construcción de soluciones a ecuaciones diferenciales,
+    \item representación de intersecciones entre superficies.
+\end{itemize}
+
+\begin{InfoBox}
+Parametrizar curvas simplifica cálculos que serían imposibles con ecuaciones
+cartesianas de la forma \(y=f(x)\).
+\end{InfoBox}
+
+\subsubsubsection{Aplicaciones físicas}
+
+En física, una función vectorial puede describir:
+
+\begin{itemize}
+    \item la posición de un objeto,
+    \item la trayectoria de un proyectil,
+    \item órbitas planetarias,
+    \item movimientos oscilatorios,
+    \item trayectorias bajo campos electromagnéticos.
+\end{itemize}
+
+\begin{InfoBox}
+La velocidad es \(\vec v(t)=\vec r'(t)\) y la aceleración es
+\(\vec a(t)=\vec r''(t)\). Estas magnitudes determinan la dinámica del sistema.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: trayectoria parabólica]
+Sea \(\vec r(t)=\langle t, t^2, 0\rangle\).
+Halle el vector tangente unitario en \(t=1\).
+\end{EjercicioBox}
+
+\subsubsubsection{Reparametrización por longitud de arco}
+
+Una curva parametrizada por \(\vec r(t)\) no siempre se recorre con rapidez
+constante. Para ciertos cálculos es conveniente construir una parametrización
+que dependa de la longitud recorrida.
+
+Sea la longitud de arco desde \(t_0\) hasta \(t\) dada por:
+\[
+s(t) = \int_{t_0}^t \|\vec r'(\tau)\|\, d\tau.
+\]
+
+Si \(\vec r'(t)\neq 0\) en el intervalo, entonces \(s(t)\) es estrictamente
+creciente y se puede invertir para obtener \(t = t(s)\). La curva
+reparametrizada es:
+
+\[
+\vec R(s) = \vec r(t(s)).
+\]
+
+\begin{InfoBox}
+La parametrización por longitud de arco produce una rapidez unidad:
+\[
+\|\vec R'(s)\| = 1.
+\]
+\end{InfoBox}
+
+\begin{TemaBox}[Teorema: Reparametrización regular]
+Si \(\|\vec r'(t)\|\neq 0\) en \(I\), entonces la curva puede parametrizarse por
+longitud de arco en todo el intervalo.
+\end{TemaBox}
+
+\textbf{Demostración:}  
+La función \(s(t)\) es continua, derivable y estrictamente creciente. Por el
+teorema de la función inversa, admite una inversa derivable. \(\square\)
+
+\subsubsubsection{Regularidad y suavidad de curvas}
+
+Una curva es \textbf{regular} si \(\vec r'(t)\neq 0\) para todo \(t\). En estas
+condiciones, la curva no presenta puntos en los que la dirección tangente sea
+indeterminada.
+
+Una curva es de clase \(C^k\) si \(\vec r(t)\) tiene derivadas continuas hasta
+orden \(k\). Esta suavidad garantiza la existencia de cantidades geométricas
+como curvatura y torsión.
+
+\begin{InfoBox}
+La regularidad excluye curvas con esquinas o cuspides. Tales puntos anulan la
+derivada y requieren análisis especial.
+\end{InfoBox}
+
+\subsubsubsection{Curvatura y vector normal}
+
+La curvatura mide el cambio de dirección del vector tangente:
+
+\[
+\kappa(t)=
+\frac{\|\vec T'(t)\|}{\|\vec r'(t)\|},
+\qquad
+\vec T(t)=\frac{\vec r'(t)}{\|\vec r'(t)\|}.
+\]
+
+Alternativamente,
+\[
+\kappa(t) =
+\frac{\|\vec r'(t)\times \vec r''(t)\|}
+     {\|\vec r'(t)\|^3}.
+\]
+
+El vector normal principal se define como:
+\[
+\vec N(t)=
+\frac{\vec T'(t)}{\|\vec T'(t)\|}.
+\]
+
+\begin{TemaBox}[Teorema: Expresión alternativa de la curvatura]
+Si \(\vec r'(t)\neq 0\), entonces
+\[
+\kappa(t) = \frac{\|\vec r'(t)\times \vec r''(t)\|}
+                  {\|\vec r'(t)\|^3}.
+\]
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Se diferencia \(\vec T(t)\) usando la regla del cociente vectorial y se agrupa
+el término perpendicular a \(\vec r'(t)\). El módulo del componente normal
+coincide con la expresión dada. \(\square\)
+
+\begin{InfoBox}
+La curvatura describe cómo se dobla la curva. Si \(\kappa(t)=0\), la curva es
+localmente recta en ese punto.
+\end{InfoBox}
+
+\subsubsection{Interpretación geométrica avanzada}
+
+La geometría de una curva depende de tres elementos:
+
+\begin{itemize}
+    \item la magnitud de la velocidad,
+    \item la curvatura,
+    \item la torsión (en el espacio tridimensional).
+\end{itemize}
+
+La descomposición de la aceleración es:
+\[
+\vec a(t)
+= \frac{d}{dt}\left(\|\vec r'(t)\|\right)\vec T(t)
++ \|\vec r'(t)\|^2 \kappa(t)\vec N(t).
+\]
+
+El primer término corresponde al cambio de rapidez; el segundo, al cambio de
+dirección.
+
+\begin{InfoBox}
+Incluso si la rapidez es constante, la aceleración puede ser grande debido a la
+curvatura, como en movimientos circulares.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: curvatura de una hélice]
+Para la hélice \(\vec r(t)=\langle a\cos t, a\sin t, bt\rangle\),
+calcule \(\kappa(t)\).
+
+La derivada es \(\vec r'(t)=\langle -a\sin t, a\cos t, b\rangle\), cuya norma es
+\(\sqrt{a^2+b^2}\). Usando la fórmula alternativa:
+\[
+\kappa(t) = \frac{a}{a^2+b^2}.
+\]
+La curvatura es constante.
+\end{EjercicioBox}
+
+\subsubsection{Torsión y comportamiento espacial de curvas}
+
+La torsión describe cómo una curva tridimensional abandona el plano osculador.
+Para una curva regular de clase \(C^3\), se define como:
+
+\[
+\tau(t)
+= \frac{
+(\vec r'(t)\times \vec r''(t))\cdot \vec r'''(t)
+}{
+\|\vec r'(t)\times \vec r''(t)\|^2
+}.
+\]
+
+Si \(\tau(t)=0\) para todo \(t\), la curva es plana.
+
+\begin{TemaBox}[Teorema: Condición de planaridad]
+Una curva suave satisface \(\tau(t)=0\) para todo \(t\) si y solo si su imagen
+está contenida en un plano.
+\end{TemaBox}
+
+\textbf{Demostración:}  
+La torsión nula implica que \(\vec r'(t), \vec r''(t), \vec r'''(t)\) son linealmente
+dependientes y no generan un espacio tridimensional. Luego, todos los vectores
+están contenidos en un subespacio bidimensional fijo. \(\square\)
+
+\begin{InfoBox}
+La torsión es especialmente importante en trayectorias helicoidales,
+movimientos en campos magnéticos y en geometría diferencial avanzada.
+\end{InfoBox}
+
+\subsubsection{Marco de Frenet y descripción completa de la curva}
+
+Para curvas regulares y suficientemente suaves, se definen tres vectores
+ortogonales:
+
+\[
+\vec T(t) \quad \text{(tangente)}, \qquad
+\vec N(t) \quad \text{(normal principal)}, \qquad
+\vec B(t)=\vec T(t)\times \vec N(t) \quad \text{(binormal)}.
+\]
+
+Estos vectores forman el \textbf{marco de Frenet}, que describe cómo se mueve
+la curva en el espacio.
+
+Las ecuaciones de Frenet–Serret relacionan los vectores entre sí:
+
+\[
+\vec T'(t)=\kappa(t)\vec N(t),
+\]
+\[
+\vec N'(t)=-\kappa(t)\vec T(t)+\tau(t)\vec B(t),
+\]
+\[
+\vec B'(t)=-\tau(t)\vec N(t).
+\]
+
+\begin{InfoBox}
+El marco de Frenet permite estudiar la geometría local de la curva sin
+referencias externas, usando solo su forma intrínseca.
+\end{InfoBox}
+
+\subsubsection{Longitud de arco y análisis integral}
+
+La longitud de una curva entre \(t=a\) y \(t=b\) es:
+
+\[
+L = \int_a^b \|\vec r'(t)\|\, dt.
+\]
+
+Si la curva está parametrizada por longitud de arco, \(s\), entonces:
+
+\[
+\frac{d\vec r}{ds} = \vec T(s).
+\]
+
+Esto simplifica cálculos derivados y facilita la construcción de marcos móviles.
+
+\begin{EjercicioBox}[Ejemplo: longitud de una curva]
+Calcule la longitud de \(\vec r(t)=\langle 3t,4t,0\rangle\) para \(0\le t\le 1\).
+Como \(\|\vec r'(t)\|=5\), la longitud es \(L=5\).
+\end{EjercicioBox}
+
+\subsubsection{Observaciones avanzadas sobre curvas}
+
+Las curvas espaciales pueden mostrar comportamientos complejos:
+
+\begin{itemize}
+    \item variación rápida de curvatura,
+    \item torsión elevada en intervalos cortos,
+    \item puntos donde \(\vec r'(t)=0\) (cuspides),
+    \item auto-intersecciones.
+\end{itemize}
+
+En aplicaciones reales, estos fenómenos aparecen en:
+
+\begin{itemize}
+    \item trayectorias de partículas en campos magnéticos,
+    \item curvas generadas por robots industriales,
+    \item geometrías de cables y fibras ópticas,
+    \item trayectorias de aeronaves.
+\end{itemize}
+
+\begin{InfoBox}
+Las curvas generadas por funciones vectoriales permiten modelar
+movimientos complejos que no pueden describirse con funciones escalar–variable
+simples.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejercicios propuestos]
+\begin{enumerate}
+    \item Determine si la curva \(\vec r(t)=\langle t^3,t^2,0\rangle\) es regular.
+    \item Calcule la curvatura de \(\vec r(t)=\langle e^t,\cos t,\sin t\rangle\).
+    \item Verifique si la curva \(\vec r(t)=\langle t, t^2, t^3\rangle\) es plana.
+    \item Halle el marco de Frenet para la curva \(\vec r(t)=\langle \cos t,\sin t,0\rangle\).
+    \item Encuentre la longitud de arco de \(\vec r(t)=\langle 2\cos t, 2\sin t, bt\rangle\) en un intervalo dado.
+\end{enumerate}
+\end{EjercicioBox}
+
+\subsection{Ecuaciones Paramétricas}
+
+\subsubsection{Introducción general}
+
+Una curva en el plano o en el espacio puede describirse mediante ecuaciones
+paramétricas. En lugar de una ecuación explícita del tipo \(y=f(x)\), se
+introduce un parámetro \(t\) y se define:
+
+\[
+x = x(t), \qquad y = y(t), \qquad z = z(t).
+\]
+
+La pareja o terna \((x(t), y(t), z(t))\) determina la posición de un punto
+móvil al variar \(t\). Esta descripción permite representar curvas que no
+pueden escribirse de manera cartesiana simple.
+
+\begin{InfoBox}
+Las ecuaciones paramétricas proporcionan un control total sobre la forma de la
+curva y la manera en que se recorre, algo imposible con ecuaciones cartesianas
+clásicas.
+\end{InfoBox}
+
+\subsubsection{Ventajas de la parametrización}
+
+El uso de parametrizaciones ofrece beneficios esenciales:
+
+\begin{itemize}
+    \item Permiten describir curvas que no pueden representarse como el gráfico
+          de una función.
+    \item Evitan restricciones como la unicidad vertical u horizontal.
+    \item Facilitan cálculos como velocidad, aceleración y curvatura.
+    \item Simplifican integrales a lo largo de curvas.
+    \item Permiten diseñar trayectorias de manera explícita.
+\end{itemize}
+
+Ejemplos de curvas difíciles en forma cartesiana pero fáciles en forma
+paramétrica incluyen:
+
+\begin{itemize}
+    \item circunferencias, elipses y cicloides,
+    \item trayectorias de proyectiles,
+    \item curvas auto–intersectantes,
+    \item hélices espaciales,
+    \item curvas definidas por movimientos oscilatorios.
+\end{itemize}
+
+\subsubsection{Conversión entre formas paramétricas y cartesianas}
+
+Si se tienen las ecuaciones paramétricas \(x=x(t)\) y \(y=y(t)\), una ecuación
+cartesiana puede obtenerse eliminando el parámetro \(t\), siempre que sea
+posible.
+
+\[
+t = g(x) \quad \Rightarrow \quad y = y(g(x)).
+\]
+
+La conversión puede ser sencilla (como en la circunferencia) o imposible de
+realizar en forma cerrada (como en una cicloide).
+
+\begin{InfoBox}
+La conversión cartesiana no siempre es factible. En muchos casos, la forma
+paramétrica es la única representación viable de la curva.
+\end{InfoBox}
+
+\subsubsection{Derivadas paramétricas}
+
+Si \(x=x(t)\) y \(y=y(t)\) son derivables, la pendiente de la curva está dada
+por:
+
+\[
+\frac{dy}{dx} =
+\frac{\frac{dy}{dt}}{\frac{dx}{dt}},
+\qquad \text{si } \frac{dx}{dt}\neq 0.
+\]
+
+Para derivadas de segundo orden:
+
+\[
+\frac{d^2y}{dx^2}
+=
+\frac{
+\frac{d}{dt}\left( \frac{dy}{dt} \, / \, \frac{dx}{dt} \right)
+}{
+\frac{dx}{dt}
+}.
+\]
+
+\begin{TemaBox}[Teorema: Derivada paramétrica]
+Si \(x(t)\) y \(y(t)\) son derivables y \(x'(t)\neq 0\), entonces
+\[
+\frac{dy}{dx} = \frac{y'(t)}{x'(t)}.
+\]
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Por la regla de la cadena,  
+\[
+\frac{dy}{dx}
+=
+\frac{dy/dt}{dx/dt}.
+\qquad \square
+\]
+
+\begin{InfoBox}
+El cálculo paramétrico evita complicaciones en curvas donde la pendiente
+vertical impediría usar la forma \(y=f(x)\).
+\end{InfoBox}
+
+\subsubsection{Velocidad y aceleración en ecuaciones paramétricas}
+
+La función vectorial asociada es:
+
+\[
+\vec r(t)=\langle x(t), y(t), z(t)\rangle.
+\]
+
+Sus derivadas son:
+
+\[
+\vec v(t)=\vec r'(t)=\langle x'(t), y'(t), z'(t)\rangle,
+\qquad
+\vec a(t)=\vec r''(t).
+\]
+
+La rapidez:
+
+\[
+\|\vec v(t)\| = \sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2}.
+\]
+
+\begin{InfoBox}
+La rapidez no depende de la forma de la curva sino de la
+parametrización. Cambiar el parámetro cambia la rapidez, pero no la trayectoria.
+\end{InfoBox}
+
+\subsubsection{Trayectorias clásicas en forma paramétrica}
+
+Muchas curvas fundamentales se expresan con facilidad mediante parametrizaciones:
+
+\begin{itemize}
+    \item \textbf{Recta:}  
+    \[
+    \vec r(t)=\vec r_0 + t\vec v.
+    \]
+
+    \item \textbf{Circunferencia:}  
+    \[
+    \vec r(t)=\langle a\cos t, a\sin t\rangle.
+    \]
+
+    \item \textbf{Elipse:}  
+    \[
+    \vec r(t)=\langle a\cos t, b\sin t\rangle.
+    \]
+
+    \item \textbf{Hélice:}  
+    \[
+    \vec r(t)=\langle a\cos t, a\sin t, bt\rangle.
+    \]
+
+    \item \textbf{Cicloide:}  
+    \[
+    x(t)=a(t-\sin t),\qquad y(t)=a(1-\cos t).
+    \]
+\end{itemize}
+
+\begin{InfoBox}
+La cicloide es una curva cuya representación cartesiana es prácticamente
+inmanejable, pero su forma paramétrica es simple y elegante.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: pendiente paramétrica]
+Para la curva \(x=t^2+1\), \(y=\ln(t+2)\), calcule \(\frac{dy}{dx}\).
+
+\[
+\frac{dy}{dx}
+=
+\frac{y'(t)}{x'(t)}
+=
+\frac{1/(t+2)}{2t}.
+\]
+\end{EjercicioBox}
+
+\subsubsection{Conversión entre sistemas de coordenadas}
+
+Una ventaja importante de la parametrización es que permite describir curvas
+utilizando distintos sistemas de coordenadas. Los principales sistemas usados
+en cálculo vectorial son:
+
+\begin{itemize}
+    \item coordenadas cartesianas,
+    \item coordenadas polares,
+    \item coordenadas cilíndricas,
+    \item coordenadas esféricas.
+\end{itemize}
+
+\subsubsubsection*{Coordenadas polares}
+
+Una curva puede describirse mediante:
+\[
+r = r(\theta),
+\qquad
+x = r(\theta)\cos\theta,
+\qquad
+y = r(\theta)\sin\theta.
+\]
+
+Ejemplos:
+
+\begin{itemize}
+    \item Espiral de Arquímedes: \(r=a\theta\).
+    \item Rosa polar: \(r=a\cos(k\theta)\).
+\end{itemize}
+
+\subsubsubsection*{Coordenadas cilíndricas}
+
+En el espacio,
+\[
+x = r\cos\theta,\qquad y = r\sin\theta,\qquad z=z.
+\]
+
+Una hélice se expresa elegantemente como:
+\[
+r=a, \qquad \theta=t, \qquad z=bt.
+\]
+
+\subsubsubsection*{Coordenadas esféricas}
+
+\[
+x=\rho\sin\phi\cos\theta,\qquad
+y=\rho\sin\phi\sin\theta,\qquad
+z=\rho\cos\phi.
+\]
+
+\begin{InfoBox}
+La elección del sistema de coordenadas adecuado simplifica de forma radical la
+descripción de trayectorias y la resolución de integrales.
+\end{InfoBox}
+
+\subsubsection{Curvas especiales avanzadas}
+
+Existen curvas que son fundamentales en matemáticas, física e ingeniería:
+
+\subsubsubsection*{Cicloide}
+
+Generada por un punto en una rueda que gira sin deslizar:
+\[
+x(t)=a(t-\sin t), \qquad y(t)=a(1-\cos t).
+\]
+
+Propiedades destacadas:
+
+\begin{itemize}
+    \item optimiza tiempos de descenso (problema de la braquistócrona),
+    \item modela trayectorias en mecanismos mecánicos,
+    \item presenta simetrías translacionales.
+\end{itemize}
+
+\subsubsubsection*{Curva braquistócrona}
+
+Solución del problema clásico de Bernoulli:
+encontrar la curva por la cual una partícula desciende más rápidamente bajo
+gravedad. Sorprendentemente, la solución es una cicloide, no una recta ni una
+parábola.
+
+\subsubsubsection*{Cardioide}
+
+Una curva polar dada por:
+\[
+r = a(1-\cos\theta).
+\]
+
+Su geometría aparece en:
+
+\begin{itemize}
+    \item acústica,
+    \item antenas direccionales,
+    \item reflexión y catóptrica,
+    \item óptica geométrica.
+\end{itemize}
+
+\subsubsection{Simetrías en curvas paramétricas}
+
+Las simetrías de una curva se analizan observando transformaciones del
+parámetro que dejan invariantes las ecuaciones.
+
+\subsubsubsection*{Simetría respecto al eje \(x\)}
+
+Si
+\[
+y(-t) = -y(t)
+\quad \text{y} \quad x(-t)=x(t),
+\]
+la curva es simétrica respecto al eje \(x\).
+
+\subsubsubsection*{Simetría respecto al eje \(y\)}
+
+Si
+\[
+x(-t) = -x(t)
+\quad \text{y} \quad y(-t)=y(t),
+\]
+la curva es simétrica respecto al eje \(y\).
+
+\subsubsubsection*{Simetría central}
+
+Si \(\vec r(-t)=-\vec r(t)\), la curva tiene simetría respecto al origen.
+
+\begin{InfoBox}
+Analizar simetrías ayuda a simplificar integrales, predecir comportamientos y
+entender la estructura global de la curva.
+\end{InfoBox}
+
+\subsubsection{Análisis estructural de curvas paramétricas}
+
+Una curva puede presentar:
+
+\begin{itemize}
+    \item puntos de retorno,
+    \item auto–intersecciones,
+    \item puntos donde \(\vec r'(t)=0\),
+    \item períodos de oscilación,
+    \item regiones cerradas,
+    \item comportamientos asintóticos.
+\end{itemize}
+
+Estos rasgos definen la topología de la curva y son esenciales para detectar
+propiedades globales.
+
+\subsubsubsection*{Auto–intersecciones}
+
+Una auto–intersección ocurre cuando existen \(t_1\neq t_2\) tales que:
+
+\[
+\vec r(t_1)=\vec r(t_2).
+\]
+
+Ejemplos clásicos:
+
+\begin{itemize}
+    \item curvas de Lissajous,
+    \item trayectorias oscilatorias,
+    \item figuras polares con varios pétalos.
+\end{itemize}
+
+\begin{InfoBox}
+La parametrización revela el orden en que se recorren las ramas de una curva,
+algo oculto en la representación cartesiana.
+\end{InfoBox}
+
+\subsubsection{Interpretación geométrica avanzada}
+
+Las propiedades de una curva dependen de:
+
+\begin{itemize}
+    \item la forma de las ecuaciones paramétricas,
+    \item el intervalo del parámetro,
+    \item la rapidez con la que se recorre,
+    \item la presencia de oscilaciones,
+    \item la existencia de puntos críticos.
+\end{itemize}
+
+La geometría local depende de:
+
+\[
+\vec r'(t),
+\qquad
+\vec r''(t),
+\qquad
+\vec r'''(t).
+\]
+
+En particular:
+
+\begin{itemize}
+    \item \(\vec r'(t)\) determina dirección y rapidez,
+    \item \(\vec r''(t)\) determina cambios de dirección,
+    \item \(\vec r'''(t)\) permite estudiar inflexiones paramétricas.
+\end{itemize}
+
+\begin{InfoBox}
+Una curva paramétrica permite analizar fenómenos que no son visibles en formas
+cartesianas, como la orientación, la velocidad instantánea y la torsión.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: auto–intersección]
+Considere \(\vec r(t)=\langle \sin(2t), \sin(3t)\rangle\).  
+Demuestre que existen valores distintos de \(t\) que producen el mismo punto,
+lo cual indica que la curva tiene auto–intersecciones.
+
+Sugerencia: la naturaleza periódica de las funciones seno con frecuencias
+distintas produce patrones cerrados que se repiten en distintos valores de \(t\).
+\end{EjercicioBox}
+
+\subsubsection{Aplicaciones matemáticas avanzadas}
+
+El uso de parametrizaciones es esencial en diversas ramas de las matemáticas:
+
+\begin{itemize}
+    \item en integración sobre curvas,
+    \item en optimización con restricciones,
+    \item en geometría diferencial,
+    \item en el estudio de intersecciones entre superficies,
+    \item en métodos numéricos para aproximación de trayectorias,
+    \item en construcción de curvas suaves (splines y Bézier).
+\end{itemize}
+
+\subsubsubsection*{Intersecciones entre superficies}
+
+Dadas dos superficies \(S_1\) y \(S_2\), su intersección suele ser una curva.
+La parametrización de dicha curva facilita tanto su análisis como la
+realización de cálculos integrales a lo largo de ella.
+
+Ejemplo general:
+
+Si
+\[
+S_1: F(x,y,z)=0, \qquad S_2: G(x,y,z)=0,
+\]
+entonces la curva intersección puede parametrizarse como
+\[
+\vec r(t)=\langle x(t), y(t), z(t)\rangle
+\]
+satisfaciendo ambas ecuaciones.
+
+\begin{InfoBox}
+La parametrización convierte un sistema de ecuaciones implícitas en una curva
+explícita y manejable.
+\end{InfoBox}
+
+\subsubsubsection*{Curvas de nivel parametrizadas}
+
+En problemas multivariables, una curva puede describirse como:
+\[
+f(x,y)=c.
+\]
+
+Una parametrización adecuada permite calcular integrales, longitudes de arco y
+derivadas direccionales a lo largo de la curva.
+
+\begin{TemaBox}[Teorema: Parametrización de curvas de nivel]
+Sea \(f:\mathbb{R}^2\to\mathbb{R}\) de clase \(C^1\).
+Si \(\nabla f(P)\neq 0\), entonces existe una parametrización suave de la curva
+nivel que pasa por \(P\).
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Por el teorema de la función implícita existe una función que describe localmente
+la curva, lo que garantiza la parametrización. \(\square\)
+
+\subsubsection{Aplicaciones físicas avanzadas}
+
+Las ecuaciones paramétricas permiten modelar fenómenos físicos complejos:
+
+\begin{itemize}
+    \item trayectorias bajo campos electromagnéticos,
+    \item órbitas en mecánica celeste,
+    \item oscilaciones no lineales,
+    \item movimiento de partículas relativistas,
+    \item propagación de señales en medios no homogéneos.
+\end{itemize}
+
+\begin{InfoBox}
+Las parametrizaciones no solo describen dónde está un objeto, sino cómo se
+mueve, con qué velocidad y cómo cambia su dirección.
+\end{InfoBox}
+
+\subsubsection{Reparametrización en curvas especiales}
+
+Algunas curvas requieren un parámetro diferente al estándar. Por ejemplo, las
+curvas que presentan oscilaciones periódicas pueden reparametrizarse usando su
+frecuencia natural.
+
+Ejemplo general:
+
+Si una curva oscila con frecuencia \(\omega\), una reparametrización común es
+\[
+t = \omega u,
+\]
+lo que normaliza la velocidad angular y simplifica los cálculos.
+
+\begin{InfoBox}
+Las reparametrizaciones ayudan a comparar curvas diferentes y a sincronizar
+movimientos periódicos.
+\end{InfoBox}
+
+\subsubsection{Estudio de la rapidez y la orientación}
+
+La rapidez depende de la derivada del parámetro:
+
+\[
+\|\vec r'(t)\| \quad \text{puede cambiar aun cuando la curva no cambie.}
+\]
+
+Si se desea mantener rapidez constante, se utiliza la parametrización por
+longitud de arco:
+
+\[
+s(t)=\int_{t_0}^t \|\vec r'(\tau)\| d\tau.
+\]
+
+Luego se invierte para obtener \(t=t(s)\).
+
+\subsubsection{Observaciones finales sobre ecuaciones paramétricas}
+
+Las ecuaciones paramétricas:
+
+\begin{itemize}
+    \item describen curvas imposibles de representar en forma cartesiana;
+    \item permiten estudiar orientación, velocidad y aceleración;
+    \item facilitan el estudio de auto–intersecciones y comportamientos globales;
+    \item son fundamentales en física, ingeniería y computación gráfica;
+    \item sirven como puente hacia el cálculo vectorial avanzado.
+\end{itemize}
+
+\begin{InfoBox}
+En geometría diferencial, la descripción paramétrica es el lenguaje natural de
+las curvas y superficies.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejercicios propuestos]
+\begin{enumerate}
+    \item Determine la pendiente paramétrica de la curva
+    \(x=\cos t\), \(y=\sin(2t)\).
+
+    \item Halle la rapidez de la curva \(\vec r(t)=\langle t^2, e^t, \cos t\rangle\).
+
+    \item Identifique puntos de auto–intersección en la curva
+    \(\vec r(t)=\langle \sin t, \sin(2t)\rangle\).
+
+    \item Clasifique la simetría de la curva \(x=\sin t\), \(y=\cos(2t)\).
+
+    \item Encuentre una reparametrización conveniente para la curva
+    \(x=\cos(3t)\), \(y=\sin(3t)\), de modo que se recorra con rapidez unidad.
+\end{enumerate}
+\end{EjercicioBox}
+
+\subsection{Cálculo en Funciones Vectoriales}
+
+\subsubsection{Velocidad y aceleración}
+
+Dada una función vectorial
+\[
+\vec r(t)=\langle x(t), y(t), z(t)\rangle,
+\]
+la velocidad está definida como la derivada:
+
+\[
+\vec v(t)=\vec r'(t)=\langle x'(t), y'(t), z'(t)\rangle,
+\]
+
+y la aceleración como:
+
+\[
+\vec a(t)=\vec r''(t).
+\]
+
+La rapidez es la norma de la velocidad:
+
+\[
+\|\vec v(t)\|=\sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2}.
+\]
+
+\begin{InfoBox}
+La velocidad describe la dirección del movimiento y su magnitud describe la
+rapidez. La aceleración captura los cambios tanto en dirección como en rapidez.
+\end{InfoBox}
+
+\subsubsection{Descomposición de la aceleración}
+
+La aceleración puede descomponerse en dos componentes fundamentales:
+
+\[
+\vec a(t)
+=
+a_T(t)\vec T(t)
++
+a_N(t)\vec N(t),
+\]
+donde:
+
+\[
+a_T(t)=\frac{d}{dt}\|\vec v(t)\|,
+\qquad
+a_N(t)=\|\vec v(t)\|^2\kappa(t).
+\]
+
+\begin{InfoBox}
+Incluso si la rapidez es constante, la aceleración puede ser grande debido a la
+curvatura. Esto es típico en movimientos circulares.
+\end{InfoBox}
+
+\subsubsection{Derivadas superiores}
+
+La tercera derivada \(\vec r'''(t)\) permite analizar la torsión de la curva y
+describir comportamientos espaciales más complejos.
+
+Ejemplos:
+
+\begin{itemize}
+    \item Si \(\vec r'''(t)=0\), la curva es un polinomio vectorial de grado 2.
+    \item Si \(\vec r''(t)\) es constante, la trayectoria es parabólica.
+    \item Si \(\vec r''(t)\) y \(\vec r'''(t)\) son perpendiculares, surgen puntos de inflexión.
+\end{itemize}
+
+\subsubsection{Curvatura en términos de derivadas}
+
+La curvatura puede definirse directamente en términos de \(\vec r'(t)\) y
+\(\vec r''(t)\):
+
+\[
+\kappa(t)=
+\frac{\|\vec r'(t)\times \vec r''(t)\|}
+{\|\vec r'(t)\|^3}.
+\]
+
+\begin{TemaBox}[Teorema: Fórmula de curvatura]
+Sea \(\vec r(t)\) regular y suave. Entonces la curvatura está dada por:
+\[
+\kappa(t)=
+\frac{\|\vec r'(t)\times \vec r''(t)\|}
+{\|\vec r'(t)\|^3}.
+\]
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Se deriva el vector tangente \(\vec T(t)=\vec r'(t)/\|\vec r'(t)\|\) y se
+proyecta sobre la dirección normal. El módulo del componente normal produce la
+expresión dada. \(\square\)
+
+\begin{InfoBox}
+La fórmula es especialmente útil para curvas espaciales donde la derivada del
+vector tangente es complicada de calcular directamente.
+\end{InfoBox}
+
+\subsubsection{Torsión en términos de derivadas}
+
+Para curvas tridimensionales, la torsión se expresa como:
+
+\[
+\tau(t)=
+\frac{(\vec r'(t)\times \vec r''(t))\cdot \vec r'''(t)}
+{\|\vec r'(t)\times \vec r''(t)\|^2}.
+\]
+
+La torsión mide la desviación de la curva fuera del plano osculador.
+
+\subsubsection{Longitud de arco}
+
+La longitud de arco entre \(t=a\) y \(t=b\) se obtiene mediante:
+
+\[
+L=\int_a^b \|\vec r'(t)\|\, dt.
+\]
+
+Una curva puede reparametrizarse mediante longitud de arco definiendo:
+
+\[
+s(t)=\int_{t_0}^t \|\vec r'(\tau)\|d\tau.
+\]
+
+\subsubsection{Ecuaciones de Frenet–Serret}
+
+El marco de Frenet está dado por:
+
+\[
+\vec T(t), \qquad \vec N(t), \qquad \vec B(t)=\vec T(t)\times \vec N(t).
+\]
+
+Satisface:
+
+\[
+\vec T'(t)=\kappa(t)\vec N(t),
+\]
+\[
+\vec N'(t)=-\kappa(t)\vec T(t)+\tau(t)\vec B(t),
+\]
+\[
+\vec B'(t)=-\tau(t)\vec N(t).
+\]
+
+\begin{InfoBox}
+Estas ecuaciones describen completamente la geometría local de la curva.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: velocidad y aceleración]
+Sea \(\vec r(t)=\langle e^t,\cos t,\sin t\rangle\).
+Calcule \(\vec v(t)\) y \(\vec a(t)\).
+
+\[
+\vec v(t)=\langle e^t,-\sin t,\cos t\rangle,
+\qquad
+\vec a(t)=\langle e^t,-\cos t,-\sin t\rangle.
+\]
+\end{EjercicioBox}
+
+\subsubsection{Análisis geométrico mediante derivadas}
+
+La primera y segunda derivada permiten identificar rasgos geométricos como:
+
+\begin{itemize}
+    \item puntos de inflexión,
+    \item cambios bruscos de dirección,
+    \item zonas donde la rapidez disminuye o aumenta,
+    \item regiones donde la curva se aplana.
+\end{itemize}
+
+Sea \(\vec r(t)\) una curva suave:
+
+\[
+\vec r'(t) \quad \text{dirección y rapidez,}
+\]
+\[
+\vec r''(t) \quad \text{cambios en la dirección del movimiento.}
+\]
+
+Un punto de la curva es crítico si
+\[
+\vec r'(t_0)=\vec 0.
+\]
+
+\begin{InfoBox}
+Los puntos críticos indican cambios cualitativos importantes en la trayectoria.
+Pueden corresponder a cuspides, detenciones o giros abruptos.
+\end{InfoBox}
+
+\subsubsection{Relación entre velocidad, curvatura y torsión}
+
+La geometría de una curva tridimensional está gobernada por tres funciones:
+
+\[
+\|\vec r'(t)\|, \qquad \kappa(t), \qquad \tau(t).
+\]
+
+La rapidez describe la magnitud del movimiento, la curvatura describe cómo se
+dobla la curva, y la torsión describe cómo la curva sale del plano osculador.
+
+\begin{TemaBox}[Teorema: Descomposición de la aceleración]
+La aceleración puede expresarse como:
+\[
+\vec a(t)
+=
+a_T(t)\vec T(t)
++
+a_N(t)\vec N(t),
+\]
+donde
+\[
+a_T(t)=\frac{d}{dt}\|\vec v(t)\|,
+\qquad
+a_N(t)=\|\vec v(t)\|^2\kappa(t).
+\]
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Se descompone la aceleración en las direcciones tangente y normal y se usa la
+definición de curvatura. \(\square\)
+
+\subsubsection{Interpretación física avanzada}
+
+Sea una partícula cuya posición está dada por \(\vec r(t)\). Entonces:
+
+\[
+\vec v(t) \text{ representa la velocidad instantánea.}
+\]
+\[
+\vec a(t) \text{ representa la aceleración total.}
+\]
+
+La descomposición de la aceleración implica:
+
+\begin{itemize}
+    \item \(a_T\): responsable del cambio de rapidez (aceleración tangencial).
+    \item \(a_N\): responsable del cambio de dirección (aceleración normal).
+\end{itemize}
+
+\begin{InfoBox}
+Un automóvil que gira a velocidad constante experimenta aceleración normal, no
+tangencial. Esta distinción es crucial en física e ingeniería.
+\end{InfoBox}
+
+Ejemplos de fenómenos donde estos conceptos son esenciales:
+
+\begin{itemize}
+    \item movimiento circular uniforme,
+    \item órbitas planetarias,
+    \item trayectorias de partículas cargadas en campos magnéticos,
+    \item movimientos oscilatorios tridimensionales.
+\end{itemize}
+
+\subsubsection{Puntos críticos y regularidad}
+
+Sean los puntos donde \(\vec r'(t)=\vec 0\). Tales puntos requieren un análisis
+especial porque:
+
+\begin{itemize}
+    \item la dirección tangente es indefinida,
+    \item pueden aparecer cuspides,
+    \item pueden surgir puntos de retorno,
+    \item la curva puede cruzarse consigo misma.
+\end{itemize}
+
+\begin{TemaBox}[Teorema: Regularidad y tangentes]
+Si \(\vec r'(t_0)\neq 0\), la curva tiene tangente bien definida en \(t_0\).  
+Si \(\vec r'(t_0)=0\), la curva puede perder suavidad en ese punto.
+\end{TemaBox}
+
+\textbf{Demostración:}  
+La existencia del vector tangente requiere derivada no nula. Cuando se anula,
+pueden formarse cuspides o cambios abruptos de dirección. \(\square\)
+
+\subsubsection{Comportamientos extremos de la curva}
+
+Las derivadas de orden superior permiten analizar:
+
+\begin{itemize}
+    \item zonas donde la curva se aplana (\(\kappa\approx 0\)),
+    \item zonas donde la curva gira rápidamente (\(\kappa\) grande),
+    \item zonas donde la curva vibra (alta variación de \(\tau\)),
+    \item trayectorias casi rectilíneas,
+    \item comportamientos helicoidales,
+    \item zonas de oscilación periódica.
+\end{itemize}
+
+Una curva espaciales puede presentar fenómenos como:
+
+\begin{itemize}
+    \item torsión con signo variable,
+    \item inflexiones espaciales,
+    \item periodicidad tridimensional,
+    \item regiones donde la curvatura se anula.
+\end{itemize}
+
+\begin{InfoBox}
+La geometría local de una curva es completamente descrita por su rapidez,
+curvatura y torsión. Esto permite reconstruirla salvo una transformación rígida.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: descomposición de la aceleración]
+Considere \(\vec r(t)=\langle \cos t,\sin t, bt\rangle\).
+Determine \(a_T\) y \(a_N\).
+
+\[
+\vec v(t)=\langle -\sin t,\cos t,b\rangle,
+\qquad
+\|\vec v(t)\|=\sqrt{1+b^2}.
+\]
+
+Como la rapidez es constante:
+\[
+a_T=0.
+\]
+
+La curvatura de la hélice:
+\[
+\kappa=\frac{1}{1+b^2}.
+\]
+
+Entonces:
+\[
+a_N=\|\vec v(t)\|^2\kappa=\frac{1+b^2}{1+b^2}=1.
+\]
+\end{EjercicioBox}
+
+\subsubsection{Aplicaciones matemáticas avanzadas}
+
+El cálculo vectorial aplicado a funciones vectoriales es esencial en múltiples
+ramas de las matemáticas:
+
+\begin{itemize}
+    \item geometría diferencial,
+    \item análisis de curvas y superficies,
+    \item óptica geométrica,
+    \item teoría de campos,
+    \item métodos numéricos para trayectorias,
+    \item interpolación geométrica.
+\end{itemize}
+
+\subsubsubsection*{Curvas como soluciones de EDO}
+
+Muchas ecuaciones diferenciales ordinarias generan curvas como soluciones. Por
+ejemplo, la ecuación
+\[
+\vec r''(t)=k\vec r(t)
+\]
+produce curvas exponenciales, sinusoidales u oscilatorias según el signo de
+\(k\).
+
+\subsubsubsection*{Curvas de mínima energía}
+
+En problemas variacionales, se buscan curvas que minimicen funcionales del tipo:
+
+\[
+E[\vec r]=\int_a^b \|\vec r''(t)\|^2 dt.
+\]
+
+Estas curvas aparecen en física, en elasticidad y en diseño industrial.
+
+\begin{InfoBox}
+Las curvas que minimizan energías elásticas tienden a ser suaves, regulares y
+con variación controlada de curvatura.
+\end{InfoBox}
+
+\subsubsection{Aplicaciones físicas avanzadas}
+
+Las funciones vectoriales describen movimientos en física clásica,
+electromagnetismo, mecánica celeste y relatividad.
+
+\subsubsubsection*{Movimiento bajo fuerzas centrales}
+
+Una fuerza central satisface:
+\[
+\vec F(\vec r)=f(\|\vec r\|)\vec r.
+\]
+
+La trayectoria es una curva plana y puede analizarse mediante funciones
+paramétricas. Ejemplos:
+
+\begin{itemize}
+    \item órbitas elípticas,
+    \item órbitas parabólicas,
+    \item órbitas hiperbólicas.
+\end{itemize}
+
+\subsubsubsection*{Trayectorias de partículas cargadas}
+
+En un campo magnético uniforme, una partícula describe una hélice:
+
+\[
+\vec r(t)=\langle a\cos(\omega t), a\sin(\omega t), ct\rangle.
+\]
+
+\begin{InfoBox}
+La curvatura se relaciona directamente con la intensidad del campo magnético.
+\end{InfoBox}
+
+\subsubsection{Curvas especiales estudiadas en cálculo diferencial}
+
+Existen curvas cuyas propiedades motivan el desarrollo de toda la teoría:
+
+\subsubsubsection*{Curvas planas}
+
+Cuando \(\tau(t)=0\), la curva es plana. Ejemplos:
+
+\begin{itemize}
+    \item líneas rectas,
+    \item circunferencias,
+    \item parábolas,
+    \item espirales planas.
+\end{itemize}
+
+\subsubsubsection*{Curvas espaciales generalizadas}
+
+Cuando tanto la torsión como la curvatura son no nulas, surgen curvas:
+
+\begin{itemize}
+    \item helicoidales,
+    \item toroidales,
+    \item curvas oscilatorias tridimensionales.
+\end{itemize}
+
+\begin{TemaBox}[Teorema: Determinación de la curva]
+Dados \(\kappa(t)\) y \(\tau(t)\), existe una curva única (salvo rigidez) cuya
+curvatura y torsión son las dadas.
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Las ecuaciones de Frenet–Serret definen un sistema que, junto con condiciones
+iniciales, determina la curva completamente. \(\square\)
+
+\begin{EjercicioBox}[Ejemplo: curva plana con aceleración normal]
+Sea \(\vec r(t)=\langle t, t^2, 0\rangle\).
+Determine si la curva es plana y calcule la curvatura.
+
+Como \(z(t)=0\), \(\tau(t)=0\) siempre; la curva es plana.  
+\[
+\kappa(t)
+=
+\frac{\|\vec r'(t)\times \vec r''(t)\|}
+     {\|\vec r'(t)\|^3}.
+\]
+
+\[
+\vec r'(t)=\langle 1,2t,0\rangle,
+\qquad
+\vec r''(t)=\langle 0,2,0\rangle.
+\]
+
+\[
+\vec r'(t)\times \vec r''(t)
+=
+\langle 0,0,2\rangle.
+\]
+
+\[
+\kappa(t)
+=
+\frac{2}{(1+4t^2)^{3/2}}.
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejercicios propuestos]
+\begin{enumerate}
+    \item Calcule la torsión de la curva
+    \(\vec r(t)=\langle t, t^2, t^3\rangle\).
+
+    \item Determine la longitud de arco de la curva
+    \(\vec r(t)=\langle \cos t,\sin t, bt\rangle\) en un intervalo dado.
+
+    \item Analice la descomposición de la aceleración en la curva
+    \(\vec r(t)=\langle e^t, \cos t, \sin t\rangle\).
+
+    \item Verifique si \(\vec r(t)=\langle t^3,t^2,t\rangle\) tiene puntos
+    críticos.
+
+    \item Encuentre la curvatura de la curva
+    \(\vec r(t)=\langle 3t^2, 2t, 1\rangle\) y clasifique su comportamiento.
+\end{enumerate}
+\end{EjercicioBox}
+
+\subsection{Integral de Línea}
+
+\subsubsection{Introducción general}
+
+La integral de línea es una herramienta fundamental para integrar cantidades
+a lo largo de una curva en el plano o en el espacio. Permite sumar:
+
+\begin{itemize}
+    \item trabajo realizado por una fuerza,
+    \item masa de un alambre curvo,
+    \item flujo tangencial de un campo vectorial,
+    \item variaciones de campos escalares a lo largo de trayectorias.
+\end{itemize}
+
+Sea una curva parametrizada \(\vec r(t)\), \(a\le t\le b\).  
+La integral de un campo vectorial \(\vec F\) sobre la curva se define como:
+
+\[
+\int_C \vec F\cdot d\vec r = \int_a^b \vec F(\vec r(t))\cdot \vec r'(t)\, dt.
+\]
+
+\begin{InfoBox}
+La integral de línea toma en cuenta no solo el campo vectorial, sino también la
+dirección y la rapidez con la que se recorre la curva.
+\end{InfoBox}
+
+\subsubsection{Integral de campos escalares}
+
+Si una curva \(C\) está descrita por \(\vec r(t)\), la integral de un campo
+escalar \(f\) a lo largo de la curva es:
+
+\[
+\int_C f\, ds = \int_a^b f(\vec r(t))\|\vec r'(t)\|\, dt.
+\]
+
+Interpretaciones comunes:
+
+\begin{itemize}
+    \item masa de un alambre con densidad variable \(f\),
+    \item longitud ponderada,
+    \item acumulación de una magnitud sobre una trayectoria.
+\end{itemize}
+
+\subsubsection{Integral de campos vectoriales}
+
+Sea \(\vec F=\langle P,Q,R\rangle\). La integral de línea tangencial es:
+
+\[
+\int_C \vec F\cdot d\vec r
+=
+\int_C P\,dx + Q\,dy + R\,dz.
+\]
+
+Usando la parametrización:
+
+\[
+dx = x'(t)\,dt,\quad dy=y'(t)\,dt,\quad dz=z'(t)\,dt,
+\]
+
+queda:
+
+\[
+\int_C \vec F\cdot d\vec r
+=
+\int_a^b
+\left[
+P(\vec r(t))x'(t)
++
+Q(\vec r(t))y'(t)
++
+R(\vec r(t))z'(t)
+\right]dt.
+\]
+
+\begin{InfoBox}
+La orientación de la curva es crucial: invertir el sentido cambia el signo de
+la integral.
+\end{InfoBox}
+
+\subsubsection{Dependencia del camino}
+
+Una característica esencial de las integrales de línea es que, en general,
+dependen de la trayectoria seguida. Si dos curvas \(C_1\) y \(C_2\) unen los
+puntos \(A\) y \(B\), entonces normalmente:
+
+\[
+\int_{C_1} \vec F\cdot d\vec r
+\ne
+\int_{C_2} \vec F\cdot d\vec r.
+\]
+
+Ejemplo típico: fuerzas no conservativas, rozamiento o campos rotacionales.
+
+\subsubsection{Campos conservativos}
+
+Un campo es conservativo si existe una función potencial \(\varphi\) tal que:
+
+\[
+\vec F = \nabla \varphi.
+\]
+
+En este caso:
+
+\[
+\int_C \vec F\cdot d\vec r
+=
+\varphi(B)-\varphi(A),
+\]
+
+independientemente del camino.
+
+\begin{TemaBox}[Teorema fundamental para campos conservativos]
+Si \(\vec F = \nabla \varphi\) en un dominio simplemente conexo, entonces:
+\[
+\int_C \vec F\cdot d\vec r
+=
+\varphi(\vec r(b)) - \varphi(\vec r(a)).
+\]
+\end{TemaBox}
+
+\textbf{Demostración:}  
+Por la regla de la cadena,
+\[
+\frac{d}{dt}\varphi(\vec r(t))
+=
+\nabla\varphi(\vec r(t))\cdot \vec r'(t)
+=
+\vec F(\vec r(t))\cdot \vec r'(t).
+\]
+Integrando de \(a\) a \(b\) se obtiene el resultado. \(\square\)
+
+\begin{InfoBox}
+En física, un campo conservativo realiza un trabajo independiente del camino:
+solo importan los puntos inicial y final.
+\end{InfoBox}
+
+\subsubsection{Criterio de conservatividad}
+
+En dos dimensiones:
+
+\[
+\vec F = \langle P,Q\rangle
+\quad\text{es conservativo si y solo si}\quad
+\frac{\partial P}{\partial y}
+=
+\frac{\partial Q}{\partial x}.
+\]
+
+En tres dimensiones:
+
+\[
+\vec F \text{ es conservativo } \iff \nabla\times \vec F = \vec 0.
+\]
+
+Esto funciona en dominios simplemente conexos.
+
+\begin{InfoBox}
+El rotacional nulo implica ausencia de “vórtices” en el campo, lo que
+permite definir un potencial escalar.
+\end{InfoBox}
+
+\begin{EjercicioBox}[Ejemplo: campo conservativo]
+Sea \(\vec F=\langle 2x,2y\rangle\).  
+Determine si es conservativo y calcule su integral entre
+\(A=(-1,0)\) y \(B=(1,2)\).
+
+\[
+\frac{\partial P}{\partial y}=0,
+\qquad
+\frac{\partial Q}{\partial x}=0,
+\]
+entonces es conservativo.
+
+Un potencial es:
+\[
+\varphi(x,y)=x^2+y^2.
+\]
+
+\[
+\int_C \vec F\cdot d\vec r
+=
+\varphi(B)-\varphi(A)
+=
+(1^2+2^2)-((-1)^2+0^2)=5-1=4.
+\]
+\end{EjercicioBox}
+
+\subsubsection{Trabajo realizado por una fuerza}
+
+Una aplicación fundamental de la integral de línea es el cálculo del trabajo:
+
+\[
+W = \int_C \vec F\cdot d\vec r.
+\]
+
+Si \(\vec F\) es la fuerza que actúa sobre una partícula con trayectoria
+\(\vec r(t)\), entonces el trabajo se interpreta como:
+
+\[
+W = \int_a^b \vec F(\vec r(t))\cdot \vec r'(t)\, dt.
+\]
+
+Interpretación física:
+
+\begin{itemize}
+    \item trabajo positivo: la fuerza impulsa el movimiento,
+    \item trabajo negativo: la fuerza se opone al movimiento,
+    \item trabajo nulo: la fuerza es perpendicular a la trayectoria.
+\end{itemize}
+
+\begin{InfoBox}
+Cuando la fuerza es conservativa, el trabajo depende únicamente de los puntos
+inicial y final. Si no lo es, depende del camino completo.
+\end{InfoBox}
+
+\subsubsection{Integrales en curvas cerradas}
+
+Si \(C\) es cerrada (se regresa al punto inicial), se usa la notación:
+
+\[
+\oint_C \vec F\cdot d\vec r.
+\]
+
+Propiedades importantes:
+
+\begin{itemize}
+    \item Si \(\vec F\) es conservativo, entonces:
+    \[
+    \oint_C \vec F\cdot d\vec r = 0.
+    \]
+    \item Si \(\vec F\) NO es conservativo, la integral puede ser positiva,
+          negativa o nula dependiendo del campo.
+    \item La orientación de la curva afecta el signo.
+\end{itemize}
+
+\begin{InfoBox}
+Las integrales cerradas permiten detectar “rotación” o circulación en un campo
+vectorial, lo cual es esencial en fluídos y electromagnetismo.
+\end{InfoBox}
+
+\subsubsection{Circulación y flujo tangencial}
+
+La integral de línea evalúa la circulación de un campo a lo largo de la curva:
+
+\[
+\text{Circulación} = \oint_C \vec F\cdot d\vec r.
+\]
+
+Interpretación física:
+
+\begin{itemize}
+    \item mide cuánto “empuja” el campo en la dirección de la curva,
+    \item detecta presencia de remolinos o vorticidad,
+    \item permite medir la componente tangencial del campo.
+\end{itemize}
+
+\subsubsection{El Teorema de Green (introducción)}
+
+El Teorema de Green relaciona una integral de línea sobre una curva cerrada con
+una integral doble sobre la región encerrada.
+
+Sea \(C\) una curva simple, cerrada y orientada positivamente (contrarreloj).
+Sea \(\vec F=\langle P,Q\rangle\). Entonces:
+
+\[
+\oint_C P\, dx + Q\, dy
+=
+\iint_D \left( \frac{\partial Q}{\partial x}
+-
+\frac{\partial P}{\partial y} \right) dA.
+\]
+
+\begin{TemaBox}[Teorema de Green]
+La circulación de un campo vectorial alrededor de una curva cerrada es igual al
+rotacional integrado sobre la región encerrada.
+\end{TemaBox}
+
+\textbf{Demostración (idea):}  
+Se divide la región \(D\) en rectángulos y se aplica el teorema fundamental del
+cálculo a cada uno. Las contribuciones internas se cancelan y solo permanece la
+frontera. \(\square\)
+
+\subsubsection{Interpretación geométrica de Green}
+
+La cantidad
+\[
+\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}
+\]
+es el rotacional en 2D.
+
+Interpretación:
+
+\begin{itemize}
+    \item Si es positivo, el campo induce un giro antihorario.
+    \item Si es negativo, induce un giro horario.
+    \item Si es cero, no hay giro neto.
+\end{itemize}
+
+\begin{InfoBox}
+El Teorema de Green convierte un problema unidimensional (una curva) en uno
+bidimensional (una región). Esto simplifica muchos cálculos y brinda una visión
+geométrica más profunda.
+\end{InfoBox}
+
+\subsubsection{Conexión con campos conservativos}
+
+Si \(\vec F=\langle P,Q\rangle\) es conservativo, entonces:
+
+\[
+\frac{\partial Q}{\partial x}
+=
+\frac{\partial P}{\partial y}.
+\]
+
+Sustituyendo en el Teorema de Green:
+
+\[
+\oint_C \vec F\cdot d\vec r
+=
+\iint_D 0 \, dA
+=
+0.
+\]
+
+Esto explica por qué los campos conservativos tienen integrales cerradas nulas.
+
+\begin{EjercicioBox}[Ejemplo: circulación en un campo rotacional]
+Sea \(\vec F=\langle -y, x\rangle\).  
+Calcule \(\oint_C \vec F\cdot d\vec r\) donde \(C\) es la circunferencia unidad.
+
+Parametrización:
+
+\[
+x=\cos t,\qquad y=\sin t,\qquad 0\le t\le 2\pi.
+\]
+
+\[
+\vec r'(t)=\langle -\sin t,\cos t\rangle.
+\]
+
+\[
+\vec F(\vec r(t))=\langle -\sin t, \cos t\rangle.
+\]
+
+\[
+\vec F\cdot \vec r'(t)
+=
+(-\sin t)(-\sin t)+(\cos t)(\cos t)=1.
+\]
+
+\[
+\oint_C \vec F\cdot d\vec r = \int_0^{2\pi} 1\, dt = 2\pi.
+\]
+
+\end{EjercicioBox}
+
+\subsubsection{Integrales de línea en el espacio}
+
+Para una curva espacial \(C\subset\mathbb{R}^3\) descrita por una
+parametrización
+\[
+\vec r(t)=\langle x(t), y(t), z(t)\rangle,
+\qquad a\le t\le b,
+\]
+la integral de línea de un campo vectorial \(\vec F=\langle P,Q,R\rangle\) es:
+
+\[
+\int_C \vec F\cdot d\vec r
+=
+\int_a^b \left[
+P(\vec r(t))x'(t)
++
+Q(\vec r(t))y'(t)
++
+R(\vec r(t))z'(t)
+\right] dt.
+\]
+
+\begin{InfoBox}
+El cálculo es idéntico al caso bidimensional: la única diferencia es la
+presencia del tercer componente. La interpretación geométrica es la misma.
+\end{InfoBox}
+
+\subsubsection{Conexión con gradientes}
+
+Si un campo es gradiente de un potencial:
+
+\[
+\vec F = \nabla \varphi,
+\]
+
+entonces:
+
+\[
+\int_C \vec F\cdot d\vec r = \varphi(B)-\varphi(A).
+\]
+
+Propiedades clave:
+
+\begin{itemize}
+    \item la integral no depende del camino,
+    \item las curvas cerradas siempre dan como resultado cero,
+    \item el trabajo es completamente recuperable,
+    \item aparecen funciones potenciales en energía mecánica, eléctrica y gravitacional.
+\end{itemize}
+
+\subsubsection{Flujo tangencial y orientación}
+
+La integral de línea mide la alineación entre el campo y la tangente.
+
+\[
+\vec F\cdot d\vec r = \|\vec F\|\|\vec r'\|\cos\theta\, dt.
+\]
+
+Interpretación:
+
+\begin{itemize}
+    \item si \(\theta=0\): el campo impulsa completamente la trayectoria,
+    \item si \(\theta=\pi\): el campo se opone totalmente,
+    \item si \(\theta=\pi/2\): no contribuye al trabajo.
+\end{itemize}
+
+\begin{InfoBox}
+El ángulo entre el campo y la tangente determina el trabajo realizado por unidad de longitud recorrida.
+\end{InfoBox}
+
+\subsubsection{Aplicaciones físicas avanzadas}
+
+Las integrales de línea aparecen naturalmente en:
+
+\begin{itemize}
+    \item trabajo realizado por fuerzas variables,
+    \item circulación de fluidos alrededor de una curva,
+    \item corriente inducida en electromagnetismo,
+    \item energía gastada por un campo eléctrico,
+    \item modelado de trayectorias con fricción dependiente del camino.
+\end{itemize}
+
+Ejemplos típicos:
+
+\subsubsubsection*{Trabajo en campos gravitacionales}
+
+\[
+W = \int_C m\vec g\cdot d\vec r = mg(z_B - z_A).
+\]
+
+\subsubsubsection*{Trabajo en campos eléctricos}
+
+\[
+\vec F = q\vec E,
+\qquad
+W = q\int_C \vec E\cdot d\vec r.
+\]
+
+\subsubsubsection*{Circulación en dinámica de fluidos}
+
+\[
+\Gamma = \oint_C \vec v\cdot d\vec r.
+\]
+
+La circulación mide la tendencia del fluido a generar remolinos.
+
+\begin{InfoBox}
+La integral de línea es el puente entre cálculo vectorial y las ecuaciones de la física moderna: Maxwell, Navier–Stokes y la mecánica lagrangiana.
+\end{InfoBox}
+
+\subsubsection{Integral de línea y campos no conservativos}
+
+Si \(\vec F\) no puede expresarse como gradiente, entonces:
+
+\begin{itemize}
+    \item la integral depende del camino,
+    \item pueden existir regiones donde la integral cerrada sea positiva o negativa,
+    \item aparece energía disipada (como fricción),
+    \item ocurren efectos circulatorios (vorticidad).
+\end{itemize}
+
+El rotacional caracteriza la falta de conservatividad:
+
+\[
+\nabla\times \vec F \ne \vec 0.
+\]
+
+\subsubsection{Criterio espacial de conservatividad}
+
+Un campo en \(\mathbb{R}^3\) es conservativo si y solo si:
+
+\[
+\nabla\times \vec F = \vec 0
+\quad \text{en un dominio simplemente conexo}.
+\]
+
+\begin{TemaBox}[Teorema: equivalencia en 3D]
+Un campo vectorial es conservativo si y solo si su rotacional es cero y el
+dominio es simplemente conexo.
+\end{TemaBox}
+
+\textbf{Demostración (idea):}  
+Usando la versión tridimensional del teorema de Poincaré, un rotacional nulo
+garantiza la existencia de una función potencial. \(\square\)
+
+\begin{EjercicioBox}[Ejemplo: integral en el espacio]
+Calcule
+\[
+\int_C \vec F\cdot d\vec r,
+\quad
+\vec F=\langle yz, xz, xy\rangle,
+\]
+donde \(C\) es la curva
+\[
+\vec r(t)=\langle t, t^2, t^3\rangle,\quad 0\le t\le 1.
+\]
+
+\[
+\vec r'(t)=\langle 1,2t,3t^2\rangle.
+\]
+
+\[
+\vec F(\vec r(t))
+=
+\langle t^2\cdot t^3,\, t\cdot t^3,\, t\cdot t^2\rangle
+=
+\langle t^5, t^4, t^3\rangle.
+\]
+
+\[
+\vec F\cdot \vec r'
+=
+t^5(1)+t^4(2t)+t^3(3t^2)
+=
+t^5+2t^5+3t^5
+=
+6t^5.
+\]
+
+\[
+\int_0^1 6t^5\, dt = t^6\bigg|_0^1 = 1.
+\]
+\end{EjercicioBox}
+
+\begin{EjercicioBox}[Ejercicios de repaso]
+\begin{enumerate}
+    \item Determine si \(\vec F=\langle yz, xz, xy\rangle\) es conservativo
+          y calcule la integral entre dos puntos.
+
+    \item Calcule la circulación de \(\vec F=\langle -y,x,0\rangle\) alrededor
+          de una curva helicoidal.
+
+    \item Evalúe \(\int_C f\, ds\) para \(f(x,y)=x^2+y^2\) sobre la curva
+          \(\vec r(t)=\langle \cos t,\sin t\rangle\).
+
+    \item Verifique el Teorema de Green para el campo \(\langle -y,x\rangle\) en una región rectangular.
+
+    \item Clasifique un campo vectorial dado según sea conservativo, rotacional o irrotacional usando \(\nabla\times\vec F\).
+\end{enumerate}
+\end{EjercicioBox}

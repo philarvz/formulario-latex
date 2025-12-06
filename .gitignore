@@ -10,3 +10,10 @@
 # Ignorar carpetas temporales
 _build/
 output/
+
+# Ignorar archivos del sistema macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
